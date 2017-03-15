@@ -21,4 +21,6 @@
     <string name="store">Store</string>
     <string name="community">Community</string>
     <string name="personal">Personal</string>
+    <string name="login_input">Please enter the phone number/WeChat ID/QQ number</string>
+    <string name="login_password">Please enter passward</string>
 </resources>

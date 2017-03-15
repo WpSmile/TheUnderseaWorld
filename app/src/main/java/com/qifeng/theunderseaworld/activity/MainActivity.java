@@ -3,21 +3,27 @@ package com.qifeng.theunderseaworld.activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.qifeng.theunderseaworld.R;
+import com.qifeng.theunderseaworld.adapter.SectionsPagerAdapter;
 import com.qifeng.theunderseaworld.fragment.CommunityFragment;
 import com.qifeng.theunderseaworld.fragment.HomePageFragment;
 import com.qifeng.theunderseaworld.fragment.PersonalFragment;
 import com.qifeng.theunderseaworld.fragment.StoreFragment;
 
+import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
+
+public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener,ViewPager.OnPageChangeListener{
 
     private Fragment[] fragments;
+    //private ArrayList<Fragment> fragments;
+    private ViewPager viewPager;
     BottomNavigationBar bottomNavigationBar;
     HomePageFragment homePageFragment;
     StoreFragment storeFragment;
@@ -58,7 +64,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
 
     private void initView() {
+        //fragments = new ArrayList<>();
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
+        initViewPager();
+    }
+
+    private void initViewPager() {
+
+        viewPager = (ViewPager) findViewById(R.id.layViewPager);
+        //viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), fragments));
+        viewPager.addOnPageChangeListener(this);
+        viewPager.setCurrentItem(0);
     }
 
     private void getFragments() {
@@ -71,6 +87,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         fragments[1] = storeFragment;
         fragments[2] = communityFragment;
         fragments[3] = personalFragment;
+        //fragments.add(homePageFragment);
+        //fragments.add(storeFragment);
+        //fragments.add(communityFragment);
+        //fragments.add(personalFragment);
         getSupportFragmentManager().beginTransaction().commit();
     }
 
@@ -78,34 +98,35 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private void setDefaultFragment() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.layFrame, homePageFragment);
+        transaction.replace(R.id.layViewPager, homePageFragment);
         transaction.commit();
     }
 
     @Override
     public void onTabSelected(int position) {
         if (fragments != null) {
-            if (position < fragments.length) {
+            if (position < fragments/*.size()*/.length) {
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                Fragment fragment = fragments[position];
+                Fragment fragment = fragments/*.get(position)*/[position];
                 if (fragment.isAdded()) {
-                    ft.replace(R.id.layFrame, fragment);
+                    ft.replace(R.id.layViewPager, fragment);
                 } else {
-                    ft.add(R.id.layFrame, fragment);
+                    ft.add(R.id.layViewPager, fragment);
                 }
                 ft.commitAllowingStateLoss();
             }
         }
+        viewPager.setCurrentItem(position);
     }
 
     @Override
     public void onTabUnselected(int position) {
         if (fragments != null) {
-            if (position < fragments.length) {
+            if (position < fragments/*.size()*/.length) {
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                Fragment fragment = fragments[position];
+                Fragment fragment = fragments/*.get(position)*/[position];
                 ft.remove(fragment);
                 ft.commitAllowingStateLoss();
             }
@@ -114,6 +135,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     @Override
     public void onTabReselected(int position) {
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        bottomNavigationBar.selectTab(position);
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
 
     }
 }
