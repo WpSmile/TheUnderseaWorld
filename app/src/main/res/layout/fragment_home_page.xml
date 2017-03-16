@@ -1,13 +1,191 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qifeng.theunderseaworld.fragment.HomePageFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.qifeng.theunderseaworld.fragment.HomePageFragment"
+    android:orientation="vertical"
+    android:id="@+id/home_layout_ll">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="1" />
 
-</FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/home_rl"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+        <com.qifeng.theunderseaworld.view.SlideAutoLoopView
+            android:id="@+id/home_slideAuto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/nopic">
+        </com.qifeng.theunderseaworld.view.SlideAutoLoopView>
+        <RelativeLayout
+            android:id="@+id/home_rl_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="#45ffffff">
+            <TextView
+                android:id="@+id/home_txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="海底世界"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                />
+            <ImageView
+                android:id="@+id/home_iamge_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/gouwuche"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+        <com.qifeng.theunderseaworld.view.FlowIndicator
+            android:id="@+id/home_flowIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:count="4"
+            app:focus_color="@color/littleblue"
+            app:space="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/undersea_2_03"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/home_iamge02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/undersea_2_05"
+                android:scaleType="fitXY"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/white"/>
+            <ImageView
+                android:id="@+id/home_iamge03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/undersea_2_08"
+                android:scaleType="fitXY"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/bottom_blue"
+        android:layout_marginTop="10dp">
+        <View
+            android:id="@+id/home_title_divide_line1"
+            android:layout_width="2dp"
+            android:layout_height="15dp"
+            android:background="@color/vertical_line"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="海洋动物科普"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/home_title_divide_line1"
+            android:layout_marginLeft="5dp"
+            />
+        <TextView
+            android:id="@+id/home_text_more1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更多"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_rv_know"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@color/bottom_blue"
+        android:layout_marginTop="10dp">
+        <View
+            android:id="@+id/home_title_divide_line2"
+            android:layout_width="2dp"
+            android:layout_height="15dp"
+            android:background="@color/vertical_line"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="热销推荐"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/home_title_divide_line2"
+            android:layout_marginLeft="5dp"
+            />
+        <TextView
+            android:id="@+id/home_text_more2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更多"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_rv_recommend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
