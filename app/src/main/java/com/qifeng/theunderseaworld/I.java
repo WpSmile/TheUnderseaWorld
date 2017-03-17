@@ -2,7 +2,7 @@ package com.qifeng.theunderseaworld;
 
 
 public interface I {
-    String SERVER_ROOT = "http://101.251.196.90:8000/FuLiCenterServerV2.0/";
+    String SERVER_ROOT = "http://192.168.31.58/hdsj/index.php/Home/";
     /** 下拉刷新*/
     int ACTION_DOWNLOAD=0;
     /** 第一次下载*/

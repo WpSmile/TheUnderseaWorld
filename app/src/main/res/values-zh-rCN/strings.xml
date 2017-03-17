@@ -7,4 +7,42 @@
     <string name="personal">我的</string>
     <string name="login_input">请输入手机号/微信号/QQ号</string>
     <string name="login_password">请输入密码</string>
+    <string name="user_name_cannot_be_empty" >用户名不能为空</string>
+    <string name="undersea_introduce">南宁海底世界于2001年元旦开馆，馆内共有300多种、2000多尾的海洋生物供游客观赏，每年参观人数达30万人次，是南宁市唯一一座以展示海洋生物为主题的科普旅游景点。作为国家AAA级旅游景区、全国科普教育基地、广西青少年科技教育基地、全国海洋珍稀濒危野生动物救护网络成员单位，南宁海底世界是让广大市民，特别是青少年了解海洋、热爱海洋、保护海洋的科普旅游景点。南宁海底世界有13个展区，每个展区都精彩纷呈。在中央展厅的触摸池，您可以亲手触摸漂亮的五角海星、胆小的寄居蟹和有着“远古活化石”之称的中华鲎；在梦幻般的海底隧道，您可以体验人在水中走、鱼在天上游的奇妙感觉；在海龟保育区，您将看到我们的寿星——千年海龟。在这里，你可以亲自给海龟喂食，还可以和它们拍照留念，记录精彩瞬间。在鲨鱼馆，您可以亲身体验鲨鱼扑面而来，那种惊险刺激令人窒息的快感。来到热带雨林，您可以看到北美洲最凶猛的大型肉食性鱼类——福鳄！它们能长到2米长，被列为世界十大凶猛淡水鱼名录；在水母馆，您可以看到海月水母、彩色水母、霞水母轻盈曼妙的舞蹈；在海豹馆，您可以看到机灵的斑海豹帅帅和美美。在新奇独特、美轮美奂的海底世界，您不仅可以探索各种神秘的海洋生物，还可以欣赏人鲨表演、水中芭蕾、海狮表演等精彩表演。在海底世界游览过程中，我们将引领每一位游客穿越“五大洲四大洋”，经历一次终生难忘的“海洋之旅”。</string>
+    <string name="default_introduce_animal">水母是水生环境中的一种重要的浮游生物，也是一种漂亮的水生动物。水母身体的主要成分是水，它的身体就像一把透明的伞，在运动时，利用体内喷水反射前进，远远望去，就像一顶顶圆伞在水中迅速漂游;有些水母的伞状体还带有各色花纹，在蓝色的海洋里，这些游动着的色彩各异的水母显得十分美丽。</string>
+    <string name="password_cannot_be_empty">密码不能为空</string>
+
+
+    <string name="Version_number_is_wrong">版本号错误</string>
+    <string name="now_refresh">刷新中…</string>
+    <string name="no_more">没有更多数据了…</string>
+    <string name="load_more">加载更多数据…</string>
+    <string name="user_name">用户名</string>
+    <string name="nickname">昵称</string>
+    <string name="password">密码</string>
+    <string name="confirmpassword">确认密码</string>
+    <string name="register">免费注册</string>
+    <string name="illegal_user_name">非法帐号,6-16个数字和字母组合,请以字母开头</string>
+    <string name="nick_name_connot_be_empty">昵称不能为空</string>
+    <string name="confirm_password_connot_be_empty">确认密码不能为空</string>
+    <string name="two_input_password">两次输入密码不一致</string>
+    <string name="registering">注册中…</string>
+    <string name="register_fail">注册失败</string>
+    <string name="register_success">注册成功</string>
+    <string name="register_fail_exists">用户名已经存在</string>
+    <string name="login">登录</string>
+    <string name="login_fail">登录失败</string>
+    <string name="login_success">登录成功</string>
+    <string name="logining">登录中...</string>
+    <string name="login_fail_unknow_user" >登录失败，用户名不存在</string>
+    <string name="login_fail_error_password">登录失败，密码错误</string>
+    <string name="user_database_error">用户数据库异常</string>
+    <string name="username_cannot_be_modify">用户名不能更改</string>
+    <string name="update_fail">更新失败</string>
+    <string name="update_user_nick_success">更新用户昵称成功</string>
+    <string name="update_user_avatar_fail">更新用户头像失败</string>
+    <string name="update_user_avatar_success">更新用户头像成功</string>
+    <string name="delete_collect_fail">删除收藏失败</string>
+    <string name="add_cart_fail">添加购物车失败</string>
+    <string name="add_cart_success">成功添加至购物车</string>
 </resources>

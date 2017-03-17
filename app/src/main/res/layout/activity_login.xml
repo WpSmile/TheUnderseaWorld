@@ -11,13 +11,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
-        android:background="@color/white"
         >
         <com.qifeng.theunderseaworld.view.ImageViewPlus
             android:id="@+id/imageViewPlus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/default_avatar"
+            android:background="@drawable/default_avatar"
             />
 
 
