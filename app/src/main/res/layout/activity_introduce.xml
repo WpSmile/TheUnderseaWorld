@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_introduce"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <include layout="@layout/item_common_title"/>
+
+    <RelativeLayout
+        android:id="@+id/home_rl"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+        <com.qifeng.theunderseaworld.view.SlideAutoLoopView
+            android:id="@+id/home_slideAuto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/nopic">
+        </com.qifeng.theunderseaworld.view.SlideAutoLoopView>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/layout_back_little_color">
+
+            <com.qifeng.theunderseaworld.view.FlowIndicator
+                android:id="@+id/home_flowIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:count="3"
+                app:focus_color="@color/blue"
+                app:space="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/bg_image_05">
+
+        <TextView
+            android:id="@+id/text_introduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/undersea_introduce"
+            android:textSize="12sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

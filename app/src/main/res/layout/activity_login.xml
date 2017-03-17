@@ -11,18 +11,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
+        android:background="@color/white"
         >
         <com.qifeng.theunderseaworld.view.ImageViewPlus
             android:id="@+id/imageViewPlus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/moren_04"
+            android:src="@drawable/default_avatar"
             />
 
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/login_shape"
             android:layout_alignBottom="@+id/imageViewPlus"
             android:layout_alignRight="@+id/imageViewPlus"

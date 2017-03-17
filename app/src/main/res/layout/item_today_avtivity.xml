@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_today_activity_rl"
+    android:background="@drawable/layout_back">
+
+    <ImageView
+        android:id="@+id/today_activity_iamge"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/today_activity_default"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/image_back"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:id="@+id/today_activity_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="小学生夏日游馆开始啦!"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/today_activity_iamge"/>
+    <TextView
+        android:id="@+id/today_activity_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="快来凉爽一下"
+        android:textSize="10sp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/today_activity_iamge"
+        android:layout_below="@+id/today_activity_title"/>
+    <TextView
+        android:id="@+id/today_text_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="￥35/人 "
+        android:textColor="#FFDD4F24"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/today_activity_title"
+        android:layout_toRightOf="@+id/today_activity_iamge"
+        />
+
+    <ImageView
+        android:id="@+id/today_activity_right_goto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/right"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="30dp"/>
+    <ImageView
+        android:id="@+id/today_activity_bao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/bao"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

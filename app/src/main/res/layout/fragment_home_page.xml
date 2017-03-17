@@ -70,6 +70,7 @@
             android:background="@color/white">
 
             <ImageView
+                android:id="@+id/home_introduce_iamge"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
@@ -87,7 +88,7 @@
             android:orientation="vertical"
             android:layout_weight="1">
             <ImageView
-                android:id="@+id/home_iamge02"
+                android:id="@+id/home_map_iamge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/undersea_2_05"
@@ -98,7 +99,7 @@
                 android:layout_height="3dp"
                 android:background="@color/white"/>
             <ImageView
-                android:id="@+id/home_iamge03"
+                android:id="@+id/home_activity_iamge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/undersea_2_08"
