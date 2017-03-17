@@ -46,9 +46,11 @@ public class LoginActivity extends AppCompatActivity {
                 break;
             case R.id.login_btn_merchant:
                 break;
-            case R.id.login_rl_weixin:
+            case R.id.login_rl_weixin://微信登录
+
                 break;
-            case R.id.login_rl_qq:
+            case R.id.login_rl_qq://QQ登录
+
                 break;
         }
     }
