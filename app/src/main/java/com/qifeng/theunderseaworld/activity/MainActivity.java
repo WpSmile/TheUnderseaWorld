@@ -2,6 +2,7 @@ package com.qifeng.theunderseaworld.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -159,4 +160,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     public void onPageScrollStateChanged(int state) {
 
     }*/
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(outState != null) {
+            String FRAGMENTS_TAG = "android:support:fragments";
+            // remove掉保存的Fragment
+            outState.remove(FRAGMENTS_TAG);
+        }
+    }
 }

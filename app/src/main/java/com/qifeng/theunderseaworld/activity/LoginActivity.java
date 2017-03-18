@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        L.e("main",this.toString());
         mContext = this;
     }
 
@@ -56,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
                 MFGT.finish(mContext);
                 break;
             case R.id.login_text_forget:
+                Intent intent = new Intent();
+                intent.setClass(this,ForgetPasswordActivity.class);
+                startActivity(intent);
                 break;
             case R.id.login_btn_own://个人登录
                 checkInput();

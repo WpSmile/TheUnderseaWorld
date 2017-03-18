@@ -23,7 +23,7 @@
     <string name="personal">Personal</string>
     <string name="login_input">Please enter the phone number/WeChat ID/QQ number</string>
     <string name="login_password">Please enter passward</string>
-    <string name="user_name_cannot_be_empty" >username cannot be empty</string>
+    <string name="user_name_cannot_be_empty">username cannot be empty</string>
     <string name="password_cannot_be_empty">password cannot be empty</string>
 
     <string name="user_name">User name</string>

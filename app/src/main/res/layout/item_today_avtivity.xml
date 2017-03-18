@@ -47,6 +47,16 @@
         android:layout_below="@+id/today_activity_title"
         android:layout_toRightOf="@+id/today_activity_iamge"
         />
+    <TextView
+        android:id="@+id/today_text_data_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2017年3月18日 "
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/today_text_price"
+        android:layout_toRightOf="@+id/today_activity_iamge"
+        android:textSize="10sp"
+        />
 
     <ImageView
         android:id="@+id/today_activity_right_goto"
