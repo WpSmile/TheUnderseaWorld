@@ -29,10 +29,11 @@ public class IntroduceActivity extends AppCompatActivity {
     TextView phoneRegisterTxtTitle;
     @BindView(R.id.text_introduce)
     TextView textIntroduce;
-    @BindView(R.id.home_slideAuto)
-    SlideAutoLoopView homeSlideAuto;
-    @BindView(R.id.home_flowIndicator)
-    FlowIndicator homeFlowIndicator;
+
+    @BindView(R.id.intro_flowIndicator)
+    FlowIndicator introFlowIndicator;
+    @BindView(R.id.intro_slideAuto)
+    SlideAutoLoopView introSlideAuto;
 
 
     @Override
@@ -47,7 +48,7 @@ public class IntroduceActivity extends AppCompatActivity {
     private void initData() {
         String[] image = new String[3];
 
-        homeSlideAuto.startPlayLoop(homeFlowIndicator, image, 3);
+        introSlideAuto.startPlayLoop(introFlowIndicator, image, 3);
     }
 
 

@@ -16,6 +16,7 @@ import com.qifeng.theunderseaworld.activity.MainActivity;
 import com.qifeng.theunderseaworld.activity.SpaceItemDecoretion;
 import com.qifeng.theunderseaworld.adapter.CartTuijianAdapter;
 import com.qifeng.theunderseaworld.adapter.HomeKePuAnimalAdapter;
+import com.qifeng.theunderseaworld.adapter.HomeTuijianAdapter;
 import com.qifeng.theunderseaworld.bean.CartTuijianBean;
 import com.qifeng.theunderseaworld.bean.HomeKePuAnimalBean;
 import com.qifeng.theunderseaworld.utils.MFGT;
@@ -38,7 +39,7 @@ public class HomePageFragment extends Fragment {
     HomeKePuAnimalAdapter mAdapter;
 
     //热门推荐
-    CartTuijianAdapter cartTuijianAdapter;
+    HomeTuijianAdapter homeTuijianAdapter;
     GridLayoutManager gridLayoutManager1;
     ArrayList<CartTuijianBean> tuijianList;
     @BindView(R.id.home_rv_recommend)
@@ -112,8 +113,8 @@ public class HomePageFragment extends Fragment {
         }
 
         gridLayoutManager1 = new GridLayoutManager(mContext, 3, LinearLayoutManager.VERTICAL, false);
-        cartTuijianAdapter = new CartTuijianAdapter(mContext, tuijianList);
-        homeRvRecommend.setAdapter(cartTuijianAdapter);
+        homeTuijianAdapter = new HomeTuijianAdapter(mContext, tuijianList);
+        homeRvRecommend.setAdapter(homeTuijianAdapter);
         homeRvRecommend.setLayoutManager(gridLayoutManager1);
         //设置是否自动修复
         homeRvRecommend.setHasFixedSize(true);
