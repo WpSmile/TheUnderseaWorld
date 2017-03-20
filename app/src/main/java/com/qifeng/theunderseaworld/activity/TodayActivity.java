@@ -72,6 +72,7 @@ public class TodayActivity extends AppCompatActivity {
     }
 
     private void setOnPullUpListener() {
+        //todayActivitySrl.setVisibility(View.GONE);
         todayRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             int lastposition;
 
@@ -103,7 +104,7 @@ public class TodayActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        //phoneRegisterTxtTitle.setText("今日活动");
+        phoneRegisterTxtTitle.setText("今日活动");
         CharSequence text = phoneRegisterTxtTitle.getText();
         L.e(TAG,text.toString());
 
@@ -122,11 +123,11 @@ public class TodayActivity extends AppCompatActivity {
 
         TodayActivityBean bean = new TodayActivityBean();
         bean.setDatatime("2017年3月18日");
-        bean.setImage(R.drawable.image_back);
+        bean.setImage(R.drawable.today_activity_default);
         bean.setTitle("小学生夏日游馆开始啦!");
         bean.setSign("快来凉爽一夏");
         bean.setPrice(35);
-        for (int i=0;i<=10;i++){
+        for (int i=0;i<10;i++){
             mTodayActivityList.add(bean);
         }
 

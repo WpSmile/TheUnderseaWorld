@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/item_common_title" android:id="@+id/item_common_title"/>
+
+    <LinearLayout
+        android:id="@+id/cart_ll"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/item_common_title">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp">
+
+            <CheckBox
+                android:id="@+id/cart_id_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:checked="false"
+                android:button="@drawable/checkbox_style"/>
+
+            <TextView
+                android:id="@+id/tv_goods_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="海底世界官方旗舰店"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@+id/cart_id_checkbox"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divide_line"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_below="@id/tv_goods_name"/>
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cart_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_cart_pay"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true">
+
+        <CheckBox
+            android:id="@+id/id_checkbox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:checked="false"
+            android:button="@drawable/checkbox_style"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全选"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@+id/id_checkbox1"
+            android:layout_centerVertical="true"
+            />
+        <LinearLayout
+            android:id="@+id/ll_count_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:id="@+id/tv_count_num_zi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="合计:"
+                android:textSize="30sp"
+                android:textColor="@color/cart_buy_bg"
+                />
+            <TextView
+                android:id="@+id/tv_count_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥35"
+                android:textSize="30sp"
+                android:textColor="@color/cart_buy_bg"
+                />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btBuy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/bottom_blue"
+            android:text="结算"
+            android:textSize="30sp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="不含邮费"
+            android:textSize="15sp"
+            android:layout_below="@+id/ll_count_money"
+            android:layout_alignRight="@+id/ll_count_money"
+            android:layout_alignEnd="@+id/ll_count_money" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@color/white"
+        android:layout_below="@+id/cart_ll"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cart_rv_tuijian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_tuijian"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/tv_tuijian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="为你推荐"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:background="@color/bottom_blue"
+            android:layout_marginTop="7dp"
+            android:layout_alignTop="@+id/tv_tuijian"
+            android:layout_toRightOf="@+id/tv_tuijian"
+            android:layout_toEndOf="@+id/tv_tuijian" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="1dp"
+            android:background="@color/bottom_blue"
+            android:layout_alignTop="@+id/tv_tuijian"
+            android:layout_toLeftOf="@+id/tv_tuijian"
+            android:layout_toStartOf="@+id/tv_tuijian"
+            android:layout_marginTop="7dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

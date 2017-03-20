@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/item_cart_layout"
+    android:id="@+id/ll_item_second_cart"
+    >
+
+
+    <ImageView
+        android:id="@+id/img_item_second_cart"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/nopic"
+        android:background="@drawable/image_back"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"/>
+    <TextView
+        android:id="@+id/tv_item_sencond_cart_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="南宁海底世界"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/tv_ticket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="老年票"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"/>
+
+        <TextView
+            android:id="@+id/tv_sencond_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="￥35"
+            android:textColor="@color/red"/>
+    </RelativeLayout>
+</LinearLayout>

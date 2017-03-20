@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.activity.MainActivity;
 import com.qifeng.theunderseaworld.activity.SpaceItemDecoretion;
+import com.qifeng.theunderseaworld.adapter.CartTuijianAdapter;
 import com.qifeng.theunderseaworld.adapter.HomeKePuAnimalAdapter;
+import com.qifeng.theunderseaworld.bean.CartTuijianBean;
 import com.qifeng.theunderseaworld.bean.HomeKePuAnimalBean;
 import com.qifeng.theunderseaworld.utils.MFGT;
-import com.qifeng.theunderseaworld.view.FlowIndicator;
-import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
 
 import java.util.ArrayList;
 
@@ -36,21 +36,20 @@ public class HomePageFragment extends Fragment {
     RecyclerView homeRvKepu;
     GridLayoutManager gridLayoutManager;
     HomeKePuAnimalAdapter mAdapter;
-    @BindView(R.id.home_slideAuto)
-    SlideAutoLoopView homeSlideAuto;
-    @BindView(R.id.home_flowIndicator)
-    FlowIndicator homeFlowIndicator;
+
+    //热门推荐
+    CartTuijianAdapter cartTuijianAdapter;
+    GridLayoutManager gridLayoutManager1;
+    ArrayList<CartTuijianBean> tuijianList;
+    @BindView(R.id.home_rv_recommend)
+    RecyclerView homeRvRecommend;
 
 
     public HomePageFragment() {
         // Required empty public constructor
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        //mContext = (MainActivity) context;
-    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,18 +58,30 @@ public class HomePageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         ButterKnife.bind(this, view);
         mContext = (MainActivity) getActivity();
+        mKepulist = new ArrayList<>();
+        tuijianList = new ArrayList<>();
+
         initView();
         initData();
         return view;
     }
 
     private void initData() {
-        String[] image = new String[4];
-        homeSlideAuto.startPlayLoop(homeFlowIndicator,image,4);
+
     }
 
     private void initView() {
-        mKepulist = new ArrayList<>();
+        //设置首页科普默认数据
+        setHomeDefaultKepu();
+
+
+        //设置首页热门推荐的默认数据
+        setHomeDefaultCommondView();
+
+
+    }
+
+    private void setHomeDefaultKepu() {
         //默认数据
         HomeKePuAnimalBean homeKePuAnimalBean = new HomeKePuAnimalBean();
         homeKePuAnimalBean.setImage(R.drawable.nopic);
@@ -79,17 +90,39 @@ public class HomePageFragment extends Fragment {
         for (int i = 0; i < 4; i++) {
             mKepulist.add(homeKePuAnimalBean);
         }
+
         gridLayoutManager = new GridLayoutManager(mContext, 2, LinearLayoutManager.VERTICAL, false);
         mAdapter = new HomeKePuAnimalAdapter(mContext, mKepulist);
-        //homeRvKepu.setLayoutManager(gridLayoutManager);
-        //homeRvKepu.setAdapter(mAdapter);
+        homeRvKepu.setLayoutManager(gridLayoutManager);
+        homeRvKepu.setAdapter(mAdapter);
         homeRvKepu.setHasFixedSize(true);
         homeRvKepu.addItemDecoration(new SpaceItemDecoretion(12));
 
     }
 
+    private void setHomeDefaultCommondView() {
 
-    @OnClick({R.id.home_introduce_iamge, R.id.home_map_iamge, R.id.home_activity_iamge, R.id.home_text_more1, R.id.home_text_more2})
+        CartTuijianBean cartTuijianBean = new CartTuijianBean();
+        cartTuijianBean.setImage(R.drawable.today_activity_default);
+        cartTuijianBean.setTitle("南宁海底世界");
+        cartTuijianBean.setPrice(35);
+        cartTuijianBean.setTicketStyle("老年票");
+        for (int i = 0; i < 3; i++) {
+            tuijianList.add(cartTuijianBean);
+        }
+
+        gridLayoutManager1 = new GridLayoutManager(mContext, 3, LinearLayoutManager.VERTICAL, false);
+        cartTuijianAdapter = new CartTuijianAdapter(mContext, tuijianList);
+        homeRvRecommend.setAdapter(cartTuijianAdapter);
+        homeRvRecommend.setLayoutManager(gridLayoutManager1);
+        //设置是否自动修复
+        homeRvRecommend.setHasFixedSize(true);
+        homeRvRecommend.addItemDecoration(new SpaceItemDecoretion(12));
+
+    }
+
+
+    @OnClick({R.id.home_introduce_iamge, R.id.home_map_iamge, R.id.home_activity_iamge, R.id.home_text_more1, R.id.home_text_more2, R.id.home_iamge_category})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.home_introduce_iamge:
@@ -106,6 +139,9 @@ public class HomePageFragment extends Fragment {
                 break;
             case R.id.home_text_more2:
                 MFGT.gotoHotRecommondActivity(mContext);
+                break;
+            case R.id.home_iamge_category://购物车
+                MFGT.gotoCartActivity(mContext);
                 break;
         }
     }

@@ -54,12 +54,9 @@ public class LoginActivity extends AppCompatActivity {
                 break;
             case R.id.login_text_phone:
                 MFGT.gotoRegisterByPhoneActivity(mContext);
-                MFGT.finish(mContext);
                 break;
             case R.id.login_text_forget:
-                Intent intent = new Intent();
-                intent.setClass(this,ForgetPasswordActivity.class);
-                startActivity(intent);
+                MFGT.gotoForgetPasswordActivity(mContext);
                 break;
             case R.id.login_btn_own://个人登录
                 checkInput();

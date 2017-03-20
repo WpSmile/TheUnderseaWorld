@@ -1,6 +1,5 @@
 package com.qifeng.theunderseaworld.activity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
@@ -8,12 +7,13 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
-import android.view.View;
 import android.widget.TextView;
 
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.view.FlowIndicator;
+import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +29,11 @@ public class IntroduceActivity extends AppCompatActivity {
     TextView phoneRegisterTxtTitle;
     @BindView(R.id.text_introduce)
     TextView textIntroduce;
+    @BindView(R.id.home_slideAuto)
+    SlideAutoLoopView homeSlideAuto;
+    @BindView(R.id.home_flowIndicator)
+    FlowIndicator homeFlowIndicator;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,15 @@ public class IntroduceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_introduce);
         ButterKnife.bind(this);
         initView();
+        initData();
     }
+
+    private void initData() {
+        String[] image = new String[3];
+
+        homeSlideAuto.startPlayLoop(homeFlowIndicator, image, 3);
+    }
+
 
     private void initView() {
         //设置介绍的textView前面6个字的大小和属性
@@ -44,10 +57,10 @@ public class IntroduceActivity extends AppCompatActivity {
         L.e(TAG, str);
         int fstart = str.indexOf("南宁海底世界");
         int fend = fstart + "南宁海底世界".length();
-        RelativeSizeSpan sizeSpan = new RelativeSizeSpan(1.5f);
+        RelativeSizeSpan sizeSpan = new RelativeSizeSpan(1.3f);
         SpannableStringBuilder style = new SpannableStringBuilder(str);
-        style.setSpan(new ForegroundColorSpan(Color.BLUE), fstart, fend, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        style.setSpan(sizeSpan,fstart,fend,Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.bottom_blue)), fstart, fend, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        style.setSpan(sizeSpan, fstart, fend, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
         textIntroduce.setText(style);
         //设置标题格式
         phoneRegisterTxtTitle.setText("海底世界简介");
@@ -55,8 +68,6 @@ public class IntroduceActivity extends AppCompatActivity {
 
     @OnClick(R.id.phone_register_img_back)
     public void onClick() {
-        //MFGT.finish(this);
-        finish();
-        L.e(TAG,"完了");
+        MFGT.finish(this);
     }
 }

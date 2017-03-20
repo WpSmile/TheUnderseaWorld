@@ -37,7 +37,7 @@
                 app:normal_color="@color/white"/>
         </RelativeLayout>
 
-        <com.qifeng.theunderseaworld.view.SlideAutoLoopView
+        <com.qifeng.theunderseaworld.view.FlowIndicator
             android:id="@+id/home_slideAuto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -45,7 +45,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
-        </com.qifeng.theunderseaworld.view.SlideAutoLoopView>
+        </com.qifeng.theunderseaworld.view.FlowIndicator>
 
     </RelativeLayout>
 

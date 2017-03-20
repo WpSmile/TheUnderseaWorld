@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.activity.AnimalKePuActivity;
+import com.qifeng.theunderseaworld.activity.CartActivity;
 import com.qifeng.theunderseaworld.activity.ForgetPasswordActivity;
 import com.qifeng.theunderseaworld.activity.HotRecommondActivity;
 import com.qifeng.theunderseaworld.activity.IntroduceActivity;
@@ -56,5 +57,9 @@ public class MFGT {
     }
     public static void gotoForgetPasswordActivity(Activity context){
         startActivity(context, ForgetPasswordActivity.class);
+    }
+
+    public static void gotoCartActivity(MainActivity context) {
+        startActivity(context, CartActivity.class);
     }
 }
