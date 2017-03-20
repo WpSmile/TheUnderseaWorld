@@ -1,7 +1,6 @@
 package com.qifeng.theunderseaworld.fragment;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,12 +13,13 @@ import android.view.ViewGroup;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.activity.MainActivity;
 import com.qifeng.theunderseaworld.activity.SpaceItemDecoretion;
-import com.qifeng.theunderseaworld.adapter.CartTuijianAdapter;
 import com.qifeng.theunderseaworld.adapter.HomeKePuAnimalAdapter;
 import com.qifeng.theunderseaworld.adapter.HomeTuijianAdapter;
 import com.qifeng.theunderseaworld.bean.CartTuijianBean;
 import com.qifeng.theunderseaworld.bean.HomeKePuAnimalBean;
 import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.view.FlowIndicator;
+import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
 
 import java.util.ArrayList;
 
@@ -44,12 +44,15 @@ public class HomePageFragment extends Fragment {
     ArrayList<CartTuijianBean> tuijianList;
     @BindView(R.id.home_rv_recommend)
     RecyclerView homeRvRecommend;
+    @BindView(R.id.home_slideAuto)
+    SlideAutoLoopView homeSlideAuto;
+    @BindView(R.id.home_flowIndicator)
+    FlowIndicator homeFlowIndicator;
 
 
     public HomePageFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -68,8 +71,34 @@ public class HomePageFragment extends Fragment {
     }
 
     private void initData() {
+        String[] imageurl = {"http://ofrf20oms.bkt.clouddn.com/miku.jpg",
+                "http://ofrf20oms.bkt.clouddn.com/wusaki.jpg",
+                "http://ofrf20oms.bkt.clouddn.com/%CE%BC%27s.jpg",
+                "http://ofrf20oms.bkt.clouddn.com/project.jpg"};
 
+        //homeSlideAuto.startPlayLoop(homeFlowIndicator,imageurl,4);
+        //homeSlideAuto.startPlayLoop(myView, getAlbumImgUrl(details), getAlbumImgCount(details));
     }
+
+    /*private int getAlbumImgCount(GoodsDetailsBean details) {
+        if (details.getProperties() != null && details.getProperties().length > 0) {
+            return details.getProperties()[0].getAlbums().length;
+        }
+        return 0;
+    }
+
+    private String[] getAlbumImgUrl(GoodsDetailsBean details) {
+        String[] url = new String[]{};
+        if (details.getProperties() != null && details.getProperties().length > 0) {
+            AlbumsBean[] albums = details.getProperties()[0].getAlbums();
+            url = new String[albums.length];
+            for (int i = 0; i < albums.length; i++) {
+                url[i] = albums[i].getImgUrl();
+            }
+        }
+        return url;
+
+    }*/
 
     private void initView() {
         //设置首页科普默认数据

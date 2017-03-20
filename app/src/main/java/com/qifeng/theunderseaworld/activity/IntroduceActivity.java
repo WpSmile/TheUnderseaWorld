@@ -29,7 +29,6 @@ public class IntroduceActivity extends AppCompatActivity {
     TextView phoneRegisterTxtTitle;
     @BindView(R.id.text_introduce)
     TextView textIntroduce;
-
     @BindView(R.id.intro_flowIndicator)
     FlowIndicator introFlowIndicator;
     @BindView(R.id.intro_slideAuto)
@@ -46,10 +45,32 @@ public class IntroduceActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        String[] image = new String[3];
-
-        introSlideAuto.startPlayLoop(introFlowIndicator, image, 3);
+        String[] imageurl = {"http://ofrf20oms.bkt.clouddn.com/Clannad.jpg",
+                "http://ofrf20oms.bkt.clouddn.com/THE%20IDOLM@STER.jpg",
+                "http://ofrf20oms.bkt.clouddn.com/miku.jpg"};
+        L.e(TAG,"=============开始图片轮播");
+        //introSlideAuto.startPlayLoop(introFlowIndicator, imageurl, 3);
     }
+
+    /*private int getAlbumImgCount(GoodsDetailsBean details) {
+        if (details.getProperties() != null && details.getProperties().length > 0) {
+            return details.getProperties()[0].getAlbums().length;
+        }
+        return 0;
+    }*/
+
+    /*private String[] getAlbumImgUrl(CartBean details) {
+        String[] url = new String[]{};
+        if (details.getProperties() != null && details.getProperties().length > 0) {
+            AlbumsBean[] albums = details.getProperties()[0].getAlbums();
+            url = new String[albums.length];
+            for (int i = 0; i < albums.length; i++) {
+                url[i] = albums[i].getImgUrl();
+            }
+        }
+        return url;
+
+    }*/
 
 
     private void initView() {

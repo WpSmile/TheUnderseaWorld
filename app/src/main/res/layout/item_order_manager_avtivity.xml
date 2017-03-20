@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_order_manager_rl"
+    android:background="@drawable/layout_back">
+
+    <TextView
+        android:id="@+id/order_manager_tv_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="订单号：100000000000 "
+        android:layout_marginLeft="20dp"
+        android:textSize="10sp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/order_activity_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="海底世界儿童票!"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/order_activity_iamge"/>
+    <TextView
+        android:id="@+id/today_activity_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="海底世界官方旗舰店"
+        android:textColor="@color/bottom_blue"
+        android:textSize="10sp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/order_activity_iamge"
+        android:layout_below="@+id/order_activity_title"/>
+    <TextView
+        android:id="@+id/today_text_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="￥35 "
+        android:textSize="15sp"
+        android:textColor="#FFDD4F24"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/order_activity_title"
+        android:layout_toRightOf="@+id/order_activity_iamge"
+        />
+
+
+    <Button
+        android:id="@+id/order_activity_right_goto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/right"
+        android:text="交易成功"
+        android:textColor="@color/cart_buy_bg"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/order_activity_title"
+        android:background="@drawable/item_order_button"/>
+
+    <ImageView
+        android:id="@+id/today_activity_bao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/bao"
+        android:visibility="gone"
+        />
+    <View
+        android:id="@+id/order_manager_divider_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divide_line"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/order_activity_iamge"/>
+
+    <TextView
+        android:id="@+id/today_text_data_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="物流单号：100000000000 "
+        android:layout_below="@+id/order_manager_divider_line"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:textSize="10sp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <ImageView
+        android:id="@+id/order_activity_iamge"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/today_activity_default"
+        android:background="@drawable/image_back"
+        android:scaleType="fitXY"
+        android:layout_alignTop="@+id/order_activity_title"
+        android:layout_alignLeft="@+id/order_manager_divider_line"
+        android:layout_alignStart="@+id/order_manager_divider_line" />
+
+</RelativeLayout>

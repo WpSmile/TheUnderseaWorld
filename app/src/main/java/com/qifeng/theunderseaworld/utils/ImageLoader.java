@@ -374,14 +374,26 @@ public class ImageLoader {
     public static void downloadImg(Context context, ImageView imageView, String thumb, boolean isDragging) {
         setImage(I.DOWNLOAD_IMG_URL + thumb, context, imageView, isDragging);
     }
+    /*public static void downloadImgbyurl(Context context, ImageView imageView, String imageurl, boolean isDragging) {
+        setImage1(imageurl, context, imageView, isDragging);
+    }*/
 
     public static void setImage(String url, Context context, ImageView imageView, boolean isDragging) {
         ImageLoader.build(url)
-                .defaultPicture(R.drawable.login_background_image)
+                .defaultPicture(R.drawable.nopic)
                 .imageView(imageView)
                 .setDragging(isDragging)
                 .showImage(context);
     }
+
+    /*public static void setImage1(String url, Context context, ImageView imageView, boolean isDragging) {
+        ImageLoader.build(url)
+                .defaultPicture(R.drawable.nopic)
+                .imageView(imageView)
+                .setDragging(isDragging)
+                .showImage(context);
+    }*/
+
     /**http://101.251.196.90:8000/FuLiCenterServerV2.0/
      * downloadAvatar?name_or_hxid=a952702&avatarType=user_avatar&m_avatar_suffix=.jpg&width=200&height=200*/
     public static String getAvatarUrl(User user) {
