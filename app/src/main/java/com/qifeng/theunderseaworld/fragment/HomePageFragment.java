@@ -17,6 +17,8 @@ import com.qifeng.theunderseaworld.activity.SpaceItemDecoretion;
 import com.qifeng.theunderseaworld.adapter.HomeKePuAnimalAdapter;
 import com.qifeng.theunderseaworld.bean.HomeKePuAnimalBean;
 import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.view.FlowIndicator;
+import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
 
 import java.util.ArrayList;
 
@@ -34,6 +36,10 @@ public class HomePageFragment extends Fragment {
     RecyclerView homeRvKepu;
     GridLayoutManager gridLayoutManager;
     HomeKePuAnimalAdapter mAdapter;
+    @BindView(R.id.home_slideAuto)
+    SlideAutoLoopView homeSlideAuto;
+    @BindView(R.id.home_flowIndicator)
+    FlowIndicator homeFlowIndicator;
 
 
     public HomePageFragment() {
@@ -57,9 +63,10 @@ public class HomePageFragment extends Fragment {
         initData();
         return view;
     }
-    
-    private void initData() {
 
+    private void initData() {
+        String[] image = new String[4];
+        homeSlideAuto.startPlayLoop(homeFlowIndicator,image,4);
     }
 
     private void initView() {
@@ -69,11 +76,13 @@ public class HomePageFragment extends Fragment {
         homeKePuAnimalBean.setImage(R.drawable.nopic);
         homeKePuAnimalBean.setName("鲨鱼");
         //默认数据
-        for (int i = 0;i<4;i++){
+        for (int i = 0; i < 4; i++) {
             mKepulist.add(homeKePuAnimalBean);
         }
-        gridLayoutManager = new GridLayoutManager(mContext,2, LinearLayoutManager.VERTICAL,false);
-        mAdapter = new HomeKePuAnimalAdapter(mContext,mKepulist);
+        gridLayoutManager = new GridLayoutManager(mContext, 2, LinearLayoutManager.VERTICAL, false);
+        mAdapter = new HomeKePuAnimalAdapter(mContext, mKepulist);
+        //homeRvKepu.setLayoutManager(gridLayoutManager);
+        //homeRvKepu.setAdapter(mAdapter);
         homeRvKepu.setHasFixedSize(true);
         homeRvKepu.addItemDecoration(new SpaceItemDecoretion(12));
 
