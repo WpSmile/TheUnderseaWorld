@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_tuangou_manager_rl"
+    android:background="@drawable/item_cart_layout_noradius"
+    android:layout_marginLeft="20dp">
+
+    <ImageView
+        android:id="@+id/item_tuangou_manager_iamge"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/login_background_image"
+        android:scaleType="fitXY"
+        android:paddingTop="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/item_tuangou_manager_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="海底世界老年票"
+        android:layout_toRightOf="@id/item_tuangou_manager_iamge"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/item_tuangou_manager_tv_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/bottom_blue"
+        android:text="海底世界官方旗舰店"
+        android:textSize="8sp"
+        android:layout_toRightOf="@id/item_tuangou_manager_iamge"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/item_tuangou_manager_tv_title"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/item_tuangou_manager_tv_sign"
+        android:layout_toRightOf="@+id/item_tuangou_manager_iamge"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15sp">
+
+        <TextView
+            android:id="@+id/item_tuangou_manager_tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/cart_buy_bg"
+            android:text="￥35"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(库存"
+            android:textSize="8sp"/>
+        <TextView
+            android:id="@+id/reply_tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="999"
+            android:textSize="8sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=")"
+            android:textSize="8sp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/right"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"/>
+
+</RelativeLayout>

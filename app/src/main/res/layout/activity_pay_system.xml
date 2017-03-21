@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pay_system"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/phone_register_rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/bottom_blue">
+
+        <TextView
+            android:id="@+id/phone_register_txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/phone_register_img_back"
+            android:text="支付系统"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/phone_register_img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/back" />
+
+        <Button
+            android:id="@+id/comment_btn_fabu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/bottom_blue"
+            android:text="明细"
+            android:textSize="15sp"
+            android:textColor="@color/white" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/layout_back">
+
+        <com.qifeng.theunderseaworld.view.ImageViewPlus
+            android:id="@+id/pay_system_imageViewPlus"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/touxiang_03"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            />
+
+
+        <TextView
+            android:id="@+id/pay_system_tv_yu_e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账户余额 "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"/>
+
+        <TextView
+            android:id="@+id/Yu_e_tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥255.28"
+            android:textColor="@color/cart_buy_bg"
+            android:textSize="30sp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/pay_system_tv_yu_e"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:id="@+id/pay_system_btn_zhifu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_without_border_radius"
+                android:textColor="@color/white"
+                android:text="支付"
+
+                />
+
+            <Button
+                android:id="@+id/pay_system_btn_chongzhi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_without_border_radius"
+                android:textColor="@color/white"
+                android:text="充值"
+                android:layout_marginLeft="10dp"
+                />
+
+
+            <Button
+                android:id="@+id/pay_system_btn_tixian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_without_border_radius"
+                android:textColor="@color/white"
+                android:text="提现"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_marginTop="20dp">
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <RelativeLayout
+            android:id="@+id/weixin_pay_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iamge_weixin_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/weixin_pay"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_weixin_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="微信支付"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:layout_below="@+id/iamge_weixin_pay"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp"
+                android:gravity="center"/>
+
+
+        </RelativeLayout>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <RelativeLayout
+            android:id="@+id/zhifubao_pay_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iamge_zhifubao_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/zhifubao_pay"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_zhifubao_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="支付宝支付"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:layout_below="@+id/iamge_zhifubao_pay"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"/>
+
+
+        </RelativeLayout>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <RelativeLayout
+            android:id="@+id/yinlian_pay_rl"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iamge_yinlian_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/yinlian_pay"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tv_yinlian_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="银联支付"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:layout_below="@+id/iamge_yinlian_pay"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>

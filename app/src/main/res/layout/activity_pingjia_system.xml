@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pingjia_system"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:id="@+id/phone_register_rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/bottom_blue">
+
+        <TextView
+            android:id="@+id/phone_register_txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/phone_register_img_back"
+            android:text="评价系统"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/phone_register_img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/back" />
+
+        <ImageView
+            android:id="@+id/pingjia_system_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/daipingjia"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/pingjia_system_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="评价 ("
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/reply_tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1223"
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="条)"
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/pingjia_system_btn_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/pingjia_system_btn_fangbian"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="方便"
+            android:textColor="@color/bottom_blue"
+            android:background="@drawable/buttom_no_radius_with_solid"
+            />
+        <Button
+            android:id="@+id/pingjia_system_btn_pianyi"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="便宜"
+            android:textColor="@color/bottom_blue"
+            android:background="@drawable/buttom_no_radius_with_solid"
+            android:layout_toRightOf="@+id/pingjia_system_btn_fangbian"
+            android:layout_marginLeft="5dp"
+            />
+        <Button
+            android:id="@+id/pingjia_system_btn_kuaijie"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="快捷"
+            android:textColor="@color/bottom_blue"
+            android:background="@drawable/buttom_no_radius_with_solid"
+            android:layout_toRightOf="@+id/pingjia_system_btn_pianyi"
+            android:layout_marginLeft="5dp"
+            />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/pingjia_system_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
