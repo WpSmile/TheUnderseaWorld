@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.activity.MainActivity;
-import com.qifeng.theunderseaworld.activity.SpaceItemDecoretion;
+import com.qifeng.theunderseaworld.view.SpaceItemDecoretion;
 import com.qifeng.theunderseaworld.adapter.HomeKePuAnimalAdapter;
 import com.qifeng.theunderseaworld.adapter.HomeTuijianAdapter;
 import com.qifeng.theunderseaworld.bean.CartTuijianBean;

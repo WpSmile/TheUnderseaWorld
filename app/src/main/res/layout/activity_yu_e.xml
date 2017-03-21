@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_yu_e"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/phone_register_rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/bottom_blue">
+
+        <TextView
+            android:id="@+id/phone_register_txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/phone_register_img_back"
+            android:text="余额管理"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/phone_register_img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/back" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/layout_back">
+
+        <com.qifeng.theunderseaworld.view.ImageViewPlus
+            android:id="@+id/yu_e_imageViewPlus"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/touxiang_03"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(还可以输入 " />
+
+            <TextView
+                android:id="@+id/comment_tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="192"
+                android:textColor="@color/cart_buy_bg" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="个字)" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

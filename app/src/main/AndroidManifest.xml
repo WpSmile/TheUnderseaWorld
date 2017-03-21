@@ -30,7 +30,10 @@
         <activity android:name=".activity.HotRecommondActivity" />
         <activity android:name=".activity.ForgetPasswordActivity" />
         <activity android:name=".activity.CartActivity" />
-        <activity android:name=".activity.OrderManagementActivity"></activity>
+        <activity android:name=".activity.OrderManagementActivity" />
+        <activity android:name=".activity.CommentActivity" />
+        <activity android:name=".activity.ReplyActivity" />
+        <activity android:name=".activity.YuEActivity"></activity>
     </application>
 
 </manifest>

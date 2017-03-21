@@ -8,12 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.adapter.TodayActivityAdapter;
 import com.qifeng.theunderseaworld.bean.TodayActivityBean;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.view.SpaceItemDecoretion;
 
 import java.util.ArrayList;
 

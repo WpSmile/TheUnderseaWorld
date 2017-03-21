@@ -1,4 +1,3 @@
-t941@qq.com> 10:53:30
 # built application files
 *.apk
 *.ap_
@@ -38,4 +37,3 @@ local.properties
 # Eclipse project files
 .classpath
 .project
-
