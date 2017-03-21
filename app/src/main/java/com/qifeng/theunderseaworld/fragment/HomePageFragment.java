@@ -71,12 +71,9 @@ public class HomePageFragment extends Fragment {
     }
 
     private void initData() {
-        String[] imageurl = {"http://ofrf20oms.bkt.clouddn.com/miku.jpg",
-                "http://ofrf20oms.bkt.clouddn.com/wusaki.jpg",
-                "http://ofrf20oms.bkt.clouddn.com/%CE%BC%27s.jpg",
-                "http://ofrf20oms.bkt.clouddn.com/project.jpg"};
+        String[] imageurl = {"miku.jpg", "wusaki.jpg", "%CE%BC%27s.jpg", "project.jpg"};
 
-        //homeSlideAuto.startPlayLoop(homeFlowIndicator,imageurl,4);
+        homeSlideAuto.startPlayLoop(homeFlowIndicator, imageurl, imageurl.length);
         //homeSlideAuto.startPlayLoop(myView, getAlbumImgUrl(details), getAlbumImgCount(details));
     }
 

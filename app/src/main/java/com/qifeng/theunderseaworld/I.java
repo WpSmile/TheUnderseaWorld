@@ -2,7 +2,7 @@ package com.qifeng.theunderseaworld;
 
 
 public interface I {
-    String SERVER_ROOT = "http://192.168.31.58/hdsj/index.php/Home/";
+    String SERVER_ROOT = "http://ofrf20oms.bkt.clouddn.com/";
     /** 下拉刷新*/
     int ACTION_DOWNLOAD=0;
     /** 第一次下载*/
