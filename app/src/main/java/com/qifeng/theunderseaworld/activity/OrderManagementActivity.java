@@ -2,6 +2,7 @@ package com.qifeng.theunderseaworld.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,6 +14,8 @@ import com.qifeng.theunderseaworld.fragment.OrderFinishedFragment;
 import com.qifeng.theunderseaworld.fragment.OrderFinishingFragment;
 import com.qifeng.theunderseaworld.fragment.OrderTuikuanFragment;
 import com.qifeng.theunderseaworld.utils.MFGT;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,10 +33,15 @@ public class OrderManagementActivity extends AppCompatActivity {
     FrameLayout orderManagerFragment;
 
 
-    private Fragment[] fragments;
+    ArrayList<Fragment> fragmentList = new ArrayList<>();
     OrderFinishedFragment orderFinishedFragment;
     OrderFinishingFragment orderFinishingFragment;
     OrderTuikuanFragment orderTuikuanFragment;
+
+    int currentFragmentIndex = 0;
+    int clickButtonIndex;
+    Button[] btnArray = new Button[3];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,16 +75,25 @@ public class OrderManagementActivity extends AppCompatActivity {
         orderFinishingFragment = new OrderFinishingFragment();
         orderTuikuanFragment = new OrderTuikuanFragment();
 
-        fragments[0] = orderFinishedFragment;
-        fragments[1] = orderFinishingFragment;
-        fragments[2] = orderTuikuanFragment;
+        fragmentList.add(orderFinishedFragment);
+        fragmentList.add(orderFinishingFragment);
+        fragmentList.add(orderTuikuanFragment);
 
-        setDefaultFragment();
+        btnArray[0] = (Button) findViewById(R.id.order_manager_btn_finished);
+        btnArray[1] = (Button) findViewById(R.id.order_manager_btn_finishing);
+        btnArray[2] = (Button) findViewById(R.id.order_manager_btn_tuikuan);
+
+        //默认的显示的fragment
+        Fragment showFragment = fragmentList.get(currentFragmentIndex);
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.order_manager_fragment, showFragment)
+                .show(showFragment).commit();
+
+        //设置默认的按钮的颜色
+        btnArray[currentFragmentIndex].setTextColor(getResources().getColor(R.color.bottom_blue));
     }
 
-    private void setDefaultFragment() {
-         getSupportFragmentManager().beginTransaction();
-    }
+
 
     private void initOrderBusinessView() {
 
@@ -95,11 +112,39 @@ public class OrderManagementActivity extends AppCompatActivity {
             case R.id.order_manager_btn_daying:
                 break;
             case R.id.order_manager_btn_finished:
+                clickButtonIndex = 0;
                 break;
             case R.id.order_manager_btn_finishing:
+                clickButtonIndex = 1;
                 break;
             case R.id.order_manager_btn_tuikuan:
+                clickButtonIndex = 2;
                 break;
         }
+
+        if (currentFragmentIndex != clickButtonIndex) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            //隐藏当前的fragment
+            transaction.hide(fragmentList.get(currentFragmentIndex));
+            // 显示 点击的button对应的gragment
+            Fragment showFragment = fragmentList.get(clickButtonIndex);
+            // 没有添加过，
+            if (!showFragment.isAdded()) {
+                transaction.add(R.id.order_manager_fragment, showFragment);
+            }
+            transaction.show(showFragment);
+            transaction.commit();
+            //设置按钮的状态
+            setButtonStatus();
+            currentFragmentIndex = clickButtonIndex;
+        }
+    }
+
+    private void setButtonStatus() {
+        btnArray[currentFragmentIndex].setSelected(false);
+        btnArray[currentFragmentIndex].setTextColor(getResources().getColor(R.color.gray));
+        btnArray[clickButtonIndex].setSelected(true);
+        btnArray[clickButtonIndex].setTextColor(getResources().getColor(R.color.bottom_blue));
+        //btnArray[clickButtonIndex].setBackground(R.drawable.item_cart_layout_noradius);
     }
 }

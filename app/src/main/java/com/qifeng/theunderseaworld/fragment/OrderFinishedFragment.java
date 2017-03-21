@@ -1,8 +1,10 @@
 package com.qifeng.theunderseaworld.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,9 @@ import com.qifeng.theunderseaworld.R;
  */
 public class OrderFinishedFragment extends Fragment {
 
+    RecyclerView orderFinishedRecyclerView;
+    int pageId = 1;
+    Context mContext;
 
     public OrderFinishedFragment() {
         // Required empty public constructor
@@ -24,7 +29,20 @@ public class OrderFinishedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order_finished, container, false);
+        View view = inflater.inflate(R.layout.fragment_order_finished, container, false);
+        mContext = getActivity();
+        orderFinishedRecyclerView = (RecyclerView) view.findViewById(R.id.order_finished_recyclerView);
+
+        initView();
+
+        return view;
+
+
     }
+
+    private void initView() {
+
+    }
+
 
 }
