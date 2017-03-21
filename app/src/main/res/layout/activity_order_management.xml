@@ -18,13 +18,13 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/phone_register_img_back"
+            android:layout_toRightOf="@+id/order_manager_img_back"
             android:text="订单管理"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
         <ImageView
-            android:id="@+id/phone_register_img_back"
+            android:id="@+id/order_manager_img_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -32,6 +32,7 @@
             android:src="@drawable/back" />
 
         <Button
+            android:id="@+id/order_manager_btn_daying"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

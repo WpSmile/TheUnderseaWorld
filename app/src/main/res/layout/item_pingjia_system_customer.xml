@@ -2,13 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/item_pingjia_system_rl_customer"
-    android:background="@color/white"
-    android:layout_marginRight="30dp"
-    android:layout_marginLeft="30dp">
+    android:id="@+id/item_pingjia_system_customer_rl_customer"
+    android:background="@color/white">
 
     <com.qifeng.theunderseaworld.view.ImageViewPlus
-        android:id="@+id/item_pingjia_system_customer_ivp_avatar"
+        android:id="@+id/item_pingjia_system_customer_customer_ivp_avatar"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/touxiang_03"
@@ -17,20 +15,20 @@
 
 
     <View
-        android:id="@+id/item_pingjia_system_customer_divide_line"
+        android:id="@+id/item_pingjia_system_customer_customer_divide_line"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_toRightOf="@+id/item_pingjia_system_customer_ivp_avatar"
-        android:layout_below="@+id/comment_image_first"
+        android:layout_toRightOf="@+id/item_pingjia_system_customer_customer_ivp_avatar"
+        android:layout_below="@+id/item_pingjia_system_customer_image_first"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@color/gray"
         android:layout_marginBottom="10dp"
         />
 
 
     <TextView
-        android:id="@+id/item_pingjia_system_customer_btn_grade05"
+        android:id="@+id/item_pingjia_system_customer_customer_btn_grade05"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="5分"
@@ -38,12 +36,12 @@
         android:textSize="10sp"
         android:textColor="@color/bottom_blue"
         android:background="@drawable/buttom_no_radius_with_solid"
-        android:layout_below="@+id/item_pingjia_system_customer_tv_nick"
+        android:layout_below="@+id/item_pingjia_system_customer_customer_tv_nick"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/item_pingjia_system_customer_tv_time"
+        android:id="@+id/item_pingjia_system_customer_customer_tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2017-03-21"
@@ -53,28 +51,28 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:id="@+id/item_pingjia_system_customer_tv_nick"
+        android:id="@+id/item_pingjia_system_customer_customer_tv_nick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="会飞的鱼"
         android:textColor="@color/black"
         android:layout_marginTop="15dp"
-        android:layout_alignLeft="@+id/item_pingjia_system_customer_tv"
-        android:layout_alignStart="@+id/item_pingjia_system_customer_tv" />
+        android:layout_alignLeft="@+id/item_pingjia_system_customer_customer_tv"
+        android:layout_alignStart="@+id/item_pingjia_system_customer_customer_tv" />
 
     <TextView
-        android:id="@+id/item_pingjia_system_customer_tv"
+        android:id="@+id/item_pingjia_system_customer_customer_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="买票很方便，非常不错！"
-        android:layout_alignBottom="@+id/item_pingjia_system_customer_btn_grade05"
-        android:layout_alignLeft="@+id/item_pingjia_system_customer_divide_line"
-        android:layout_alignStart="@+id/item_pingjia_system_customer_divide_line" />
+        android:layout_alignBottom="@+id/item_pingjia_system_customer_customer_btn_grade05"
+        android:layout_alignLeft="@+id/item_pingjia_system_customer_customer_divide_line"
+        android:layout_alignStart="@+id/item_pingjia_system_customer_customer_divide_line" />
 
 
 
         <ImageView
-            android:id="@+id/comment_image_first"
+            android:id="@+id/item_pingjia_system_customer_image_first"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
@@ -83,12 +81,12 @@
             android:src="@drawable/login_background_image"
             android:background="@drawable/image_back"
             android:scaleType="fitXY"
-            android:layout_below="@+id/item_pingjia_system_customer_tv"
-            android:layout_toRightOf="@+id/item_pingjia_system_customer_ivp_avatar"
+            android:layout_below="@+id/item_pingjia_system_customer_customer_tv"
+            android:layout_toRightOf="@+id/item_pingjia_system_customer_customer_ivp_avatar"
             />
 
         <ImageView
-            android:id="@+id/comment_image_item_add"
+            android:id="@+id/item_pingjia_system_customer_image_item_add"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
@@ -97,11 +95,11 @@
             android:src="@drawable/login_background_image"
             android:background="@drawable/image_back"
             android:scaleType="fitXY"
-            android:layout_below="@+id/item_pingjia_system_customer_tv"
-            android:layout_toRightOf="@+id/comment_image_first"
+            android:layout_below="@+id/item_pingjia_system_customer_customer_tv"
+            android:layout_toRightOf="@+id/item_pingjia_system_customer_image_first"
             />
     <ImageView
-        android:id="@+id/comment_image_item_add1"
+        android:id="@+id/item_pingjia_system_customer_image_item_add1"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -110,8 +108,8 @@
         android:src="@drawable/login_background_image"
         android:background="@drawable/image_back"
         android:scaleType="fitXY"
-        android:layout_below="@+id/item_pingjia_system_customer_tv"
-        android:layout_toRightOf="@+id/comment_image_item_add"
+        android:layout_below="@+id/item_pingjia_system_customer_customer_tv"
+        android:layout_toRightOf="@+id/item_pingjia_system_customer_image_item_add"
         />
 
 </RelativeLayout>

@@ -147,7 +147,7 @@ public class HomePageFragment extends Fragment {
         homeRvRecommend.setLayoutManager(gridLayoutManager1);
         //设置是否自动修复
         homeRvRecommend.setHasFixedSize(true);
-        homeRvRecommend.addItemDecoration(new SpaceItemDecoretion(12));
+        homeRvRecommend.addItemDecoration(new SpaceItemDecoretion(8));
 
     }
 

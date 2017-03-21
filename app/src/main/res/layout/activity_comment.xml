@@ -18,13 +18,13 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/phone_register_img_back"
+            android:layout_toRightOf="@+id/comment_img_back"
             android:text="发表评论"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
         <ImageView
-            android:id="@+id/phone_register_img_back"
+            android:id="@+id/comment_img_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -144,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:text="(还可以输入 "/>
             <TextView
-                android:id="@+id/comment_tv_num"
+                android:id="@+id/comment_textView_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="192"
