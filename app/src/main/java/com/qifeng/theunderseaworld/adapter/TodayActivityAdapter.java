@@ -77,7 +77,7 @@ public class TodayActivityAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof FooterViewHolder) {
+        /*if (holder instanceof FooterViewHolder) {
             ((FooterViewHolder) holder).tvFooter.setText(getFooterString());
         }
         if (holder instanceof TodayActivityViewHolder) {
@@ -86,7 +86,7 @@ public class TodayActivityAdapter extends RecyclerView.Adapter {
             ImageLoader.downloadImg(mContext, ((TodayActivityViewHolder) holder).todayActivityIamge, todayActivityBean.getImageurl());
             ((TodayActivityViewHolder) holder).itemTodayActivityRl.setTag(todayActivityBean.getId());
             L.e("id:" + todayActivityBean.getId());
-        }
+        }*/
     }
 
     @Override

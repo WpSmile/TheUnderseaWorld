@@ -111,8 +111,9 @@ public class HomePageFragment extends Fragment {
     private void setHomeDefaultKepu() {
         //默认数据
         HomeKePuAnimalBean homeKePuAnimalBean = new HomeKePuAnimalBean();
-        homeKePuAnimalBean.setImage(R.drawable.nopic);
+        homeKePuAnimalBean.setImage(R.drawable.today_activity_default);
         homeKePuAnimalBean.setName("鲨鱼");
+        homeKePuAnimalBean.setEnglishName("Shark");
         //默认数据
         for (int i = 0; i < 4; i++) {
             mKepulist.add(homeKePuAnimalBean);

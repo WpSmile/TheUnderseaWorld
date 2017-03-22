@@ -6,7 +6,7 @@
     android:background="@drawable/layout_back">
 
 
-    <TextView
+<!--    <TextView
         android:id="@+id/order_manager_tv_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:textSize="10sp"
         android:layout_marginTop="5dp"
         android:textColor="@color/black"
-        />
+        />-->
 
     <TextView
         android:id="@+id/order_activity_title"
@@ -51,17 +51,20 @@
         />
 
 
-    <Button
+    <TextView
         android:id="@+id/order_manager_btn_deal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/right"
         android:text="交易成功"
+        android:gravity="center"
+        android:textSize="10sp"
+        android:padding="5dp"
         android:textColor="@color/cart_buy_bg"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/order_activity_title"
         android:background="@drawable/item_order_button"/>
 
@@ -73,7 +76,7 @@
         android:background="@color/divide_line"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="3dp"
         android:layout_marginBottom="5dp"
         android:layout_below="@+id/order_activity_iamge"/>
 
@@ -105,10 +108,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="申请退款"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:layout_marginLeft="19dp"
         android:layout_marginStart="19dp"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/order_manager_btn_deal"
         android:layout_alignLeft="@+id/order_manager_btn_deal"
         android:layout_alignStart="@+id/order_manager_btn_deal" />
 
@@ -117,9 +121,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="申请退货"
-        android:textSize="10sp"
-        android:layout_alignBaseline="@+id/today_text_price"
-        android:layout_alignBottom="@+id/today_text_price"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/order_manager_tv_apply_refund"
         android:layout_alignLeft="@+id/order_manager_tv_apply_refund"
         android:layout_alignStart="@+id/order_manager_tv_apply_refund"
@@ -128,12 +131,13 @@
     <LinearLayout
         android:id="@+id/order_manager_ll_pingjia"
         android:layout_width="wrap_content"
-        android:layout_height="10dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/order_manager_tv_apply_tuihuo"
-        android:layout_alignLeft="@+id/order_manager_tv_apply_tuihuo"
-        android:layout_alignStart="@+id/order_manager_tv_apply_tuihuo"
-        android:layout_marginTop="10dp">
+        android:layout_below="@+id/today_text_price"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/order_manager_tv_apply_refund"
+        android:layout_alignStart="@+id/order_manager_tv_apply_refund"
+        >
 
         <ImageView
             android:layout_width="wrap_content"
@@ -144,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="评价"
-            android:textSize="10sp"/>
+            android:textSize="12sp"/>
 
     </LinearLayout>
 

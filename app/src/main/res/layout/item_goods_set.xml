@@ -22,8 +22,7 @@
         android:id="@+id/item_goods_set_image_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/close"
-        android:background="@color/bottom_blue"
+        android:src="@mipmap/close"
         android:layout_alignParentRight="true"/>
 
     <TextView

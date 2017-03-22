@@ -2,12 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qifeng.theunderseaworld.fragment.OrderFinishingFragment">
+    tools:context="com.qifeng.theunderseaworld.fragment.OrderFinishingFragment"
+    android:background="@color/white">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ExpandableListView
+        android:id="@+id/order_customer_finishing_expanlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="finishing" />
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+    </ExpandableListView>
 
 </FrameLayout>

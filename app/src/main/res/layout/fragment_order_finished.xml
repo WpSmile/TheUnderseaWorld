@@ -2,14 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qifeng.theunderseaworld.fragment.OrderFinishedFragment">
+    tools:context="com.qifeng.theunderseaworld.fragment.OrderFinishedFragment"
+    android:background="@color/white">
 
     <!-- TODO: Update blank fragment layout -->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/order_finished_recyclerView"
+    <ExpandableListView
+        android:id="@+id/order_customer_finished_expanlist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
-    </android.support.v7.widget.RecyclerView>
+    </ExpandableListView>
 
 </FrameLayout>

@@ -8,7 +8,7 @@
     android:layout_marginLeft="30dp">
 
     <com.qifeng.theunderseaworld.view.ImageViewPlus
-        android:id="@+id/item_pingjia_system_business_ivp_avatar"
+        android:id="@+id/item_pingjia_system_business_image_avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/touxiang_03"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:text="会飞的鱼"
         android:textColor="@color/black"
-        android:layout_toRightOf="@+id/item_pingjia_system_business_ivp_avatar"
+        android:layout_toRightOf="@+id/item_pingjia_system_business_image_avatar"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"/>
 
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="2017-03-21"
         android:textSize="10sp"
-        android:layout_toRightOf="@+id/item_pingjia_system_business_ivp_avatar"
+        android:layout_toRightOf="@+id/item_pingjia_system_business_image_avatar"
         android:layout_below="@+id/item_pingjia_system_business_tv_nick"
         android:layout_marginLeft="10dp"/>
 
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="方便、快捷，以后还会光顾哦！"
-        android:layout_toRightOf="@+id/item_pingjia_system_business_ivp_avatar"
+        android:layout_toRightOf="@+id/item_pingjia_system_business_image_avatar"
         android:layout_below="@+id/item_pingjia_system_business_tv_time"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
@@ -66,7 +66,7 @@
         android:id="@+id/item_pingjia_system_business_divide_line"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_toRightOf="@+id/item_pingjia_system_business_ivp_avatar"
+        android:layout_toRightOf="@+id/item_pingjia_system_business_image_avatar"
         android:layout_below="@+id/item_pingjia_system_business_tv"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
@@ -111,7 +111,7 @@
             android:id="@+id/item_pinglun_image_dele"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/delete_msg_64"
+            android:src="@mipmap/delete"
             android:layout_centerVertical="true"/>
         <TextView
             android:layout_width="wrap_content"

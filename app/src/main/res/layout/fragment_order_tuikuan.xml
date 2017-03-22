@@ -2,12 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.qifeng.theunderseaworld.fragment.OrderTuikuanFragment">
+    tools:context="com.qifeng.theunderseaworld.fragment.OrderTuikuanFragment"
+    android:background="@color/white">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ExpandableListView
+        android:id="@+id/order_customer_tuikuan_expanlist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="tuikuan" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp">
+
+    </ExpandableListView>
 
 </FrameLayout>

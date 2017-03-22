@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_personal_customer_tuijian"
+    android:background="@drawable/layout_back">
+
+
+
+    <TextView
+        android:id="@+id/item_personal_customer_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="神奇的海底隧道"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/item_personal_customer_iamge"/>
+    <TextView
+        android:id="@+id/item_personal_customer_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="多姿多彩的海洋生物，将神秘莫测、变化万千、绚丽多彩的海洋世界展示在广大市民眼前...."
+        android:textSize="10sp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/item_personal_customer_iamge"
+        android:layout_below="@+id/item_personal_customer_title"/>
+    <TextView
+        android:id="@+id/item_personal_customer_text_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="￥35 "
+        android:textSize="20sp"
+        android:textColor="#FFDD4F24"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/item_personal_customer_title"
+        android:layout_toRightOf="@+id/item_personal_customer_iamge"
+        />
+
+
+
+
+
+    <View
+        android:id="@+id/item_personal_customer_divider_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divide_line"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/item_personal_customer_iamge"/>
+
+    <ImageView
+        android:id="@+id/item_personal_customer_iamge"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/today_activity_default"
+        android:background="@drawable/image_back"
+        android:scaleType="fitXY"
+        android:layout_alignTop="@+id/item_personal_customer_title"
+        android:layout_alignLeft="@+id/item_personal_customer_divider_line"
+        android:layout_alignStart="@+id/item_personal_customer_divider_line" />
+
+
+    <LinearLayout
+        android:id="@+id/order_manager_ll_pingjia"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:orientation="horizontal"
+        android:layout_alignBottom="@+id/item_personal_customer_text_price"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="好评率 "
+            android:textSize="10sp"/>
+
+        <TextView
+            android:id="@+id/item_personal_customer_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="97%"
+            android:textSize="10sp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

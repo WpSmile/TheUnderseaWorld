@@ -3,7 +3,7 @@
     package="com.qifeng.theunderseaworld">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -39,7 +39,8 @@
         <activity android:name=".activity.ApplyRefundActivity" />
         <activity android:name=".activity.PingjiaSystemActivity" />
         <activity android:name=".activity.TuangouManagerActivity" />
-        <activity android:name=".activity.GoodsSetActivity"></activity>
+        <activity android:name=".activity.GoodsSetActivity" />
+        <activity android:name=".activity.ApplyTuihuoActivity"></activity>
     </application>
 
 </manifest>

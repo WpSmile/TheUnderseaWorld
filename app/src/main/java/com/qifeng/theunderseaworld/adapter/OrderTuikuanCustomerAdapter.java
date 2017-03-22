@@ -12,27 +12,24 @@ import android.widget.TextView;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.bean.OrderFinishedChildBean;
 import com.qifeng.theunderseaworld.bean.OrderFinishedGroupBean;
-import com.qifeng.theunderseaworld.utils.MFGT;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * 订单管理（客户端）已完成的适配器
  */
 
-public class OrderFinishedCustomerAdapter extends BaseExpandableListAdapter {
+public class OrderTuikuanCustomerAdapter extends BaseExpandableListAdapter {
 
 
-    static Context mContext;
+    Context mContext;
     ArrayList<OrderFinishedGroupBean> grouplist;
     ArrayList<OrderFinishedChildBean> childlist;
 
-
-    public OrderFinishedCustomerAdapter(Context mContext, ArrayList<OrderFinishedGroupBean> grouplist, ArrayList<OrderFinishedChildBean> childlist) {
+    public OrderTuikuanCustomerAdapter(Context mContext, ArrayList<OrderFinishedGroupBean> grouplist, ArrayList<OrderFinishedChildBean> childlist) {
         this.mContext = mContext;
         this.grouplist = grouplist;
         this.childlist = childlist;
@@ -116,10 +113,6 @@ public class OrderFinishedCustomerAdapter extends BaseExpandableListAdapter {
     }
 
 
-
-
-
-
     static class GroupViewHolder {
         @BindView(R.id.item_order_customer_group_num)
         TextView itemOrderCustomerGroupNum;
@@ -155,21 +148,10 @@ public class OrderFinishedCustomerAdapter extends BaseExpandableListAdapter {
 
         ChildViewHolder(View view) {
             ButterKnife.bind(this, view);
-        }
 
-        @OnClick({R.id.order_manager_tv_apply_refund, R.id.order_manager_tv_apply_tuihuo, R.id.order_manager_ll_pingjia})
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.order_manager_tv_apply_refund:
-                    MFGT.gotoApplyRefundActivity(mContext);
-                    break;
-                case R.id.order_manager_tv_apply_tuihuo:
-                    MFGT.gotoApplyRefundActivity(mContext);
-                    break;
-                case R.id.order_manager_ll_pingjia:
-                    MFGT.gotoCommentActivity(mContext);
-                    break;
-            }
+            orderManagerBtnDeal.setText("退款中");
+            orderManagerTvApplyRefund.setVisibility(View.GONE);
+            orderManagerTvApplyTuihuo.setVisibility(View.GONE);
         }
     }
 

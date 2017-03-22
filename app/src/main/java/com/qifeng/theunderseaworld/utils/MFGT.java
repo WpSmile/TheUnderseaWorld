@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.activity.AnimalKePuActivity;
+import com.qifeng.theunderseaworld.activity.ApplyRefundActivity;
 import com.qifeng.theunderseaworld.activity.CartActivity;
 import com.qifeng.theunderseaworld.activity.CommentActivity;
 import com.qifeng.theunderseaworld.activity.ForgetPasswordActivity;
@@ -94,5 +95,11 @@ public class MFGT {
         Intent intent = new Intent();
         intent.setClass(context,CommentActivity.class);
         context.startActivity(intent);
+    }
+
+    public static void gotoApplyRefundActivity(Context mContext) {
+        Intent intent = new Intent();
+        intent.setClass(mContext,ApplyRefundActivity.class);
+        mContext.startActivity(intent);
     }
 }

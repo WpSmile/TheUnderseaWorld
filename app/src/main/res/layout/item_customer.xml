@@ -4,353 +4,374 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <com.qifeng.theunderseaworld.view.MyScrollView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@drawable/bg_image_02">
-
-        <RelativeLayout
-            android:id="@+id/personal_rl_avatar"
-            android:layout_width="110dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp">
-
-            <com.qifeng.theunderseaworld.view.ImageViewPlus
-                android:id="@+id/item_customer_ivp_avatar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/touxiang_03" />
-
-            <ImageView
-                android:id="@+id/item_customer_iv_sex"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/xingbie_boy_image" />
-
-
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/personal_rl_avatar"
-            android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
-            android:text="会飞的鱼"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@color/list_background">
-
-
-        <!--<RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/wodedingdan"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="我的订单"
-                android:textColor="@color/black"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10dp"/>
-        </RelativeLayout>-->
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/list_background"
-            android:drawableTop="@mipmap/wodedingdan"
-            android:paddingTop="3dp"
-            android:text="我的订单" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/list_background"
-            android:drawableTop="@mipmap/daifukuan"
-            android:paddingTop="3dp"
-            android:text="待付款" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/list_background"
-            android:drawableTop="@mipmap/daishouhuo"
-            android:paddingTop="3dp"
-            android:text="待收货" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/list_background"
-            android:drawableTop="@mipmap/daipingjia"
-            android:paddingTop="3dp"
-            android:text="待评价" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/bottom_blue"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="2dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="#57F8FA" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:gravity="center_vertical"
-            android:text="个人中心"
-            android:textColor="@color/white" />
-
-    </LinearLayout>
-
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_margin="15dp"
-        android:orientation="vertical"
-
-        >
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="74dp"
-
-            android:orientation="horizontal">
-
-
-            <RelativeLayout
-                android:id="@+id/item_customer_personal_info_rl"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/top_left_without_radius">
-
-                <TextView
-                    android:id="@+id/personal_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:text="个人信息"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/personal_text"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="10dp"
-                    android:text="Personal information"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-
-            <TextView
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:background="@color/white" />
-
-            <RelativeLayout
-                android:id="@+id/item_customer_order_manager_rl"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#41E4E6">
-
-                <TextView
-                    android:id="@+id/manager_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:text="订单管理"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/manager_text"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="10dp"
-                    android:text="Integral mall"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:background="@color/white" />
-
-            <RelativeLayout
-                android:id="@+id/item_customer_pay_system_rl"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/top_right_without_radius">
-
-                <TextView
-                    android:id="@+id/pay_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:text="支付系统"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/pay_text"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="10dp"
-                    android:text="Payment system"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@color/white" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="74dp"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:id="@+id/item_customer_yu_e_manage_rl"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/bottom_left_without_radius">
-
-                <TextView
-                    android:id="@+id/balance_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:text="余额管理"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/balance_text"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="10dp"
-                    android:text="Balance management"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:background="@color/white" />
-
-            <RelativeLayout
-                android:id="@+id/item_customer_pingjia_system_rl"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#41E4E6">
-
-                <TextView
-                    android:id="@+id/evaluation_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:text="评价系统"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/evaluation_text"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="10dp"
-                    android:text="Evaluation system"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:background="@color/white" />
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-
-                android:layout_weight="1"></RelativeLayout>
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/bottom_blue"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="2dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="#57F8FA" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:gravity="center_vertical"
-            android:text="猜你喜欢"
-            android:textColor="@color/white" />
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_image_02"
+                android:layout_weight="0.9">
 
-    </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/item_customer_pesonal_rl_avatar"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerInParent="true">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/item_customer_recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                    <com.qifeng.theunderseaworld.view.ImageViewPlus
+                        android:id="@+id/item_customer_ivp_avatar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/touxiang_03" />
 
-    </android.support.v7.widget.RecyclerView>
+                    <ImageView
+                        android:id="@+id/item_customer_iv_sex"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/xingbie_boy_image" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/item_customer_pesonal_rl_avatar"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerInParent="true"
+                    android:text="会飞的鱼"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/list_background"
+                android:layout_weight="0.3">
+
+
+                <!--<RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/wodedingdan"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我的订单"
+                        android:textColor="@color/black"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="10dp"/>
+                </RelativeLayout>-->
+
+                <Button
+                    android:id="@+id/personal_customer_my_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/list_background"
+                    android:drawableTop="@mipmap/wodedingdan"
+                    android:paddingTop="3dp"
+                    android:text="我的订单" />
+
+                <Button
+                    android:id="@+id/personal_customer_daifukuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/list_background"
+                    android:drawableTop="@mipmap/daifukuan"
+                    android:paddingTop="3dp"
+                    android:text="待付款" />
+
+                <Button
+                    android:id="@+id/personal_customer_daishouhuo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/list_background"
+                    android:drawableTop="@mipmap/daishouhuo"
+                    android:paddingTop="3dp"
+                    android:text="待收货" />
+
+                <Button
+                    android:id="@+id/personal_customer_daipingjia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/list_background"
+                    android:drawableTop="@mipmap/daipingjia"
+                    android:paddingTop="3dp"
+                    android:text="待评价" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/bottom_blue"
+                android:orientation="horizontal"
+                android:layout_weight="0.2">
+
+                <TextView
+                    android:layout_width="2dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#57F8FA" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="个人中心"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:layout_weight="0.9"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+
+                    <RelativeLayout
+                        android:id="@+id/item_customer_personal_info_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/top_left_without_radius">
+
+                        <TextView
+                            android:id="@+id/personal_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="20dp"
+                            android:text="个人信息"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/personal_text"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="10dp"
+                            android:text="Personal information"
+                            android:textSize="10sp" />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/white" />
+
+                    <RelativeLayout
+                        android:id="@+id/item_customer_order_manager_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#41E4E6">
+
+                        <TextView
+                            android:id="@+id/manager_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="20dp"
+                            android:text="订单管理"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/manager_text"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="10dp"
+                            android:text="Integral mall"
+                            android:textSize="10sp" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/white" />
+
+                    <RelativeLayout
+                        android:id="@+id/item_customer_pay_system_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/top_right_without_radius">
+
+                        <TextView
+                            android:id="@+id/pay_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="20dp"
+                            android:text="支付系统"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/pay_text"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="10dp"
+                            android:text="Payment system"
+                            android:textSize="10sp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <RelativeLayout
+                        android:id="@+id/item_customer_yu_e_manage_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/bottom_left_without_radius">
+
+                        <TextView
+                            android:id="@+id/balance_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="20dp"
+                            android:text="余额管理"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/balance_text"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="10dp"
+                            android:text="Balance management"
+                            android:textSize="10sp" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/white" />
+
+                    <RelativeLayout
+                        android:id="@+id/item_customer_pingjia_system_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#41E4E6">
+
+                        <TextView
+                            android:id="@+id/evaluation_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="20dp"
+                            android:text="评价系统"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/evaluation_text"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="10dp"
+                            android:text="Evaluation system"
+                            android:textSize="10sp" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/white" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="1">
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/bottom_blue"
+                android:orientation="horizontal"
+                android:layout_weight="0.2">
+
+                <TextView
+                    android:layout_width="2dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="#57F8FA" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="猜你喜欢"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/item_customer_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </com.qifeng.theunderseaworld.view.MyScrollView>
+
 </LinearLayout>
