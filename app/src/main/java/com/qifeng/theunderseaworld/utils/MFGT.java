@@ -16,11 +16,15 @@ import com.qifeng.theunderseaworld.activity.HotRecommondActivity;
 import com.qifeng.theunderseaworld.activity.IntroduceActivity;
 import com.qifeng.theunderseaworld.activity.MainActivity;
 import com.qifeng.theunderseaworld.activity.MapActivity;
+import com.qifeng.theunderseaworld.activity.OrderManageBusinessActivity;
 import com.qifeng.theunderseaworld.activity.OrderManagementActivity;
 import com.qifeng.theunderseaworld.activity.PaySystemActivity;
 import com.qifeng.theunderseaworld.activity.PingjiaSystemActivity;
+import com.qifeng.theunderseaworld.activity.PingjiaSystemBusinessActivity;
 import com.qifeng.theunderseaworld.activity.RegisterByPhoneActivity;
+import com.qifeng.theunderseaworld.activity.ReplyActivity;
 import com.qifeng.theunderseaworld.activity.TodayActivity;
+import com.qifeng.theunderseaworld.activity.TuangouManagerActivity;
 import com.qifeng.theunderseaworld.activity.YuEActivity;
 
 /**
@@ -78,6 +82,9 @@ public class MFGT {
     public static void gotoOrderManagementActivity(MainActivity context) {
         startActivity(context, OrderManagementActivity.class);
     }
+    public static void gotoOrderManageBusinessActivity(MainActivity context) {
+        startActivity(context, OrderManageBusinessActivity.class);
+    }
 
     public static void gotoPaySystemActivity(MainActivity context) {
         startActivity(context, PaySystemActivity.class);
@@ -91,6 +98,10 @@ public class MFGT {
         startActivity(context, PingjiaSystemActivity.class);
     }
 
+    public static void gotoPingjiaSystemBusinessActivity(MainActivity context) {
+        startActivity(context, PingjiaSystemBusinessActivity.class);
+    }
+
     public static void gotoCommentActivity(Context context) {
         Intent intent = new Intent();
         intent.setClass(context,CommentActivity.class);
@@ -101,5 +112,17 @@ public class MFGT {
         Intent intent = new Intent();
         intent.setClass(mContext,ApplyRefundActivity.class);
         mContext.startActivity(intent);
+    }
+
+    public static void gotoTuangouManagerActivity(MainActivity mContext) {
+        Intent intent = new Intent();
+        intent.setClass(mContext,TuangouManagerActivity.class);
+        mContext.startActivity(intent);
+    }
+
+    public static void gotoReplyActivity(Context context) {
+        Intent intent = new Intent();
+        intent.setClass(context,ReplyActivity.class);
+        context.startActivity(intent);
     }
 }

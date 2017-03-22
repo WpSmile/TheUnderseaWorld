@@ -20,13 +20,14 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 /*
 *
-* 用户的订单管理
+* 商家的订单管理
 * */
-public class OrderManagementActivity extends AppCompatActivity {
-    private final static String TAG = OrderManagementActivity.class.getCanonicalName();
-    OrderManagementActivity mContext;
+public class OrderManageBusinessActivity extends AppCompatActivity {
+    private final static String TAG = OrderManageBusinessActivity.class.getCanonicalName();
+    OrderManageBusinessActivity mContext;
 
     @BindView(R.id.order_manager_btn_daying)
     Button orderManagerBtnDaying;

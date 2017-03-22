@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/item_pingjia_system_rl_business"
-    android:background="@color/white"
-    android:layout_marginRight="30dp"
-    android:layout_marginLeft="30dp">
+    android:background="@color/white">
 
     <com.qifeng.theunderseaworld.view.ImageViewPlus
         android:id="@+id/item_pingjia_system_business_image_avatar"

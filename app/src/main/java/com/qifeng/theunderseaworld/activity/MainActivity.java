@@ -11,9 +11,13 @@ import android.widget.FrameLayout;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.qifeng.theunderseaworld.R;
+import com.qifeng.theunderseaworld.UnderseaWorldApplication;
+import com.qifeng.theunderseaworld.bean.User;
 import com.qifeng.theunderseaworld.fragment.CommunityFragment;
 import com.qifeng.theunderseaworld.fragment.HomePageFragment;
+import com.qifeng.theunderseaworld.fragment.PersonalBusinessFragment;
 import com.qifeng.theunderseaworld.fragment.PersonalFragment;
+import com.qifeng.theunderseaworld.fragment.PersonalUnloginFragment;
 import com.qifeng.theunderseaworld.fragment.StoreFragment;
 
 import butterknife.BindView;
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     StoreFragment storeFragment;
     CommunityFragment communityFragment;
     PersonalFragment personalFragment;
+    PersonalBusinessFragment personalBusinessFragment;
+    PersonalUnloginFragment personalUnloginFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +94,27 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         storeFragment = new StoreFragment();
         communityFragment = new CommunityFragment();
         personalFragment = new PersonalFragment();
+
+        personalBusinessFragment = new PersonalBusinessFragment();
+        personalUnloginFragment = new PersonalUnloginFragment();
         fragments[0] = homePageFragment;
         fragments[1] = storeFragment;
         fragments[2] = communityFragment;
         fragments[3] = personalFragment;
+
+        /*
+        *
+        * 根据获取的用户信息（商家、客户、未登录）判断我的页面对应的fragment
+        * */
+        /*User user = UnderseaWorldApplication.getUser();
+        if (user.equals(null)){
+            fragments[3] = personalUnloginFragment;
+        }else if(){//用户是商家
+            fragments[3] = personalBusinessFragment;
+        }else {//用户是顾客
+            fragments[3] = personalFragment;
+        }*/
+
         //fragments.add(homePageFragment);
         //fragments.add(storeFragment);
         //fragments.add(communityFragment);
