@@ -146,7 +146,7 @@ public class TodayActivityAdapter extends RecyclerView.Adapter {
         }
 
         @OnClick(R.id.item_today_activity_rl)
-        public void onClick() {
+        public void onClick() {//跳转至商品详情
 
         }
     }

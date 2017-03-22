@@ -90,7 +90,8 @@ public class CartTuijianAdapter extends RecyclerView.Adapter {
         }
 
         @OnClick(R.id.ll_item_second_cart)
-        public void onClick() {
+        public void onClick() {//跳转至商品详情
+
         }
     }
 }

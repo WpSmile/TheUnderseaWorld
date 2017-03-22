@@ -11,9 +11,9 @@
     <ImageView
         android:id="@+id/img_item_second_cart"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:src="@drawable/nopic"
-        android:background="@drawable/image_back"
+        android:layout_height="70dp"
+        android:src="@drawable/today_activity_default"
+        android:scaleType="fitXY"
         android:layout_marginTop="5dp"/>
     <TextView
         android:id="@+id/tv_item_sencond_cart_title"

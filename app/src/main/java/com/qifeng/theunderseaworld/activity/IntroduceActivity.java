@@ -45,11 +45,9 @@ public class IntroduceActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        String[] imageurl = {"http://ofrf20oms.bkt.clouddn.com/Clannad.jpg",
-                "http://ofrf20oms.bkt.clouddn.com/THE%20IDOLM@STER.jpg",
-                "http://ofrf20oms.bkt.clouddn.com/miku.jpg"};
+        String[] imageurl = {"Clannad.jpg", "THE%20IDOLM@STER.jpg", "miku.jpg"};
         L.e(TAG,"=============开始图片轮播");
-        //introSlideAuto.startPlayLoop(introFlowIndicator, imageurl, 3);
+        introSlideAuto.startPlayLoop(introFlowIndicator, imageurl, 3);
     }
 
     /*private int getAlbumImgCount(GoodsDetailsBean details) {

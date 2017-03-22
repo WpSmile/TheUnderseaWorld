@@ -91,7 +91,7 @@ public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
             ButterKnife.bind(this, view);
         }
         @OnClick(R.id.item_personal_customer_tuijian)
-        public void onClick() {
+        public void onClick() {//
         }
 
     }

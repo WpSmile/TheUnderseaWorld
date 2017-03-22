@@ -5,17 +5,36 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.view.FlowIndicator;
+import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AnimalKePuActivity extends AppCompatActivity {
+    SlideAutoLoopView slideAutoLoopView;
+    FlowIndicator flowIndicator;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal_ke_pu);
         ButterKnife.bind(this);
+
+        initView();
+        initData();
+    }
+
+    private void initData() {
+        String[] imageurl = {"miku.jpg", "wusaki.jpg", "%CE%BC%27s.jpg", "project.jpg"};
+
+        slideAutoLoopView.startPlayLoop(flowIndicator, imageurl, imageurl.length);
+    }
+
+    private void initView() {
+        slideAutoLoopView = (SlideAutoLoopView) findViewById(R.id.kepu_slideAuto);
+        flowIndicator = (FlowIndicator) findViewById(R.id.kepu_flowIndicator);
     }
 
     @OnClick(R.id.kepu_img_back)
