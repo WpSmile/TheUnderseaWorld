@@ -22,14 +22,12 @@
                     android:id="@+id/item_customer_pesonal_rl_avatar"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_marginTop="20dp"
                     android:layout_centerInParent="true">
 
                     <com.qifeng.theunderseaworld.view.ImageViewPlus
                         android:id="@+id/item_customer_ivp_avatar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:background="@drawable/touxiang_03" />
 
                     <ImageView
@@ -46,9 +44,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
                     android:layout_below="@+id/item_customer_pesonal_rl_avatar"
-                    android:layout_marginTop="5dp"
-                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
                     android:text="会飞的鱼"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
@@ -341,18 +339,19 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@color/bottom_blue"
-                android:orientation="horizontal"
                 android:layout_weight="0.2">
 
                 <TextView
+                    android:id="@+id/tv_shu_line"
                     android:layout_width="2dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:background="#57F8FA" />
+                    android:background="#57F8FA"
+                    android:layout_centerVertical="true"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -360,9 +359,21 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center_vertical"
                     android:text="猜你喜欢"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:layout_toRightOf="@+id/tv_shu_line"/>
 
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_personal_customer_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:text="更多"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    />
+
+            </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/item_customer_recyclerView"

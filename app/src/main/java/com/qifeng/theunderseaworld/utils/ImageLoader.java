@@ -388,7 +388,7 @@ public class ImageLoader {
 
     public static void setImage1(String url, Context context, ImageView imageView, boolean isDragging) {
         ImageLoader.build(url)
-                .defaultPicture(R.drawable.nopic)
+                .defaultPicture(R.drawable.back_001)
                 .imageView(imageView)
                 .setDragging(isDragging)
                 .showImage(context);
