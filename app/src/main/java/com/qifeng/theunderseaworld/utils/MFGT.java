@@ -12,6 +12,7 @@ import com.qifeng.theunderseaworld.activity.ApplyRefundActivity;
 import com.qifeng.theunderseaworld.activity.CartActivity;
 import com.qifeng.theunderseaworld.activity.CommentActivity;
 import com.qifeng.theunderseaworld.activity.ForgetPasswordActivity;
+import com.qifeng.theunderseaworld.activity.GoodsSetActivity;
 import com.qifeng.theunderseaworld.activity.HotRecommondActivity;
 import com.qifeng.theunderseaworld.activity.IntroduceActivity;
 import com.qifeng.theunderseaworld.activity.MainActivity;
@@ -129,5 +130,11 @@ public class MFGT {
 
     public static void gotoPaySystemBusinessActivity(MainActivity context) {
         startActivity(context, PaySystemBusinessActivity.class);
+    }
+
+    public static void gotoGoodsSetActivity(Context context) {
+        Intent intent = new Intent();
+        intent.setClass(context,GoodsSetActivity.class);
+        context.startActivity(intent);
     }
 }

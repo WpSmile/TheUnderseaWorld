@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.bean.TuangouManagerBean;
+import com.qifeng.theunderseaworld.utils.MFGT;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ import butterknife.OnClick;
 public class TuangouManagerAdapter extends RecyclerView.Adapter {
 
     ArrayList<TuangouManagerBean> mlist;
-    Context context;
+    static Context context;
 
     RecyclerView parent;
 
@@ -73,6 +74,7 @@ public class TuangouManagerAdapter extends RecyclerView.Adapter {
 
         @OnClick(R.id.item_tuangou_manager_rl)
         public void onViewClicked() {
+            MFGT.gotoGoodsSetActivity(context);
         }
     }
 }
