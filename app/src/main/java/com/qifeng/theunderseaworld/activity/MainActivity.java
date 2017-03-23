@@ -103,8 +103,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         personalUnloginFragment = new PersonalUnloginFragment();
         fragments[0] = homePageFragment;
         fragments[1] = storeFragment;
-        fragments[2] = communityFragment;
-        //fragments[3] = personalFragment;
+        //fragments[2] = communityFragment;
+        fragments[2] = personalFragment;
 
         //fragments[3] = personalBusinessFragment;
 

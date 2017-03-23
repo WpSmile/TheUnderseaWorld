@@ -124,12 +124,13 @@
                     android:layout_marginTop="30dp"
                     android:layout_below="@+id/login_text_phone">
 
-                    <Button
+                    <TextView
                         android:id="@+id/login_btn_own"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button_without_border_radius"
                         android:textColor="@color/white"
+                        android:gravity="center"
                         android:text="个人登录"
                         android:layout_weight="2"/>
                     <ImageView
@@ -137,12 +138,13 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"/>
 
-                    <Button
+                    <TextView
                         android:id="@+id/login_btn_merchant"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button_without_border_radius"
                         android:textColor="@color/white"
+                        android:gravity="center"
                         android:text="商家登录"
                         android:layout_weight="2"
                         />
