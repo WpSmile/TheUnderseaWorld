@@ -100,8 +100,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         fragments[0] = homePageFragment;
         fragments[1] = storeFragment;
         fragments[2] = communityFragment;
-        fragments[3] = personalFragment;
+        //fragments[3] = personalFragment;
 
+        fragments[3] = personalBusinessFragment;
+
+        //fragments[3] = personalUnloginFragment;
         /*
         *
         * 根据获取的用户信息（商家、客户、未登录）判断我的页面对应的fragment

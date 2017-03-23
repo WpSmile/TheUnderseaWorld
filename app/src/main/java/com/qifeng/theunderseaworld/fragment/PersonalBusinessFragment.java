@@ -24,7 +24,7 @@ import butterknife.Unbinder;
  * A simple {@link Fragment} subclass.
  */
 public class PersonalBusinessFragment extends Fragment {
-    //MainActivity mContext;
+    MainActivity mContext;
 
     @BindView(R.id.personal_ivp_avatar)
     ImageViewPlus personalIvpAvatar;
@@ -44,7 +44,7 @@ public class PersonalBusinessFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.item_business, container, false);
         unbinder = ButterKnife.bind(this, view);
-        //mContext = (MainActivity) getActivity();
+        mContext = (MainActivity) getActivity();
         return view;
     }
 
@@ -62,24 +62,22 @@ public class PersonalBusinessFragment extends Fragment {
             case R.id.personal_rl_vip_manager://会员管理
                 break;
             case R.id.personal_rl_order_manager://订单管理
-                //MFGT.gotoOrderManageBusinessActivity(mContext);
+                MFGT.gotoOrderManageBusinessActivity(mContext);
                 break;
             case R.id.personal_rl_data_manager://数据管理
                 break;
             case R.id.personal_rl_fenquan_manager://分权系统
                 break;
             case R.id.personal_rl_pinjia_manager://评价系统
-                //MFGT.gotoPingjiaSystemBusinessActivity(mContext);
+                MFGT.gotoPingjiaSystemBusinessActivity(mContext);
                 break;
             case R.id.personal_rl_activity_manager://活动管理
                 break;
             case R.id.personal_rl_pay_manager://支付系统
-                //PaySystemActivity paySystemActivity = new PaySystemActivity();
-                //paySystemActivity.findViewById(R.id.pay_system_btn_mingxi).setVisibility(View.GONE);
-                //MFGT.gotoPaySystemActivity(mContext);
+                MFGT.gotoPaySystemBusinessActivity(mContext);
                 break;
             case R.id.personal_rl_tuangou_manager://团购管理
-                //MFGT.gotoTuangouManagerActivity(mContext);
+                MFGT.gotoTuangouManagerActivity(mContext);
                 break;
         }
     }

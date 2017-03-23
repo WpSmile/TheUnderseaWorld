@@ -19,6 +19,7 @@ import com.qifeng.theunderseaworld.activity.MapActivity;
 import com.qifeng.theunderseaworld.activity.OrderManageBusinessActivity;
 import com.qifeng.theunderseaworld.activity.OrderManagementActivity;
 import com.qifeng.theunderseaworld.activity.PaySystemActivity;
+import com.qifeng.theunderseaworld.activity.PaySystemBusinessActivity;
 import com.qifeng.theunderseaworld.activity.PingjiaSystemActivity;
 import com.qifeng.theunderseaworld.activity.PingjiaSystemBusinessActivity;
 import com.qifeng.theunderseaworld.activity.RegisterByPhoneActivity;
@@ -124,5 +125,9 @@ public class MFGT {
         Intent intent = new Intent();
         intent.setClass(context,ReplyActivity.class);
         context.startActivity(intent);
+    }
+
+    public static void gotoPaySystemBusinessActivity(MainActivity context) {
+        startActivity(context, PaySystemBusinessActivity.class);
     }
 }

@@ -32,12 +32,15 @@
         <activity android:name=".activity.ForgetPasswordActivity" />
         <activity android:name=".activity.CartActivity" />
         <activity android:name=".activity.OrderManagementActivity" />
+        <activity android:name=".activity.OrderManageBusinessActivity"/>
         <activity android:name=".activity.CommentActivity" />
         <activity android:name=".activity.ReplyActivity" />
         <activity android:name=".activity.YuEActivity" />
         <activity android:name=".activity.PaySystemActivity" />
+        <activity android:name=".activity.PaySystemBusinessActivity"/>
         <activity android:name=".activity.ApplyRefundActivity" />
         <activity android:name=".activity.PingjiaSystemActivity" />
+        <activity android:name=".activity.PingjiaSystemBusinessActivity"/>
         <activity android:name=".activity.TuangouManagerActivity" />
         <activity android:name=".activity.GoodsSetActivity" />
         <activity android:name=".activity.ApplyTuihuoActivity"></activity>

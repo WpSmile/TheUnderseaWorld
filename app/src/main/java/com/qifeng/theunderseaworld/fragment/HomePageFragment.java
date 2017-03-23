@@ -153,20 +153,20 @@ public class HomePageFragment extends Fragment {
     @OnClick({R.id.home_introduce_iamge, R.id.home_map_iamge, R.id.home_activity_iamge, R.id.home_text_more1, R.id.home_text_more2, R.id.home_iamge_category})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.home_introduce_iamge:
+            case R.id.home_introduce_iamge://南宁海底世界简介
                 MFGT.gotoIntroduceActivity(mContext);
                 break;
-            case R.id.home_map_iamge:
+            case R.id.home_map_iamge://管内导览图
                 MFGT.gotoMapActivity(mContext);
                 break;
-            case R.id.home_activity_iamge:
+            case R.id.home_activity_iamge://今日活动
                 MFGT.gotoTodayActivity(mContext);
                 break;
-            case R.id.home_text_more1:
+            case R.id.home_text_more1://海洋动物科普
                 MFGT.gotoAnimalKePuActivity(mContext);
                 break;
-            case R.id.home_text_more2:
-                MFGT.gotoHotRecommondActivity(mContext);
+            case R.id.home_text_more2://跳转至商品列表
+                //MFGT.gotoHotRecommondActivity(mContext);
                 break;
             case R.id.home_iamge_category://购物车
                 MFGT.gotoCartActivity(mContext);
