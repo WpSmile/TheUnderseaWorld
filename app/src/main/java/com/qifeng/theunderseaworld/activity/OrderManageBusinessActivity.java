@@ -10,8 +10,11 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.qifeng.theunderseaworld.R;
+import com.qifeng.theunderseaworld.fragment.OrderFinishedBuninessFragment;
 import com.qifeng.theunderseaworld.fragment.OrderFinishedFragment;
+import com.qifeng.theunderseaworld.fragment.OrderFinishingBusinessFragment;
 import com.qifeng.theunderseaworld.fragment.OrderFinishingFragment;
+import com.qifeng.theunderseaworld.fragment.OrderTuikuanBusinessFragment;
 import com.qifeng.theunderseaworld.fragment.OrderTuikuanFragment;
 import com.qifeng.theunderseaworld.utils.MFGT;
 
@@ -38,9 +41,9 @@ public class OrderManageBusinessActivity extends AppCompatActivity {
 
 
     ArrayList<Fragment> fragmentList = new ArrayList<>();
-    OrderFinishedFragment orderFinishedFragment;
-    OrderFinishingFragment orderFinishingFragment;
-    OrderTuikuanFragment orderTuikuanFragment;
+    OrderFinishedBuninessFragment orderFinishedBuninessFragment;
+    OrderFinishingBusinessFragment orderFinishingBusinessFragment;
+    OrderTuikuanBusinessFragment orderTuikuanBusinessFragment;
 
     int currentFragmentIndex = 0;
     int clickButtonIndex;
@@ -68,19 +71,18 @@ public class OrderManageBusinessActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        orderManagerBtnDaying.setText("删除");
         setFragment();
     }
 
     private void setFragment() {
         //fragments = new Fragment[]{};
-        orderFinishedFragment = new OrderFinishedFragment();
-        orderFinishingFragment = new OrderFinishingFragment();
-        orderTuikuanFragment = new OrderTuikuanFragment();
+        orderFinishedBuninessFragment = new OrderFinishedBuninessFragment();
+        orderFinishingBusinessFragment = new OrderFinishingBusinessFragment();
+        orderTuikuanBusinessFragment = new OrderTuikuanBusinessFragment();
 
-        fragmentList.add(orderFinishedFragment);
-        fragmentList.add(orderFinishingFragment);
-        fragmentList.add(orderTuikuanFragment);
+        fragmentList.add(orderFinishedBuninessFragment);
+        fragmentList.add(orderFinishingBusinessFragment);
+        fragmentList.add(orderTuikuanBusinessFragment);
 
         btnArray[0] = (Button) findViewById(R.id.order_manager_btn_finished);
         btnArray[1] = (Button) findViewById(R.id.order_manager_btn_finishing);
@@ -97,14 +99,6 @@ public class OrderManageBusinessActivity extends AppCompatActivity {
     }
 
 
-
-    private void initOrderBusinessView() {
-
-    }
-
-    private void initOrderCustomerView() {
-        orderManagerBtnDaying.setText("删除");
-    }
 
     @OnClick({R.id.order_manager_img_back, R.id.order_manager_btn_daying, R.id.order_manager_btn_finished, R.id.order_manager_btn_finishing, R.id.order_manager_btn_tuikuan})
     public void onClick(View view) {

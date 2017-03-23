@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -46,16 +47,13 @@ public class LoginActivity extends AppCompatActivity {
         mContext = this;
     }
 
-    @OnClick({R.id.login_image_eye, R.id.login_text_phone, R.id.login_text_forget, R.id.login_btn_own, R.id.login_btn_merchant, R.id.login_rl_weixin, R.id.login_rl_qq})
+    @OnClick({R.id.login_text_phone, R.id.login_text_forget, R.id.login_btn_own, R.id.login_btn_merchant, R.id.login_rl_weixin, R.id.login_rl_qq})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.login_image_eye://密码的可视按钮
-
-                break;
-            case R.id.login_text_phone:
+            case R.id.login_text_phone://手机快速注册
                 MFGT.gotoRegisterByPhoneActivity(mContext);
                 break;
-            case R.id.login_text_forget:
+            case R.id.login_text_forget://忘记密码
                 MFGT.gotoForgetPasswordActivity(mContext);
                 break;
             case R.id.login_btn_own://个人登录

@@ -21,7 +21,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/*评价系统页面：根据登录的是用户还是商家的信息选择相应的item布局*/
+/*
+* 顾客评价系统
+* */
 public class PingjiaSystemActivity extends AppCompatActivity {
     private final static String TAG = PingjiaSystemActivity.class.getCanonicalName();
     PingjiaSystemActivity mContext;
@@ -88,24 +90,6 @@ public class PingjiaSystemActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        //获取登录时的任务信息
-        //User user = UnderseaWorldApplication.getUser();
-        //String nick = user.getMuserNick();
-        //if ("顾客".equals(nick)) {//如果是顾客
-            /*调用顾客的adapter并在里面设置相应的item*/
-        initViewCustomer();
-
-       // } else {//如果是商家
-            /*调用商家的adapter并在里面设置相应的item*/
-        initViewBusiness();
-        //}
-    }
-
-    private void initViewBusiness() {
-
-    }
-
-    private void initViewCustomer() {
         pingjiaCustomerBeenlist = new ArrayList<>();
         PingjiaCustomerBean pingjiaCustomerBean = new PingjiaCustomerBean();
         pingjiaCustomerBean.setAvatar(R.drawable.login_background_image);
@@ -125,8 +109,8 @@ public class PingjiaSystemActivity extends AppCompatActivity {
 
         pingjiaSystemRecyclerView.hasFixedSize();
         pingjiaSystemRecyclerView.addItemDecoration(new SpaceItemDecoretion(12));
-
     }
+
 
     @OnClick({R.id.Pingjia_system_img_back, R.id.pingjia_system_img, R.id.pingjia_system_btn_fangbian, R.id.pingjia_system_btn_pianyi, R.id.pingjia_system_btn_kuaijie})
     public void onClick(View view) {

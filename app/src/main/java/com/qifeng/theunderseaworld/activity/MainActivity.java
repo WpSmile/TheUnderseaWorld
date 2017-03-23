@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     PersonalBusinessFragment personalBusinessFragment;
     PersonalUnloginFragment personalUnloginFragment;
 
+
+    FragmentManager fm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         initView();
         //用于添加底部菜单的方法
         addItem();
+        fm = getSupportFragmentManager();
         getFragments();
         setDefaultFragment();
         setListener();
@@ -102,9 +106,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         fragments[2] = communityFragment;
         //fragments[3] = personalFragment;
 
-        fragments[3] = personalBusinessFragment;
+        //fragments[3] = personalBusinessFragment;
 
-        //fragments[3] = personalUnloginFragment;
+        fragments[3] = personalUnloginFragment;
         /*
         *
         * 根据获取的用户信息（商家、客户、未登录）判断我的页面对应的fragment
@@ -122,14 +126,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         //fragments.add(storeFragment);
         //fragments.add(communityFragment);
         //fragments.add(personalFragment);
-        getSupportFragmentManager().beginTransaction().commit();
+        fm.beginTransaction().commit();
+
     }
 
     /**
      * 设置默认的fragment
      */
     private void setDefaultFragment() {
-        FragmentManager fm = getSupportFragmentManager();
+        /*FragmentManager */
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.layViewPager, homePageFragment);
         transaction.commit();

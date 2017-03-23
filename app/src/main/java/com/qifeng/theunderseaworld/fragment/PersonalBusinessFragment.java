@@ -72,6 +72,7 @@ public class PersonalBusinessFragment extends Fragment {
                 MFGT.gotoPingjiaSystemBusinessActivity(mContext);
                 break;
             case R.id.personal_rl_activity_manager://活动管理
+                MFGT.gotoTodayActivity(mContext);
                 break;
             case R.id.personal_rl_pay_manager://支付系统
                 MFGT.gotoPaySystemBusinessActivity(mContext);

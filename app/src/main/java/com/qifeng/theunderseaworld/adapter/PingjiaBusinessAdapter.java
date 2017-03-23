@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.bean.PingjiaBusinessBean;
 import com.qifeng.theunderseaworld.utils.CommonUtils;
+import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
 import com.qifeng.theunderseaworld.view.ImageViewPlus;
 
@@ -116,6 +117,7 @@ public class PingjiaBusinessAdapter extends RecyclerView.Adapter {
         public PingjiaBusinessViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+
         }
 
         @OnClick({R.id.item_pinglun_rl_huifu, R.id.item_pinglun_rl_delete, R.id.item_pingjia_system_rl_business})
@@ -130,12 +132,13 @@ public class PingjiaBusinessAdapter extends RecyclerView.Adapter {
                             .setPositiveButton("删除", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    L.e("===================删除评论成功");
                                     CommonUtils.showShortToast("删除成功");
                                 }
                             }).setNegativeButton("返回", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
+                            L.e("===================已返回");
                         }
                     }).create().show();
                     break;

@@ -71,54 +71,61 @@
         android:background="@color/gray"
         />
 
-    <RelativeLayout
-        android:id="@+id/item_pinglun_rl_huifu"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_pingjia_system_business_divide_line"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toRightOf="@+id/item_pinglun_rl_delete"
-        android:layout_marginLeft="10dp">
-        <ImageView
-            android:id="@+id/item_pinglun_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/pinglun"
-            android:layout_centerVertical="true"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="回复"
-            android:layout_toRightOf="@id/item_pinglun_image"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            />
-    </RelativeLayout>
+        android:layout_marginRight="10dp">
 
-    <RelativeLayout
-        android:id="@+id/item_pinglun_rl_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/item_pingjia_system_business_divide_line"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="160dp">
-        <ImageView
-            android:id="@+id/item_pinglun_image_dele"
+
+
+        <RelativeLayout
+            android:id="@+id/item_pinglun_rl_huifu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/delete"
-            android:layout_centerVertical="true"/>
-        <TextView
+            android:layout_marginLeft="10dp">
+            <ImageView
+                android:id="@+id/item_pinglun_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pinglun"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="回复"
+                android:layout_toRightOf="@id/item_pinglun_image"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/item_pinglun_rl_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="删除"
-            android:layout_toRightOf="@id/item_pinglun_image_dele"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            />
-    </RelativeLayout>
+            android:layout_marginLeft="10dp">
+            <ImageView
+                android:id="@+id/item_pinglun_image_dele"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/delete"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="删除"
+                android:layout_toRightOf="@id/item_pinglun_image_dele"
+                android:layout_marginLeft="5dp"
+                android:layout_centerVertical="true"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+
 
 </RelativeLayout>
