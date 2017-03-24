@@ -12,11 +12,13 @@ import android.widget.TextView;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.bean.OrderFinishedChildBean;
 import com.qifeng.theunderseaworld.bean.OrderFinishedGroupBean;
+import com.qifeng.theunderseaworld.utils.MFGT;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 订单管理（客户端）已完成的适配器
@@ -25,7 +27,7 @@ import butterknife.ButterKnife;
 public class OrderFinishingCustomerAdapter extends BaseExpandableListAdapter {
 
 
-    Context mContext;
+    static Context mContext;
     ArrayList<OrderFinishedGroupBean> grouplist;
     ArrayList<OrderFinishedChildBean> childlist;
 
@@ -150,6 +152,21 @@ public class OrderFinishingCustomerAdapter extends BaseExpandableListAdapter {
             ButterKnife.bind(this, view);
 
             orderManagerBtnDeal.setText("待付款");
+        }
+
+        @OnClick({R.id.order_manager_tv_apply_refund, R.id.order_manager_tv_apply_tuihuo, R.id.order_manager_ll_pingjia})
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.order_manager_tv_apply_refund:
+                    MFGT.gotoApplyRefundActivity(mContext);
+                    break;
+                case R.id.order_manager_tv_apply_tuihuo:
+                    MFGT.gotoApplyRefundActivity(mContext);
+                    break;
+                case R.id.order_manager_ll_pingjia:
+                    MFGT.gotoCommentActivity(mContext);
+                    break;
+            }
         }
     }
 
