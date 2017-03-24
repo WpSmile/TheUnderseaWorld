@@ -2,17 +2,14 @@ package com.qifeng.theunderseaworld.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.FrameLayout;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.qifeng.theunderseaworld.R;
-import com.qifeng.theunderseaworld.UnderseaWorldApplication;
-import com.qifeng.theunderseaworld.bean.User;
+import com.qifeng.theunderseaworld.adapter.SectionsPagerAdapter;
 import com.qifeng.theunderseaworld.fragment.CommunityFragment;
 import com.qifeng.theunderseaworld.fragment.HomePageFragment;
 import com.qifeng.theunderseaworld.fragment.PersonalBusinessFragment;
@@ -20,155 +17,90 @@ import com.qifeng.theunderseaworld.fragment.PersonalFragment;
 import com.qifeng.theunderseaworld.fragment.PersonalUnloginFragment;
 import com.qifeng.theunderseaworld.fragment.StoreFragment;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener/*,ViewPager.OnPageChangeListener*/ {
+public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener, ViewPager.OnPageChangeListener {
+
 
     @BindView(R.id.layViewPager)
-    FrameLayout layViewPager;
-    private Fragment[] fragments;
-    //private ArrayList<Fragment> fragments;
-    //private ViewPager viewPager;
-
-    BottomNavigationBar bottomNavigationBar;
-    HomePageFragment homePageFragment;
-    StoreFragment storeFragment;
-    CommunityFragment communityFragment;
-    PersonalFragment personalFragment;
-    PersonalBusinessFragment personalBusinessFragment;
-    PersonalUnloginFragment personalUnloginFragment;
-
-
-    FragmentManager fm;
+    ViewPager layViewPager;
+    private ArrayList<Fragment> fragments;
+    private ViewPager viewPager;
+    private BottomNavigationBar bottomNavigationBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initView();
-        //用于添加底部菜单的方法
-        addItem();
-        fm = getSupportFragmentManager();
-        getFragments();
-        setDefaultFragment();
-        setListener();
+
     }
 
     private void addItem() {
+        bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
+        bottomNavigationBar.setTabSelectedListener(this);
+        bottomNavigationBar.clearAll();
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         bottomNavigationBar
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC)
                 .setBarBackgroundColor(R.color.bottom_blue);
 
-        bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.shouye, R.string.home_page).setActiveColorResource(R.color.littleblue))
-                .addItem(new BottomNavigationItem(R.mipmap.shangcheng, R.string.store).setActiveColorResource(R.color.littleblue))
-                .addItem(new BottomNavigationItem(R.mipmap.shequ, R.string.community).setActiveColorResource(R.color.littleblue))
-                .addItem(new BottomNavigationItem(R.mipmap.wode, R.string.personal).setActiveColorResource(R.color.littleblue))
+        bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.shouye, R.string.home_page)
+                .setActiveColorResource(R.color.littleblue))
+                .addItem(new BottomNavigationItem(R.mipmap.shangcheng, R.string.store)
+                        .setActiveColorResource(R.color.littleblue))
+                .addItem(new BottomNavigationItem(R.mipmap.shequ, R.string.community)
+                        .setActiveColorResource(R.color.littleblue))
+                .addItem(new BottomNavigationItem(R.mipmap.wode, R.string.personal)
+                        .setActiveColorResource(R.color.littleblue))
                 .setFirstSelectedPosition(0)
                 .initialise();
 
     }
 
-    /*监听事件的方法*/
-    private void setListener() {
-        bottomNavigationBar.setTabSelectedListener(this);
-    }
-
-
     private void initView() {
-        //fragments = new ArrayList<>();
-        bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
-        //initViewPager();
+        //用于添加底部菜单的方法
+        addItem();
+        initViewPager();
     }
 
-    /*private void initViewPager() {
+    private void initViewPager() {
 
         viewPager = (ViewPager) findViewById(R.id.layViewPager);
+        fragments = new ArrayList<>();
+        fragments.add(new HomePageFragment());
+        fragments.add(new StoreFragment());
+        fragments.add(new CommunityFragment());
+
+        //判断登录的信息设置相应的页面
+        fragments.add(new PersonalUnloginFragment());
+
         viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), fragments));
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(0);
-    }*/
-
-    private void getFragments() {
-        fragments = new Fragment[4];
-        homePageFragment = new HomePageFragment();
-        storeFragment = new StoreFragment();
-        communityFragment = new CommunityFragment();
-        personalFragment = new PersonalFragment();
-
-        personalBusinessFragment = new PersonalBusinessFragment();
-        personalUnloginFragment = new PersonalUnloginFragment();
-        fragments[0] = homePageFragment;
-        fragments[1] = storeFragment;
-        //fragments[2] = communityFragment;
-        fragments[2] = personalFragment;
-
-        //fragments[3] = personalBusinessFragment;
-
-        fragments[3] = personalUnloginFragment;
-        /*
-        *
-        * 根据获取的用户信息（商家、客户、未登录）判断我的页面对应的fragment
-        * */
-        /*User user = UnderseaWorldApplication.getUser();
-        if (user.equals(null)){
-            fragments[3] = personalUnloginFragment;
-        }else if(){//用户是商家
-            fragments[3] = personalBusinessFragment;
-        }else {//用户是顾客
-            fragments[3] = personalFragment;
-        }*/
-
-        //fragments.add(homePageFragment);
-        //fragments.add(storeFragment);
-        //fragments.add(communityFragment);
-        //fragments.add(personalFragment);
-        fm.beginTransaction().commit();
-
     }
+
+
 
     /**
      * 设置默认的fragment
      */
-    private void setDefaultFragment() {
-        /*FragmentManager */
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.layViewPager, homePageFragment);
-        transaction.commit();
-    }
 
     @Override
     public void onTabSelected(int position) {
-        if (fragments != null) {
-            if (position < fragments/*.size()*/.length) {
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                Fragment fragment = fragments/*.get(position)*/[position];
-                if (fragment.isAdded()) {
-                    ft.replace(R.id.layViewPager, fragment);
-                } else {
-                    ft.add(R.id.layViewPager, fragment);
-                }
-                ft.commitAllowingStateLoss();
-            }
-        }
-        //viewPager.setCurrentItem(position);
+
+        viewPager.setCurrentItem(position);
     }
 
     @Override
     public void onTabUnselected(int position) {
-        if (fragments != null) {
-            if (position < fragments/*.size()*/.length) {
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                Fragment fragment = fragments/*.get(position)*/[position];
-                ft.remove(fragment);
-                ft.commitAllowingStateLoss();
-            }
-        }
+
     }
 
     @Override
@@ -176,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     }
 
-   /* @Override
+    @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }
@@ -190,15 +122,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     @Override
     public void onPageScrollStateChanged(int state) {
 
-    }*/
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if(outState != null) {
-            String FRAGMENTS_TAG = "android:support:fragments";
-            // remove掉保存的Fragment
-            outState.remove(FRAGMENTS_TAG);
-        }
     }
+
 }
