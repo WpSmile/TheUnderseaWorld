@@ -27,12 +27,22 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
 
-                <!--第三方QQ登录添加节点-->
+            </intent-filter>
+        </activity>
+
+
+        <!--第三方QQ登录节点-->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="1106061374" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

@@ -135,7 +135,7 @@ public class PersonalUnloginFragment extends Fragment {
                 loginByWeixin();
                 break;
             case R.id.login_rl_qq://第三方QQ登录
-                Toast.makeText(mContext, "暂未开通", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, "暂未开通", Toast.LENGTH_SHORT).show();
                 loginByQQ();
                 break;
         }
