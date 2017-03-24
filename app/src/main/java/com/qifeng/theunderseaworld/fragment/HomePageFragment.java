@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
+ * 首页
  * A simple {@link Fragment} subclass.
  */
 public class HomePageFragment extends Fragment {

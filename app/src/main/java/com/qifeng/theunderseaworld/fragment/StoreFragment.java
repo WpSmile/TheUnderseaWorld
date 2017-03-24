@@ -39,6 +39,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
+ * 商城
  * A simple {@link Fragment} subclass.
  */
 public class StoreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, PullToRefreshBase.OnRefreshListener2<HeadGridView> {
