@@ -3,6 +3,7 @@ package com.qifeng.theunderseaworld.activity;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.utils.MFGT;
@@ -16,6 +17,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);  //全屏
         mContext = this;
     }
 
