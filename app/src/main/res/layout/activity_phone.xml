@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/seabed_item_mall_line"
+              android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            style="@style/seabed_current_three"
+            android:background="@color/white"
+            android:padding="@dimen/seabed_shopping_padding">
+
+            <ImageView
+                android:id="@+id/iv_seabed_phone_return"
+                style="@style/seabed_return"
+                android:src="@mipmap/seabed_address_return_left"
+                />
+
+            <TextView
+                style="@style/seabed_title"
+                android:text="绑定手机"
+                android:textColor="#3F3F3F"
+                android:textSize="16sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/seabed_phone_bak">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_seabed_password_bak"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:layout_marginTop="70dp"
+                    android:background="#50000000"/>
+
+                <com.sdmy.seabed_view.CircleImageView
+                    android:id="@+id/civ_seabed_phone_head"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:src="@mipmap/seabed_personal_head"
+                    app:border_color="@android:color/transparent"
+                    app:border_width="3dp"/>
+
+                <TextView
+                    android:id="@+id/tv_seabed_phone_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/civ_seabed_phone_head"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:text="会飞的鱼"
+                    android:textColor="#FFF"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_seabed_password_bak"
+                    android:background="#50000000"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingBottom="40dp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_seabed_dindingphone_layout"
+                        android:layout_width="230dp"
+                        android:layout_height="170dp"
+                        android:background="@drawable/phone_personal"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/tv_seabed_phone_country"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableRight="@mipmap/seabed_address_return_right"
+                            android:paddingBottom="6dp"
+                            android:paddingTop="6dp"
+                            android:text="中国 +86"
+                            android:textColor="#000"
+                            android:textSize="16sp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="8dp"
+                            android:background="#C0C0C0"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/et_seabed_phone_no"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="3dp"
+                                android:layout_weight="3"
+                                android:background="#FFF"
+                                android:hint="手机号"
+                                android:inputType="number"
+                                android:maxLength="11"
+                                android:paddingBottom="6dp"
+                                android:paddingTop="6dp"
+                                android:singleLine="true"
+                                android:textColor="#B6B6B6"
+                                android:textColorHint="#B6B6B6"
+                                android:textCursorDrawable="@drawable/nickname_cursor"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/tv_seabed_phone_proving"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:background="@drawable/details_count"
+                                android:gravity="center|center_vertical"
+                                android:paddingBottom="6dp"
+                                android:paddingTop="6dp"
+                                android:text="发送验证码"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="8dp"
+                            android:background="#C0C0C0"/>
+
+                        <EditText
+                            android:id="@+id/et_seabed_phone_verify"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="3dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="1"
+                            android:background="#FFF"
+                            android:inputType="textPassword"
+                            android:drawableRight="@mipmap/seabed_dindingphone_verify"
+                            android:gravity="center_vertical"
+                            android:hint="密码"
+                            android:paddingBottom="6dp"
+                            android:paddingTop="6dp"
+                            android:singleLine="true"
+                            android:textColor="#B6B6B6"
+                            android:textColorHint="#B6B6B6"
+                            android:textCursorDrawable="@drawable/nickname_cursor"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="8dp"
+                            android:background="#C0C0C0"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignRight="@id/ll_seabed_dindingphone_layout"
+                        android:layout_below="@id/ll_seabed_dindingphone_layout"
+                        android:layout_marginTop="8dp"
+                        android:background="@android:color/transparent">
+
+                        <TextView
+                            android:id="@+id/tv_seabed_phone_personal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/details_count"
+                            android:gravity="center"
+                            android:padding="6dp"
+                            android:text="个人登录"
+                            android:textColor="#FFF"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tv_seabed_phone_shops"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/details_count"
+                            android:gravity="center"
+                            android:padding="6dp"
+                            android:text="商家登录"
+                            android:textColor="#FFF"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

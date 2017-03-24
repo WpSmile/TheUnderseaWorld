@@ -64,4 +64,9 @@
     <color name="fontgrey">#999999</color>
     <color name="main_orange">#FF6C2C</color>
     <color name="divide_line">#EEEEEE</color>
+
+    <color name="seabed_item_mall_name">#3A3A3A</color>
+    <color name="seabed_item_mall_money">#FF4E4E</color>
+    <color name="seabed_item_mall_bak">#E7E7E7</color>
+    <color name="seabed_item_mall_line">#49A2F0</color>
 </resources>

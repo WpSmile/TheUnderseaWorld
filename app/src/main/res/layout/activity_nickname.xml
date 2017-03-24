@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/seabed_item_mall_line"
+              android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/seabed_item_mall_bak"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+
+            <ImageView
+                android:id="@+id/iv_seabed_nickname_return"
+                android:layout_width="30dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitEnd"
+                android:src="@mipmap/seabed_address_return_left"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/iv_seabed_nickname_return"
+                android:gravity="right"
+                android:paddingBottom="10dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:text="昵称设置"
+                android:textColor="#747272"
+                android:textSize="16sp"/>
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/et_seabed_nickname_input"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:singleLine="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/personal_list"
+            android:gravity="top|left"
+            android:hint="请输入昵称"
+            android:maxLength="12"
+            android:textCursorDrawable="@drawable/nickname_cursor"
+            android:padding="10dp"
+            android:textColor="#8B8B8B"
+            android:textColorHint="#8B8B8B"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:maxLines="12"
+            android:padding="10dp"
+            android:text="昵称由6-12位子母、数字和汉字组合\n不包含空格键,区分大小写"
+            android:textColor="#747272"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:id="@+id/tv_seabed_nickname_preser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/details_count"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="保  存"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

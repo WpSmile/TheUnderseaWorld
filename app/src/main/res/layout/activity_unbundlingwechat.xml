@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@color/seabed_item_mall_line"
+              android:fitsSystemWindows="true"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/seabed_item_mall_bak"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            style="@style/seabed_current_three"
+            android:background="@color/white"
+            android:padding="@dimen/seabed_shopping_padding">
+
+            <ImageView
+                android:id="@+id/iv_seabed_unbundlingwechat_return"
+                style="@style/seabed_return"
+                android:src="@mipmap/seabed_address_return_left"
+                />
+
+            <TextView
+                style="@style/seabed_title"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:text="解绑微信"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+
+            <ImageView
+                android:src="@mipmap/seabed_unbundlingwechat_wechat"
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:layout_marginTop="15dp"
+                android:scaleType="fitCenter"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#626262"
+                android:textSize="14sp"
+                android:text="@string/seabed_wechat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_seabed_unbundlingwechat_relieve"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="120dp"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:layout_marginBottom="20dp"
+                android:text="开始解绑"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:background="@drawable/details_count"
+                android:layout_marginRight="120dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

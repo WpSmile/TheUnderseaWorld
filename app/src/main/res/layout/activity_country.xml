@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/seabed_item_mall_line"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            style="@style/seabed_current_three"
+            android:background="@color/white"
+            android:padding="@dimen/seabed_shopping_padding">
+
+            <ImageView
+                android:id="@+id/iv_seabed_country_return"
+                style="@style/seabed_return"
+                android:src="@mipmap/seabed_address_return_left"
+                />
+
+            <TextView
+                style="@style/seabed_title"
+                android:textColor="#2F1E1D"
+                android:textSize="16sp"
+                android:text="国家/地区"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <com.sdmy.seabed_view.SideBar
+                android:id="@+id/sb_seabed_country_sidrbar"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right|center"
+                android:background="#E7E7E7"/>
+
+            <ListView
+                android:id="@+id/sb_seabed_country_lvcountry"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_toLeftOf="@id/sb_seabed_country_sidrbar"
+                android:divider="@null"
+                android:scrollbars="none"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

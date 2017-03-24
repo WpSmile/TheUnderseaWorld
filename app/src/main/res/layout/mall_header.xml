@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <net.cpacm.library.SimpleSliderLayout
+            android:id="@+id/vp_seabed_mall_carousel"
+            style="@style/seabed_page"/>
+
+        <net.cpacm.library.indicator.ViewpagerIndicator.CirclePageIndicator
+            android:id="@+id/ci_seabed_mall_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:padding="4dp"
+            app:fillColor="@color/colorPrimary"
+            app:pageColor="@color/white"
+            app:radius="3dp"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="1dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

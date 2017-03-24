@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:gravity="center_vertical"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.sdmy.seabed_view.CircleImageView
+            android:id="@+id/ci_seabed_details_item_head"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher"
+            app:border_color="@color/transparent"
+            app:border_width="1dp"/>
+
+        <TextView
+            android:id="@+id/tv_seabed_details_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/ci_seabed_details_item_head"
+            android:text="会飞的鱼"
+            android:textColor="#3C3C3C"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_seabed_details_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/tv_seabed_details_item_name"
+            android:text="2017.03.14"
+            android:textColor="#9D9D9D"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_seabed_details_item_context"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="44dp"
+        android:text="买票很方便,非常不错!"
+        android:textColor="#9D9D9D"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="41dp"
+        android:layout_alignLeft="@id/tv_seabed_details_item_context"
+        android:layout_below="@id/tv_seabed_details_item_context"
+        android:background="#757575"/>
+
+</LinearLayout>

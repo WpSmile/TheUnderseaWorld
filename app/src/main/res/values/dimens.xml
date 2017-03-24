@@ -2,4 +2,16 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="seabed_shopping_one">1dp</dimen>
+    <dimen name="seabed_shopping_padding">10dp</dimen>
+    <dimen name="seabed_shopping_eleven">11sp</dimen>
+    <dimen name="seabed_shopping_twelve">12sp</dimen>
+    <dimen name="seabed_shopping_thirteen">13sp</dimen>
+    <dimen name="seabed_shopping_fourteen">14sp</dimen>
+    <dimen name="seabed_shopping_fifteen">15sp</dimen>
+    <dimen name="seabed_shopping_textsize">16sp</dimen>
+    <dimen name="seabed_shopping_seventeen">17sp</dimen>
+    <dimen name="seabed_shopping_eighteen">18sp</dimen>
+    <dimen name="seabed_shopping_nineteen">19sp</dimen>
+    <dimen name="seabed_shopping_twenty">20sp</dimen>
 </resources>

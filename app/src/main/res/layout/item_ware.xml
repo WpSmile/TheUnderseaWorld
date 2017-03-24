@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:id="@+id/iv_seabed_ware_image"
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:layout_weight="2"
+            android:scaleType="fitXY"
+            android:src="@mipmap/seabed_ware_test"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="8dp"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:id="@+id/tv_seabed_ware_ticket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:text="海底世界老年票"
+                android:textColor="#2D2D2D"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/tv_seabed_ware_from"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_seabed_details_ticket"
+                android:layout_marginTop="1dp"
+                android:background="@color/white"
+                android:text="海底世界官方旗舰店"
+                android:textColor="@color/seabed_item_mall_line"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:id="@+id/tv_seabed_ware_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/white"
+                android:gravity="bottom"
+                android:text="￥35"
+                android:textColor="#FF7F21"
+                android:textSize="23sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginRight="15dp"
+                android:gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_seabed_ware_minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="center"
+                    android:src="@mipmap/seabed_details_minus"/>
+
+                <TextView
+                    android:id="@+id/tv_seabed_ware_number"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="#49A2F0"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_seabed_ware_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="center"
+                    android:src="@mipmap/seabed_details_money_add"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <CheckBox
+                android:id="@+id/cb_seabed_ware_selete"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ware_checkbox"
+                android:button="@null"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/seabed_item_mall_bak"/>
+
+</LinearLayout>

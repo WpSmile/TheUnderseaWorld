@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@color/seabed_item_mall_bak"
+              android:layout_height="match_parent">
+
+    <ImageView
+        android:src="@mipmap/seabed_details_money_add"
+        android:layout_width="30dp"
+        android:scaleType="fitXY"
+        android:layout_centerHorizontal="true"
+        android:layout_height="25dp"/>
+
+</RelativeLayout>

@@ -17,4 +17,55 @@
         <item name="android:windowEnterAnimation">@anim/head_in</item>
         <item name="android:windowExitAnimation">@anim/head_out</item>
     </style>-->
+
+    <!--通用-->
+    <style name="seabed_current_one">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="seabed_current_two">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="seabed_current_three">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/seabed_item_mall_line</item>
+    </style>
+
+    <!--返回图标属性-->
+    <style name="seabed_return">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">15dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:scaleType">fitStart</item>
+        <item name="android:src">@mipmap/seabed_shopping_return</item>
+    </style>
+
+    <!--页面标题-->
+    <style name="seabed_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/good_detail_bg_white</item>
+        <item name="android:textSize">@dimen/seabed_shopping_textsize</item>
+    </style>
+
+    <!--页面大图片固定属性-->
+    <style name="seabed_page">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">150dp</item>
+    </style>
+
+    <!--商品详情粗线条-->
+    <style name="seabed_details_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/seabed_shopping_padding</item>
+        <item name="android:background">@color/seabed_item_mall_bak</item>
+    </style>
 </resources>

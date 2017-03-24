@@ -45,4 +45,9 @@
     <string name="delete_collect_fail">删除收藏失败</string>
     <string name="add_cart_fail">添加购物车失败</string>
     <string name="add_cart_success">成功添加至购物车</string>
+
+    <string name="seabed_shopping_name">商城</string>
+    <string name="seabed_details_name">商品详情</string>
+
+    <string name="seabed_wechat">解绑微信后,与微信相关的功能与消息记录将被删除,个人信息、隐私设置中与微信相关部份将被隐藏，解绑后将不能通过该微信号登录到本APP中。</string>
 </resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="13dp"
+        android:paddingBottom="13dp"
+        android:background="@color/white">
+
+        <RadioButton
+            android:id="@+id/rb_seabed_deliveryaddress_item_select"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:gravity="center|center_vertical"/>
+
+        <ImageView
+            android:id="@+id/iv_seabed_deliveryaddress_item_appoint"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/seabed_address_return_right"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/rb_seabed_deliveryaddress_item_select"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/iv_seabed_deliveryaddress_item_appoint"
+            android:layout_toRightOf="@id/rb_seabed_deliveryaddress_item_select"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_seabed_deliveryaddress_item_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginRight="3dp"
+                android:text="张三"
+                android:gravity="center_vertical|left"
+                android:textColor="#747272"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_seabed_deliveryaddress_item_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="137*****040"
+                android:paddingRight="10dp"
+                android:gravity="center_vertical|right"
+                android:layout_marginRight="3dp"
+                android:textColor="#747272"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_seabed_deliveryaddress_item_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/rb_seabed_deliveryaddress_item_select"
+            android:layout_marginRight="3dp"
+            android:gravity="left|center_vertical"
+            android:layout_toLeftOf="@id/iv_seabed_deliveryaddress_item_appoint"
+            android:layout_toRightOf="@id/rb_seabed_deliveryaddress_item_select"
+            android:text="四川省成都市青羊区狮马路22号"
+            android:textColor="#747272"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:background="#E7E7E7"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</LinearLayout>

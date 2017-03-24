@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorPrimary"
+              android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/seabed_item_mall_bak"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            style="@style/seabed_current_three"
+            android:padding="@dimen/seabed_shopping_padding">
+
+            <ImageView
+                android:id="@+id/iv_seabed_personal_return"
+                style="@style/seabed_return"/>
+
+            <TextView
+                style="@style/seabed_title"
+                android:text="个人信息"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/seabed_item_mall_bak">
+
+            <TextView
+                android:id="@+id/tv_seabed_personal_signout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity=""
+                android:background="#49A2F0"
+                android:gravity="center|center_vertical"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp"
+                android:text="退出登录"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+            <ListView
+                android:id="@+id/lv_seabed_personal_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/tv_seabed_personal_signout"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/personal_bak"
+                android:divider="@null"
+                android:scrollbars="none"/>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

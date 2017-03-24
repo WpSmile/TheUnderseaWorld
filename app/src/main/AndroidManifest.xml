@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -93,6 +94,81 @@
         <activity android:name=".activity.GoodsSetActivity" />
         <!--团购的商品管理-->
         <activity android:name=".activity.ApplyTuihuoActivity"></activity>
+
+        <!--商品详情页面-->
+        <activity android:name=".activity.DetailsActivity"/>
+
+        <!--绑定手机页面-->
+        <activity android:name=".activity.DindingphoneActivity"/>
+
+        <!--绑定微信页面-->
+        <activity android:name=".activity.DindingWechatActivity"/>
+
+        <!--绑定支付宝页面-->
+        <activity android:name=".activity.DindingPayActivity"/>
+
+        <!--个人信息界面-->
+        <activity android:name=".activity.PersonalActivity">
+
+        </activity>
+
+        <!--解绑手机界面-->
+        <activity android:name=".activity.UnbundlingphoneActivity"/>
+
+        <!--解绑微信界面-->
+        <activity android:name=".activity.UnbundlingWechatActivity">
+        </activity>
+
+        <!--解绑支付宝界面-->
+        <activity android:name=".activity.UnbundlingPayActivity"/>
+
+        <!--昵称设置界面-->
+        <activity android:name=".activity.NickNameActivity"/>
+
+        <!--收获地址界面-->
+        <activity android:name=".activity.DeliveryAddressActivity">
+        </activity>
+
+        <activity android:name=".activity.NewlyaddedActivity">
+
+        </activity>
+
+        <!--国家/地区界面-->
+        <activity android:name=".activity.CountryActivity">
+
+        </activity>
+
+        <!--宝贝上架界面-->
+        <activity android:name=".activity.ShelvesActivity">
+
+        </activity>
+
+        <!--商品管理界面-->
+        <activity android:name=".activity.ManagementActivity">
+
+        </activity>
+
+        <!--手机注册界面-->
+        <activity android:name=".activity.RegisterActivity">
+
+        </activity>
+
+        <!--忘记密码界面-->
+        <activity android:name=".activity.PassWordActivity">
+
+        </activity>
+
+        <!--手机绑定界面-->
+        <activity android:name=".activity.PhoneActivity">
+
+        </activity>
+
+        <!--后台管理-->
+        <service
+            android:name="com.qifeng.theunderseaworld.seabed_service.SeabedService"
+            android:permission="true">
+
+        </service>
     </application>
 
 </manifest>

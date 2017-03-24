@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#E7E7E7">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/itme_mall_shape">
+
+        <ImageView
+            android:id="@+id/iv_seabed_item_mall_image"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/seabed_item_mall_one"/>
+
+        <TextView
+            android:id="@+id/tv_seabed_item_mall_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_seabed_item_mall_image"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="南宁海底世界"
+            android:textColor="@color/seabed_item_mall_name"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@id/tv_seabed_item_mall_name"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/seabed_item_mall_bak"/>
+
+        <TextView
+            android:id="@+id/tv_seabed_item_mall_ticket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_seabed_item_mall_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:text="成人票"
+            android:textColor="@color/seabed_item_mall_name"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tv_seabed_item_mall_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/iv_seabed_item_mall_image"
+            android:layout_below="@id/tv_seabed_item_mall_name"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="3dp"
+            android:text="￥40"
+            android:textColor="@color/seabed_item_mall_money"
+            android:textSize="15sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
