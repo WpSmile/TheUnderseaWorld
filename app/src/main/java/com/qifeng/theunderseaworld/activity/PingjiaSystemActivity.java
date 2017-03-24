@@ -1,10 +1,12 @@
 package com.qifeng.theunderseaworld.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.qifeng.theunderseaworld.R;
@@ -13,6 +15,7 @@ import com.qifeng.theunderseaworld.adapter.PingjiaCustomerAdapter;
 import com.qifeng.theunderseaworld.bean.PingjiaCustomerBean;
 import com.qifeng.theunderseaworld.bean.User;
 import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.utils.StatusBarCompat;
 import com.qifeng.theunderseaworld.view.SpaceItemDecoretion;
 
 import java.util.ArrayList;
@@ -42,7 +45,17 @@ public class PingjiaSystemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //API19以下用于沉侵式菜单栏
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
         setContentView(R.layout.activity_pingjia_system);
+        //API20以上
+        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.KITKAT){
+            //沉侵
+            StatusBarCompat.compat(this,getResources().getColor(R.color.bottom_blue));
+        }
         ButterKnife.bind(this);
 
         mContext = this;

@@ -1,5 +1,6 @@
 package com.qifeng.theunderseaworld.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
@@ -7,11 +8,13 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.utils.StatusBarCompat;
 import com.qifeng.theunderseaworld.view.FlowIndicator;
 import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
 
@@ -38,7 +41,19 @@ public class IntroduceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //API19以下用于沉侵式菜单栏
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
         setContentView(R.layout.activity_introduce);
+
+        //API20以上
+        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.KITKAT){
+            //沉侵
+            StatusBarCompat.compat(this,getResources().getColor(R.color.bottom_blue));
+        }
         ButterKnife.bind(this);
         initView();
         initData();
