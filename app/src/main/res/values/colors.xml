@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="windows_color">#F5F5F5</color>
+    <color name="title_chenjin">#40ffffff</color>
 
     <color name="line_color">#dbdbdb</color>
     <color name="transparent">#00000000</color>

@@ -1,10 +1,12 @@
 package com.qifeng.theunderseaworld.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -16,6 +18,7 @@ import com.qifeng.theunderseaworld.fragment.PersonalBusinessFragment;
 import com.qifeng.theunderseaworld.fragment.PersonalFragment;
 import com.qifeng.theunderseaworld.fragment.PersonalUnloginFragment;
 import com.qifeng.theunderseaworld.fragment.StoreFragment;
+import com.qifeng.theunderseaworld.utils.StatusBarCompat;
 
 import java.util.ArrayList;
 
@@ -36,7 +39,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //API19以下用于沉侵式菜单栏
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
         setContentView(R.layout.activity_main);
+
+        //API20以上
+        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.KITKAT){
+            //沉侵
+            StatusBarCompat.compat(this,getResources().getColor(R.color.title_chenjin));
+        }
         ButterKnife.bind(this);
         initView();
 
