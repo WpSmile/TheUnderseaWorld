@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.qifeng.theunderseaworld.R;
@@ -25,8 +27,7 @@ public class ApplyRefundActivity extends AppCompatActivity {
 
     @BindView(R.id.apply_refund_et_price_num)
     EditText applyRefundEtPriceNum;
-    @BindView(R.id.apply_refund_tv_expand)
-    TextView applyRefundTvExpand;
+
     @BindView(R.id.apply_refund_et)
     EditText applyRefundEt;
     @BindView(R.id.apply_refund_tv_num)
@@ -48,6 +49,22 @@ public class ApplyRefundActivity extends AppCompatActivity {
         }
         ButterKnife.bind(this);
         mContext = this;
+        initView();
+    }
+
+    private void initView() {
+        Spinner s = (Spinner) findViewById(R.id.apply_refund_spinner);
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @OnClick({R.id.apply_refund_img_back, R.id.apply_refund_tv_only_tuikuan, R.id.apply_refund_tv_tuihuo, R.id.apply_refund_btn_send})

@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         fragments = new ArrayList<>();
         fragments.add(new HomePageFragment());
         fragments.add(new StoreFragment());
-        fragments.add(new PersonalBusinessFragment());
+        fragments.add(new PersonalFragment());
 
         //判断登录的信息设置相应的页面
         fragments.add(new PersonalUnloginFragment());

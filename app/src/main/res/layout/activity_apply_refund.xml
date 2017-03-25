@@ -128,20 +128,15 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"/>
 
-    <TextView
-        android:id="@+id/apply_refund_tv_expand"
+    <Spinner
+        android:id="@+id/apply_refund_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/item_cart_layout_noradius"
-        android:text="请选择退款理由"
-        android:textSize="15sp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="5dp"
-        android:drawableRight="@mipmap/xiahua"
+        android:entries="@array/reason"
         />
 
 

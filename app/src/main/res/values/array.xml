@@ -77,4 +77,10 @@
         <item>Jack</item>
         <item>~夏先生</item>
     </string-array>
+    <string-array name="reason">
+        <item>请选择退款理由</item>
+        <item>不符合要求</item>
+        <item>不满意</item>
+        <item>其他</item>
+    </string-array>
 </resources>
