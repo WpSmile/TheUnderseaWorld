@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         //API20以上
         if (Build.VERSION.SDK_INT>Build.VERSION_CODES.KITKAT){
             //沉侵
-            StatusBarCompat.compat(this,getResources().getColor(R.color.title_chenjin));
+            StatusBarCompat.compat(this,getResources().getColor(R.color.bottom_blue));
         }
         ButterKnife.bind(this);
         initView();
@@ -66,13 +66,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 .setBarBackgroundColor(R.color.bottom_blue);
 
         bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.shouye, R.string.home_page)
-                .setActiveColorResource(R.color.littleblue))
+                .setActiveColorResource(R.color.red))
                 .addItem(new BottomNavigationItem(R.mipmap.shangcheng, R.string.store)
-                        .setActiveColorResource(R.color.littleblue))
+                        .setActiveColorResource(R.color.red))
                 .addItem(new BottomNavigationItem(R.mipmap.shequ, R.string.community)
-                        .setActiveColorResource(R.color.littleblue))
+                        .setActiveColorResource(R.color.red))
                 .addItem(new BottomNavigationItem(R.mipmap.wode, R.string.personal)
-                        .setActiveColorResource(R.color.littleblue))
+                        .setActiveColorResource(R.color.red))
                 .setFirstSelectedPosition(0)
                 .initialise();
 
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         fragments = new ArrayList<>();
         fragments.add(new HomePageFragment());
         fragments.add(new StoreFragment());
-        fragments.add(new CommunityFragment());
+        fragments.add(new PersonalBusinessFragment());
 
         //判断登录的信息设置相应的页面
         fragments.add(new PersonalUnloginFragment());

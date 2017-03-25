@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.bean.PersonalCustomerTuijianBean;
+import com.qifeng.theunderseaworld.utils.MFGT;
 
 import java.util.ArrayList;
 
@@ -92,6 +93,7 @@ public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
         }
         @OnClick(R.id.item_personal_customer_tuijian)
         public void onClick() {//
+            MFGT.gotoDetailsActivity(mContext);
         }
 
     }

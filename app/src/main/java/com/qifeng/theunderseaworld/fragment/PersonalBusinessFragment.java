@@ -1,7 +1,6 @@
 package com.qifeng.theunderseaworld.fragment;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.widget.ImageView;
 
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.activity.MainActivity;
-import com.qifeng.theunderseaworld.activity.PaySystemActivity;
 import com.qifeng.theunderseaworld.utils.MFGT;
 import com.qifeng.theunderseaworld.view.ImageViewPlus;
 
@@ -37,7 +35,6 @@ public class PersonalBusinessFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,10 +51,12 @@ public class PersonalBusinessFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.personal_rl_goods_manager, R.id.personal_rl_vip_manager, R.id.personal_rl_order_manager, R.id.personal_rl_data_manager, R.id.personal_rl_fenquan_manager, R.id.personal_rl_pinjia_manager, R.id.personal_rl_activity_manager, R.id.personal_rl_pay_manager, R.id.personal_rl_tuangou_manager})
+    @OnClick({R.id.personal_rl_goods_manager, R.id.personal_rl_vip_manager, R.id.personal_rl_order_manager, R.id.personal_rl_data_manager, R.id.personal_rl_fenquan_manager,
+            R.id.personal_rl_pinjia_manager, R.id.personal_rl_activity_manager, R.id.personal_rl_pay_manager, R.id.personal_rl_tuangou_manager,R.id.personal_rl_avatar})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.personal_rl_goods_manager://商品管理
+                MFGT.gotoManagementActivity(mContext);
                 break;
             case R.id.personal_rl_vip_manager://会员管理
                 break;
@@ -80,6 +79,10 @@ public class PersonalBusinessFragment extends Fragment {
             case R.id.personal_rl_tuangou_manager://团购管理
                 MFGT.gotoTuangouManagerActivity(mContext);
                 break;
+            case R.id.personal_rl_avatar:
+                MFGT.gotoPersonalActivity(mContext);
+                break;
         }
     }
+
 }

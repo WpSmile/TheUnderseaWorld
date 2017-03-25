@@ -19,13 +19,17 @@ import com.qifeng.theunderseaworld.fragment.PersonalDilogFragment;
 import com.qifeng.theunderseaworld.seabed_state.BaseActivity;
 import com.qifeng.theunderseaworld.seabed_state.SeabedState;
 import com.qifeng.theunderseaworld.seabed_state.StatusBarCompat;
+import com.qifeng.theunderseaworld.utils.MFGT;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 个人信息页面
  * Created by XinAiXiaoWen on 2017/3/20.
  */
 
-public class PersonalActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener{
+public class PersonalActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     //输出日志
     private String TAG = PersonalActivity.class.getSimpleName();
@@ -62,6 +66,7 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
 
         //加载布局
         setContentView(R.layout.activity_personal);
+        ButterKnife.bind(this);
 
         //API>=20以上用于沉侵式菜单栏
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
@@ -88,7 +93,7 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
     /**
      * 初始化前
      */
-    private void initPersonalAgo(){
+    private void initPersonalAgo() {
         //上下文
         personalContext = this;
         seabedState.personalInit();
@@ -97,7 +102,7 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
     /**
      * 初始化控件
      */
-    private void initPersonalView(){
+    private void initPersonalView() {
         //返回
         ivSeabedPersonalReturn = (ImageView) this.findViewById(R.id.iv_seabed_personal_return);
         //信息集合
@@ -109,7 +114,7 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
     /**
      * 注册监听器
      */
-    private void initPersonalListener(){
+    private void initPersonalListener() {
         //返回注册监听
         ivSeabedPersonalReturn.setOnClickListener(this);
         //信息集合注册监听
@@ -122,7 +127,7 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
     /**
      * 适配器
      */
-    private void initPersonalAdapter(){
+    private void initPersonalAdapter() {
         //个人信息适配器
         personalAdapter = new PersonalAdapter(personalContext);
         //绑定适配器
@@ -132,26 +137,28 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
     /**
      * 初始化后
      */
-    private void initPersonalBack(){
+    private void initPersonalBack() {
 
     }
 
     /**
      * 跳转
+     *
      * @param activity
      */
-    private void initIntent(Class<?> activity){
+    private void initIntent(Class<?> activity) {
         //初始跳转
-        Intent intent = new Intent(personalContext,activity);
+        Intent intent = new Intent(personalContext, activity);
         //跳转
         startActivity(intent);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             //返回
             case R.id.iv_seabed_personal_return:
+                MFGT.finish(this);
                 break;
             //退出登录
             case R.id.tv_seabed_personal_signout:
@@ -161,32 +168,32 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            switch (position){
-                //头像
-                case 0:
-                    PersonalDilogFragment personalDilogFragment = new PersonalDilogFragment();
-                    personalDilogFragment.show(getSupportFragmentManager(),"标题");
-                    break;
-                //昵称设置
-                case 1:
-                    initIntent(NickNameActivity.class);
-                    break;
-                //绑定手机
-                case 2:
-                    initIntent(DindingphoneActivity.class);
-                    break;
-                //绑定微信
-                case 3:
-                    initIntent(DindingWechatActivity.class);
-                    break;
-                //绑定支付宝
-                case 4:
-                    initIntent(DindingPayActivity.class);
-                    break;
-                //收货地址
-                case 5:
-                    break;
-            }
+        switch (position) {
+            //头像
+            case 0:
+                PersonalDilogFragment personalDilogFragment = new PersonalDilogFragment();
+                personalDilogFragment.show(getSupportFragmentManager(), "标题");
+                break;
+            //昵称设置
+            case 1:
+                initIntent(NickNameActivity.class);
+                break;
+            //绑定手机
+            case 2:
+                initIntent(DindingphoneActivity.class);
+                break;
+            //绑定微信
+            case 3:
+                initIntent(DindingWechatActivity.class);
+                break;
+            //绑定支付宝
+            case 4:
+                initIntent(DindingPayActivity.class);
+                break;
+            //收货地址
+            case 5:
+                break;
+        }
     }
 
     @Override
@@ -224,4 +231,6 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
         super.onDestroy();
         Log.e(TAG, "---销毁---");
     }
+
+
 }

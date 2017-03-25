@@ -167,7 +167,7 @@ public class HomePageFragment extends Fragment {
                 MFGT.gotoAnimalKePuActivity(mContext);
                 break;
             case R.id.home_text_more2://跳转至商品列表
-                //MFGT.gotoHotRecommondActivity(mContext);
+                MFGT.gotoGoodsListActivity(mContext);
                 break;
             case R.id.home_iamge_category://购物车
                 MFGT.gotoCartActivity(mContext);

@@ -1,17 +1,18 @@
-package com.qifeng.theunderseaworld.fragment;
-
+package com.qifeng.theunderseaworld.activity;
 
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
@@ -21,11 +22,12 @@ import com.handmark.pulltorefresh.library.PullToRefreshHeadGridView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.qifeng.theunderseaworld.R;
-import com.qifeng.theunderseaworld.activity.DetailsActivity;
-import com.qifeng.theunderseaworld.activity.MainActivity;
 import com.qifeng.theunderseaworld.adapter.MallAdapter;
 import com.qifeng.theunderseaworld.seabed_service.SeabedService;
+import com.qifeng.theunderseaworld.seabed_state.BaseActivity;
 import com.qifeng.theunderseaworld.seabed_state.SeabedState;
+import com.qifeng.theunderseaworld.seabed_state.StatusBarCompat;
+import com.qifeng.theunderseaworld.utils.MFGT;
 
 import net.cpacm.library.SimpleSliderLayout;
 import net.cpacm.library.indicator.ViewpagerIndicator.CirclePageIndicator;
@@ -33,22 +35,18 @@ import net.cpacm.library.slider.BaseSliderView;
 import net.cpacm.library.slider.ImageSliderView;
 import net.cpacm.library.slider.OnSliderClickListener;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
- * 商城
- * A simple {@link Fragment} subclass.
+ * 主界面
+ * Created by XinAiXiaoWen on 2017/3/16.
  */
-public class StoreFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, PullToRefreshBase.OnRefreshListener2<HeadGridView> {
-    @BindView(R.id.mgv_seabed_shopplist)
-    PullToRefreshHeadGridView mgvSeabedShopplist;
-    Unbinder unbinder;
 
+public class GoodsListActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener, PullToRefreshBase.OnRefreshListener2<HeadGridView> {
 
     //输出日志显示所用
+    private String TAG = MainActivity.class.getSimpleName();
 
     //逻缉层
     private SeabedState seabedState = SeabedState.getSeabedState();
@@ -57,10 +55,11 @@ public class StoreFragment extends Fragment implements View.OnClickListener, Ada
     private ImageLoader imageLoader = ImageLoader.getInstance();
 
     //上下文
-    private MainActivity mainContext = null;
+    private Context mainContext = null;
+    GoodsListActivity mContext;
 
     //下拉上拉加头部的gridview
-    //private PullToRefreshHeadGridView mgvSeabedShopplist = null;
+    private PullToRefreshHeadGridView mgvSeabedShopplist = null;
 
     //适配器
     private MallAdapter mallAdapter = null;
@@ -99,17 +98,32 @@ public class StoreFragment extends Fragment implements View.OnClickListener, Ada
         }
     };
 
-    public StoreFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_store, container, false);
-        unbinder = ButterKnife.bind(this, view);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        Log.e(TAG, "---创建---");
+
+        //去掉标题栏
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //API19以下用于沉侵式菜单栏
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
+
+        //加载布局
+        setContentView(R.layout.activity_goodslist);
+        ButterKnife.bind(this);
+
+        //API>=20以上用于沉侵式菜单栏
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            //沉侵
+            StatusBarCompat.compat(this, getResources().getColor(R.color.seabed_item_mall_line));
+        }
+
+        mContext = this;
 
         //初始化前
         initMainAgo();
@@ -118,15 +132,13 @@ public class StoreFragment extends Fragment implements View.OnClickListener, Ada
         initMainView();
 
         //注册监听器
-        //initMainListener();
+        initMainListener();
 
         //适配器
         initMainAdapter();
 
         //初始化
         initMainBack();
-
-        return view;
     }
 
     /**
@@ -134,12 +146,12 @@ public class StoreFragment extends Fragment implements View.OnClickListener, Ada
      */
     private void initMainAgo() {
         //上下文
-        mainContext = (MainActivity) getActivity();
+        mainContext = this;
         //添加布局
         header = LayoutInflater.from(mainContext).inflate(R.layout.mall_header, null);
         //开启后台
-        Intent serviceIntent = new Intent(mainContext, SeabedService.class);
-        mainContext.bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
+        Intent serviceIntent = new Intent(this, SeabedService.class);
+        bindService(serviceIntent, serviceConnection, Context.BIND_AUTO_CREATE);
         //初始化ImageLoader，否则会报错
         imageLoader.init(ImageLoaderConfiguration.createDefault(mainContext));
     }
@@ -149,7 +161,7 @@ public class StoreFragment extends Fragment implements View.OnClickListener, Ada
      */
     private void initMainView() {
         //gridiew
-        //mgvSeabedShopplist = (PullToRefreshHeadGridView) mainContext.findViewById(R.id.mgv_seabed_shopplist);
+        mgvSeabedShopplist = (PullToRefreshHeadGridView) this.findViewById(R.id.mgv_seabed_shopplist);
         //轮播器
         vpSeabedMallCarousel = (SimpleSliderLayout) header.findViewById(R.id.vp_seabed_mall_carousel);
         //指示器
@@ -246,7 +258,7 @@ public class StoreFragment extends Fragment implements View.OnClickListener, Ada
      */
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<HeadGridView> refreshView) {
-        Toast.makeText(mainContext, "下拉", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "下拉", Toast.LENGTH_SHORT).show();
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -262,7 +274,7 @@ public class StoreFragment extends Fragment implements View.OnClickListener, Ada
      */
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<HeadGridView> refreshView) {
-        Toast.makeText(mainContext, "上拉", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "上拉", Toast.LENGTH_SHORT).show();
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -272,31 +284,55 @@ public class StoreFragment extends Fragment implements View.OnClickListener, Ada
     }
 
     @Override
-    public void onPause() {
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG, "---启动---");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG, "---恢复---");
+    }
+
+    @Override
+    protected void onPause() {
         super.onPause();
+        Log.e(TAG, "---暂停---");
         vpSeabedMallCarousel.setAutoCycling(false);//自动循环
     }
 
     @Override
-    public void onResume() {
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG, "---停止---");
+    }
+
+    @Override
+    protected void onResume() {
         super.onResume();
+        Log.e(TAG, "---重启---");
         vpSeabedMallCarousel.setAutoCycling(true);//自动循环
     }
 
     @Override
-    public void onDestroy() {
+    protected void onDestroy() {
         super.onDestroy();
-        mainContext.unbindService(serviceConnection);
+        Log.e(TAG, "---销毁---");
+        unbindService(serviceConnection);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    @OnClick(R.id.mgv_seabed_shopplist)
-    public void onViewClicked() {
-
+    @OnClick({R.id.imageView, R.id.goods_list_image_shop_car})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.imageView://
+                MFGT.finish(this);
+                break;
+            case R.id.goods_list_image_shop_car:
+                Intent intent = new Intent();
+                intent.setClass(this,CartActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

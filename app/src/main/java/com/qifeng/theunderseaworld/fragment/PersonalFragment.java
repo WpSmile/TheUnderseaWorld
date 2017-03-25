@@ -1,6 +1,7 @@
 package com.qifeng.theunderseaworld.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.activity.MainActivity;
+import com.qifeng.theunderseaworld.activity.PersonalActivity;
 import com.qifeng.theunderseaworld.adapter.PersinalCustomerTuijianAdapter;
 import com.qifeng.theunderseaworld.bean.PersonalCustomerTuijianBean;
 import com.qifeng.theunderseaworld.utils.MFGT;
@@ -88,10 +90,14 @@ public class PersonalFragment extends Fragment {
     }
 
     @OnClick({R.id.item_customer_personal_info_rl, R.id.item_customer_order_manager_rl, R.id.item_customer_pay_system_rl,
-            R.id.item_customer_yu_e_manage_rl, R.id.item_customer_pingjia_system_rl,R.id.tv_personal_customer_more})
+            R.id.item_customer_yu_e_manage_rl, R.id.item_customer_pingjia_system_rl, R.id.tv_personal_customer_more,
+            R.id.personal_customer_my_order, R.id.personal_customer_daifukuan, R.id.personal_customer_daishouhuo, R.id.personal_customer_daipingjia})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.item_customer_personal_info_rl://个人信息
+                Intent intent = new Intent();
+                intent.setClass(mContext, PersonalActivity.class);
+                startActivity(intent);
                 break;
             case R.id.item_customer_order_manager_rl://订单管理
                 MFGT.gotoOrderManagementActivity(mContext);
@@ -106,8 +112,25 @@ public class PersonalFragment extends Fragment {
                 MFGT.gotoPingjiaSystemActivity(mContext);
                 break;
             case R.id.tv_personal_customer_more://猜你喜欢的更多(跳转至商品列表)
+                MFGT.gotoGoodsListActivity(mContext);
+                break;
+            case R.id.personal_customer_my_order://我的订单
+                MFGT.gotoOrderManagementActivity(mContext);
+                break;
+            case R.id.personal_customer_daifukuan://待付款
+                MFGT.gotoOrderManagementActivity(mContext);
+                break;
+            case R.id.personal_customer_daishouhuo://待收货
+                MFGT.gotoOrderManagementActivity(mContext);
+                break;
+            case R.id.personal_customer_daipingjia://待评价
+                MFGT.gotoOrderManagementActivity(mContext);
+                break;
+            case R.id.item_customer_pesonal_rl_avatar://点击头像跳转至个人中心
+                MFGT.gotoPersonalActivity(mContext);
                 break;
         }
     }
+
 
 }

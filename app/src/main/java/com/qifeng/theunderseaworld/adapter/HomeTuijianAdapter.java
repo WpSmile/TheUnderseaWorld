@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.bean.CartTuijianBean;
+import com.qifeng.theunderseaworld.utils.MFGT;
 
 import java.util.ArrayList;
 
@@ -89,6 +90,7 @@ public class HomeTuijianAdapter extends RecyclerView.Adapter {
         }
         @OnClick(R.id.ll_item_home_tuijian)
         public void onClick() {
+            MFGT.gotoDetailsActivity(mContext);
         }
 
     }

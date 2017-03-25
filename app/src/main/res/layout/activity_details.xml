@@ -273,7 +273,7 @@
 
                             </LinearLayout>
 
-                            <com.sdmy.seabed_view.ListViewForScrollView
+                            <com.qifeng.theunderseaworld.view.ListViewForScrollView
                                 android:id="@+id/lv_seabed_details_word"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"

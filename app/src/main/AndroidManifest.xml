@@ -95,6 +95,10 @@
         <!--团购的商品管理-->
         <activity android:name=".activity.ApplyTuihuoActivity"></activity>
 
+
+
+
+
         <!--商品详情页面-->
         <activity android:name=".activity.DetailsActivity"/>
 
@@ -160,6 +164,11 @@
 
         <!--手机绑定界面-->
         <activity android:name=".activity.PhoneActivity">
+
+        </activity>
+
+        <!--商品列表-->
+        <activity android:name=".activity.GoodsListActivity">
 
         </activity>
 

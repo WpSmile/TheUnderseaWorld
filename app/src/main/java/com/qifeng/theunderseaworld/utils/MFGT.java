@@ -11,16 +11,20 @@ import com.qifeng.theunderseaworld.activity.AnimalKePuActivity;
 import com.qifeng.theunderseaworld.activity.ApplyRefundActivity;
 import com.qifeng.theunderseaworld.activity.CartActivity;
 import com.qifeng.theunderseaworld.activity.CommentActivity;
+import com.qifeng.theunderseaworld.activity.DetailsActivity;
 import com.qifeng.theunderseaworld.activity.ForgetPasswordActivity;
+import com.qifeng.theunderseaworld.activity.GoodsListActivity;
 import com.qifeng.theunderseaworld.activity.GoodsSetActivity;
 import com.qifeng.theunderseaworld.activity.HotRecommondActivity;
 import com.qifeng.theunderseaworld.activity.IntroduceActivity;
 import com.qifeng.theunderseaworld.activity.MainActivity;
+import com.qifeng.theunderseaworld.activity.ManagementActivity;
 import com.qifeng.theunderseaworld.activity.MapActivity;
 import com.qifeng.theunderseaworld.activity.OrderManageBusinessActivity;
 import com.qifeng.theunderseaworld.activity.OrderManagementActivity;
 import com.qifeng.theunderseaworld.activity.PaySystemActivity;
 import com.qifeng.theunderseaworld.activity.PaySystemBusinessActivity;
+import com.qifeng.theunderseaworld.activity.PersonalActivity;
 import com.qifeng.theunderseaworld.activity.PingjiaSystemActivity;
 import com.qifeng.theunderseaworld.activity.PingjiaSystemBusinessActivity;
 import com.qifeng.theunderseaworld.activity.RegisterByPhoneActivity;
@@ -136,5 +140,23 @@ public class MFGT {
         Intent intent = new Intent();
         intent.setClass(context,GoodsSetActivity.class);
         context.startActivity(intent);
+    }
+
+    public static void gotoDetailsActivity(Context context) {
+        Intent intent = new Intent();
+        intent.setClass(context,DetailsActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void gotoGoodsListActivity(MainActivity activity) {
+        startActivity(activity, GoodsListActivity.class);
+    }
+
+    public static void gotoPersonalActivity(MainActivity mContext) {
+        startActivity(mContext, PersonalActivity.class);
+    }
+
+    public static void gotoManagementActivity(MainActivity mContext) {
+        startActivity(mContext,ManagementActivity.class);
     }
 }

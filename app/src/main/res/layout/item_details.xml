@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.sdmy.seabed_view.CircleImageView
+        <com.qifeng.theunderseaworld.view.CircleImageView
             android:id="@+id/ci_seabed_details_item_head"
             android:layout_width="40dp"
             android:layout_height="35dp"

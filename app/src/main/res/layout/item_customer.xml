@@ -57,7 +57,7 @@
                 android:layout_height="0dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:background="@color/list_background"
+                android:background="@color/white"
                 android:layout_weight="0.3">
 
 
@@ -90,7 +90,8 @@
                     android:background="@color/list_background"
                     android:drawableTop="@mipmap/wodedingdan"
                     android:paddingTop="3dp"
-                    android:text="我的订单" />
+                    android:text="我的订单"
+                    android:gravity="center_horizontal"/>
 
                 <Button
                     android:id="@+id/personal_customer_daifukuan"
@@ -100,7 +101,8 @@
                     android:background="@color/list_background"
                     android:drawableTop="@mipmap/daifukuan"
                     android:paddingTop="3dp"
-                    android:text="待付款" />
+                    android:text="待付款"
+                    android:gravity="center_horizontal"/>
 
                 <Button
                     android:id="@+id/personal_customer_daishouhuo"
@@ -110,7 +112,8 @@
                     android:background="@color/list_background"
                     android:drawableTop="@mipmap/daishouhuo"
                     android:paddingTop="3dp"
-                    android:text="待收货" />
+                    android:text="待收货"
+                    android:gravity="center_horizontal"/>
 
                 <Button
                     android:id="@+id/personal_customer_daipingjia"
@@ -120,7 +123,8 @@
                     android:background="@color/list_background"
                     android:drawableTop="@mipmap/daipingjia"
                     android:paddingTop="3dp"
-                    android:text="待评价" />
+                    android:text="待评价"
+                    android:gravity="center_horizontal"/>
 
 
             </LinearLayout>
