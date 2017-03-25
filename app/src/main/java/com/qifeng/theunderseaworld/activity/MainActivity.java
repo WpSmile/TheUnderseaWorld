@@ -66,13 +66,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 .setBarBackgroundColor(R.color.bottom_blue);
 
         bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.shouye, R.string.home_page)
-                .setActiveColorResource(R.color.red))
+                .setInActiveColor(R.color.black)
+                .setActiveColorResource(R.color.vertical_line))
                 .addItem(new BottomNavigationItem(R.mipmap.shangcheng, R.string.store)
-                        .setActiveColorResource(R.color.red))
+                        .setInActiveColor(R.color.black)
+                        .setActiveColorResource(R.color.vertical_line))
                 .addItem(new BottomNavigationItem(R.mipmap.shequ, R.string.community)
-                        .setActiveColorResource(R.color.red))
+                        .setInActiveColor(R.color.black)
+                        .setActiveColorResource(R.color.vertical_line))
                 .addItem(new BottomNavigationItem(R.mipmap.wode, R.string.personal)
-                        .setActiveColorResource(R.color.red))
+                        .setInActiveColor(R.color.black)
+                        .setActiveColorResource(R.color.vertical_line))
                 .setFirstSelectedPosition(0)
                 .initialise();
 
