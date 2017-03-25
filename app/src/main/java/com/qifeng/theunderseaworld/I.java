@@ -4,7 +4,7 @@ package com.qifeng.theunderseaworld;
 public interface I {
     String SERVER_ROOT = "http://ofrf20oms.bkt.clouddn.com/";
     String SERVER_URL = "http://192.168.31.58/zmgx2/index.php/Api/";
-    String INDEX = "/index";
+    String INDEX = "index";
     /** 下拉刷新*/
     int ACTION_DOWNLOAD=0;
     /** 第一次下载*/
