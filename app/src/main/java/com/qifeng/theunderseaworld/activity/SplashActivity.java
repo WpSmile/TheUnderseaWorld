@@ -9,7 +9,7 @@ import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.utils.MFGT;
 
 public class SplashActivity extends AppCompatActivity {
-    private final long splashTime = 2000;
+    private final long splashTime = 3000;
     SplashActivity mContext;
 
 

@@ -3,6 +3,8 @@ package com.qifeng.theunderseaworld;
 
 public interface I {
     String SERVER_ROOT = "http://ofrf20oms.bkt.clouddn.com/";
+    String SERVER_URL = "http://192.168.31.58/zmgx2/index.php/Api/";
+    String INDEX = "/index";
     /** 下拉刷新*/
     int ACTION_DOWNLOAD=0;
     /** 第一次下载*/
@@ -338,7 +340,7 @@ public interface I {
     /** 客户端发送的获取服务端状态的请求 */
     String REQUEST_SERVERSTATUS = "getServerStatus";
     /** 客户端发送的新用户注册的请求 */
-    String REQUEST_REGISTER = "register";
+    String REQUEST_REGISTER = "Registe";
     /** 下载图片通用的请求字段 */
     String IMAGE_URL="imageurl";
     /** 客户端发送的取消注册的请求 */

@@ -3,6 +3,7 @@ package com.qifeng.theunderseaworld.net;
 import android.content.Context;
 
 import com.qifeng.theunderseaworld.I;
+import com.qifeng.theunderseaworld.bean.Result;
 import com.qifeng.theunderseaworld.utils.MD5;
 import com.qifeng.theunderseaworld.utils.OkHttpUtils;
 
@@ -56,18 +57,17 @@ public class NetDao {
                 .execute(listener);
     }
 
-    public static void register(Context context, String username, String usernick, String password
+    */public static void register(Context context, String phonenumber, String password
             , OkHttpUtils.OnCompleteListener<Result> listener) {
         OkHttpUtils<Result> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_REGISTER)
-                .addParam(I.User.USER_NAME,username)
-                .addParam(I.User.NICK,usernick)
+                .addParam(I.INDEX,"/index")
                 .addParam(I.User.PASSWORD, MD5.getMessageDigest(password))
                 .targetClass(Result.class)
                 .post()
                 .execute(listener);
 
-    }*/
+    }
 
     public static void login(Context context,String username,String password,OkHttpUtils.OnCompleteListener<String> listener){
         OkHttpUtils<String> utils = new OkHttpUtils<>(context);

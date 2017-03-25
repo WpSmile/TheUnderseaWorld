@@ -1,5 +1,7 @@
 package com.qifeng.theunderseaworld.activity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,10 +16,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
+import com.qifeng.theunderseaworld.bean.Result;
+import com.qifeng.theunderseaworld.net.NetDao;
 import com.qifeng.theunderseaworld.receiver.MessageReceiver;
+import com.qifeng.theunderseaworld.utils.CommonUtils;
 import com.qifeng.theunderseaworld.utils.CountDownTimerUtils;
 import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.utils.OkHttpUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,8 +49,9 @@ public class RegisterByPhoneActivity extends AppCompatActivity implements Messag
     private MessageReceiver messageReceiver;
 
     private CountDownTimerUtils countDownTimerUtils;
-    private long millisInFuture = 60000;//60秒
-    private long countDownInterval = 1000;//
+
+    RegisterByPhoneActivity mContext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,7 @@ public class RegisterByPhoneActivity extends AppCompatActivity implements Messag
         setContentView(R.layout.activity_register_by_phone);
         ButterKnife.bind(this);
 
+        mContext = this;
         messageReceiver = new MessageReceiver();
         IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
         filter.setPriority(1000);
@@ -69,37 +78,80 @@ public class RegisterByPhoneActivity extends AppCompatActivity implements Messag
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.register_login_btn_own://个人登录
-                phoneNumber = registerEdtInputPhonenumber.getText().toString().trim();
-                code = registerEdtInputSms.getText().toString().trim();
-                if (TextUtils.isEmpty(phoneNumber) && TextUtils.isEmpty(code)) {
-                    Toast.makeText(getApplicationContext(),
-                            "请检验您输入的信息",
-                            Toast.LENGTH_LONG
-                    ).show();
-                } else {
-                    SMSSDK.submitVerificationCode("86", phoneNumber, code);
-                }
+
+                checkInput();//输入手机、验证码、密码的逻辑判断方法
                 break;
             case R.id.register_login_btn_merchant://商家登录
                 break;
             case R.id.register_find_phone_area://电话地区页面
                 break;
             case R.id.phone_register_btn_send://发送验证码
-                countDownTimerUtils = new CountDownTimerUtils(millisInFuture, countDownInterval, phoneRegisterBtnSend);
+
 
                 regist();//调用了注册短信发送的回调接口
+
+                //传入计时时间
+                countDownTimerUtils = new CountDownTimerUtils(60000, 1000, phoneRegisterBtnSend);
+                countDownTimerUtils
+                        .start();
+
                 phoneNumber = registerEdtInputPhonenumber.getText().toString().trim();
-                if (TextUtils.isEmpty(phoneNumber))//判断字符串是null或者是“”
+                if (TextUtils.isEmpty(phoneNumber) || phoneNumber.length() < 11)//判断字符串是null或者是“”或者是否少于11位
                 {
-                    Toast.makeText(getApplicationContext(),
-                            "请输入合法的手机号",
-                            Toast.LENGTH_LONG
-                    ).show();
+                    Toast.makeText(getApplicationContext(), "请输入合法的手机号", Toast.LENGTH_LONG).show();
                 } else {
                     SMSSDK.getVerificationCode("86", phoneNumber);
                 }
                 break;
         }
+    }
+
+    private void checkInput() {
+        phoneNumber = registerEdtInputPhonenumber.getText().toString().trim();
+        code = registerEdtInputSms.getText().toString().trim();
+        if (TextUtils.isEmpty(phoneNumber) && TextUtils.isEmpty(code)) {//如果密码（验证码）为空
+            Toast.makeText(getApplicationContext(), "请检验您输入的信息", Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(registerEdtPassword.getText().toString().trim())) {
+            Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
+        } else {
+            SMSSDK.submitVerificationCode("86", phoneNumber, code);
+        }
+
+        //注册的方法
+        registMethod();
+    }
+
+    private void registMethod() {
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage(getResources().getString(R.string.registering));
+        pd.show();
+        String phonenumber = registerEdtInputPhonenumber.getText().toString();
+        String password = registerEdtPassword.getText().toString();
+        NetDao.register(this, phonenumber, password, new OkHttpUtils.OnCompleteListener<Result>() {
+            @Override
+            public void onSuccess(Result result) {
+                pd.dismiss();
+                Toast.makeText(mContext, result.toString(), Toast.LENGTH_SHORT).show();
+                if (result == null){
+                    Toast.makeText(mContext, R.string.register_fail, Toast.LENGTH_SHORT).show();
+                }else{
+                    if (result.isRetMsg()){
+                        Toast.makeText(mContext, R.string.register_success, Toast.LENGTH_SHORT).show();
+                        MFGT.finish(mContext);
+                    }else {
+                        Toast.makeText(mContext, R.string.register_fail_exists, Toast.LENGTH_SHORT).show();
+                        registerEdtInputPhonenumber.requestFocus();
+                    }
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                pd.dismiss();
+                Toast.makeText(mContext, error, Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
 
