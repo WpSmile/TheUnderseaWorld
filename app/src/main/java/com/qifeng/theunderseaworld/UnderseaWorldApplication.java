@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.qifeng.theunderseaworld.bean.User;
 
+import cn.smssdk.SMSSDK;
+
 
 /**
  * Created by Administrator on 2016/10/17.

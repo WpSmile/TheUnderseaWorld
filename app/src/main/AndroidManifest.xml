@@ -8,7 +8,17 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- 短信验证码所需权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -16,168 +26,153 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--主页面（弹出输入框不会挤掉底部菜单）-->
+
+        <!-- 主页面（弹出输入框不会挤掉底部菜单） -->
         <activity
             android:name=".activity.MainActivity"
             android:windowSoftInputMode="adjustPan" />
 
-        <!--引导页面-->
+        <!-- 引导页面 -->
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
 
-
-        <!--第三方QQ登录节点-->
+        <!-- 第三方QQ登录节点 -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="1106061374" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
 
-        <!--单体登录页面-->
+        <!-- 单体登录页面 -->
         <activity android:name=".activity.LoginActivity" />
-        <!--手机注册页面-->
+        <!-- 手机注册页面 -->
         <activity android:name=".activity.RegisterByPhoneActivity" />
-        <!--海底世界简介页面-->
+        <!-- 海底世界简介页面 -->
         <activity android:name=".activity.IntroduceActivity" />
-        <!--导览图-->
+        <!-- 导览图 -->
         <activity android:name=".activity.MapActivity" />
-        <!--今日活动-->
+        <!-- 今日活动 -->
         <activity android:name=".activity.TodayActivity" />
-        <!--海洋动物科普-->
+        <!-- 海洋动物科普 -->
         <activity android:name=".activity.AnimalKePuActivity" />
-        <!--热门推荐-->
+        <!-- 热门推荐 -->
         <activity android:name=".activity.HotRecommondActivity" />
-        <!--忘记密码-->
+        <!-- 忘记密码 -->
         <activity android:name=".activity.ForgetPasswordActivity" />
-        <!--购物车-->
+        <!-- 购物车 -->
         <activity android:name=".activity.CartActivity" />
-        <!--客户的订单管理-->
+        <!-- 客户的订单管理 -->
         <activity android:name=".activity.OrderManagementActivity" />
-        <!--商家的订单管理-->
+        <!-- 商家的订单管理 -->
         <activity android:name=".activity.OrderManageBusinessActivity" />
-        <!--发表评论-->
+        <!-- 发表评论 -->
         <activity android:name=".activity.CommentActivity" />
-        <!--回复-->
+        <!-- 回复 -->
         <activity android:name=".activity.ReplyActivity" />
-        <!--余额管理-->
+        <!-- 余额管理 -->
         <activity android:name=".activity.YuEActivity" />
-        <!--顾客支付系统-->
+        <!-- 顾客支付系统 -->
         <activity android:name=".activity.PaySystemActivity" />
-        <!--商家支付系统-->
+        <!-- 商家支付系统 -->
         <activity android:name=".activity.PaySystemBusinessActivity" />
-        <!--申请退款-->
+        <!-- 申请退款 -->
         <activity android:name=".activity.ApplyRefundActivity" />
-        <!--顾客评价系统-->
+        <!-- 顾客评价系统 -->
         <activity android:name=".activity.PingjiaSystemActivity" />
-        <!--商家评价系统-->
+        <!-- 商家评价系统 -->
         <activity android:name=".activity.PingjiaSystemBusinessActivity" />
-        <!--团购管理系统-->
+        <!-- 团购管理系统 -->
         <activity android:name=".activity.TuangouManagerActivity" />
-        <!--商品设置-->
+        <!-- 商品设置 -->
         <activity android:name=".activity.GoodsSetActivity" />
-        <!--团购的商品管理-->
-        <activity android:name=".activity.ApplyTuihuoActivity"></activity>
+        <!-- 团购的商品管理 -->
+        <activity android:name=".activity.ApplyTuihuoActivity" />
 
+        <!-- 商品详情页面 -->
+        <activity android:name=".activity.DetailsActivity" />
 
+        <!-- 绑定手机页面 -->
+        <activity android:name=".activity.DindingphoneActivity" />
 
+        <!-- 绑定微信页面 -->
+        <activity android:name=".activity.DindingWechatActivity" />
 
+        <!-- 绑定支付宝页面 -->
+        <activity android:name=".activity.DindingPayActivity" />
 
-        <!--商品详情页面-->
-        <activity android:name=".activity.DetailsActivity"/>
+        <!-- 个人信息界面 -->
+        <activity android:name=".activity.PersonalActivity"></activity>
 
-        <!--绑定手机页面-->
-        <activity android:name=".activity.DindingphoneActivity"/>
+        <!-- 解绑手机界面 -->
+        <activity android:name=".activity.UnbundlingphoneActivity" />
 
-        <!--绑定微信页面-->
-        <activity android:name=".activity.DindingWechatActivity"/>
+        <!-- 解绑微信界面 -->
+        <activity android:name=".activity.UnbundlingWechatActivity"></activity>
 
-        <!--绑定支付宝页面-->
-        <activity android:name=".activity.DindingPayActivity"/>
+        <!-- 解绑支付宝界面 -->
+        <activity android:name=".activity.UnbundlingPayActivity" />
 
-        <!--个人信息界面-->
-        <activity android:name=".activity.PersonalActivity">
+        <!-- 昵称设置界面 -->
+        <activity android:name=".activity.NickNameActivity" />
 
-        </activity>
+        <!-- 收获地址界面 -->
+        <activity android:name=".activity.DeliveryAddressActivity"></activity>
+        <activity android:name=".activity.NewlyaddedActivity"></activity>
 
-        <!--解绑手机界面-->
-        <activity android:name=".activity.UnbundlingphoneActivity"/>
+        <!-- 国家/地区界面 -->
+        <activity android:name=".activity.CountryActivity"></activity>
 
-        <!--解绑微信界面-->
-        <activity android:name=".activity.UnbundlingWechatActivity">
-        </activity>
+        <!-- 宝贝上架界面 -->
+        <activity android:name=".activity.ShelvesActivity"></activity>
 
-        <!--解绑支付宝界面-->
-        <activity android:name=".activity.UnbundlingPayActivity"/>
+        <!-- 商品管理界面 -->
+        <activity android:name=".activity.ManagementActivity"></activity>
 
-        <!--昵称设置界面-->
-        <activity android:name=".activity.NickNameActivity"/>
+        <!-- 手机注册界面 -->
+        <activity android:name=".activity.RegisterActivity"></activity>
 
-        <!--收获地址界面-->
-        <activity android:name=".activity.DeliveryAddressActivity">
-        </activity>
+        <!-- 忘记密码界面 -->
+        <activity android:name=".activity.PassWordActivity"></activity>
 
-        <activity android:name=".activity.NewlyaddedActivity">
+        <!-- 手机绑定界面 -->
+        <activity android:name=".activity.PhoneActivity"></activity>
 
-        </activity>
+        <!-- 商品列表 -->
+        <activity android:name=".activity.GoodsListActivity"></activity>
 
-        <!--国家/地区界面-->
-        <activity android:name=".activity.CountryActivity">
-
-        </activity>
-
-        <!--宝贝上架界面-->
-        <activity android:name=".activity.ShelvesActivity">
-
-        </activity>
-
-        <!--商品管理界面-->
-        <activity android:name=".activity.ManagementActivity">
-
-        </activity>
-
-        <!--手机注册界面-->
-        <activity android:name=".activity.RegisterActivity">
-
-        </activity>
-
-        <!--忘记密码界面-->
-        <activity android:name=".activity.PassWordActivity">
-
-        </activity>
-
-        <!--手机绑定界面-->
-        <activity android:name=".activity.PhoneActivity">
-
-        </activity>
-
-        <!--商品列表-->
-        <activity android:name=".activity.GoodsListActivity">
-
-        </activity>
-
-        <!--后台管理-->
+        <!-- 后台管理 -->
         <service
-            android:name="com.qifeng.theunderseaworld.seabed_service.SeabedService"
-            android:permission="true">
+            android:name=".seabed_service.SeabedService"
+            android:permission="true"></service>
 
-        </service>
+        <!-- 短信验证码的activity节点 -->
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <service
+            android:name=".receiver.MessageReceiver"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
