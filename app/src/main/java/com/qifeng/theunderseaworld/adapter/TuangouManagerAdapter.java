@@ -34,6 +34,14 @@ public class TuangouManagerAdapter extends RecyclerView.Adapter {
         this.context = context;
     }
 
+    public void initData(ArrayList list) {
+        if (mlist != null) {
+            mlist.clear();
+        }
+        mlist.addAll(list);
+        notifyDataSetChanged();
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.parent = (RecyclerView) parent;

@@ -6,12 +6,19 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import com.google.gson.Gson;
+import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.activity.MainActivity;
+import com.qifeng.theunderseaworld.bean.Result;
+import com.qifeng.theunderseaworld.utils.L;
+import com.qifeng.theunderseaworld.utils.OkHttpUtils;
+import com.qifeng.theunderseaworld.utils.OkUtils;
+import com.qifeng.theunderseaworld.utils.ResultUtils;
 import com.qifeng.theunderseaworld.view.SpaceItemDecoretion;
 import com.qifeng.theunderseaworld.adapter.HomeKePuAnimalAdapter;
 import com.qifeng.theunderseaworld.adapter.HomeTuijianAdapter;
@@ -21,7 +28,9 @@ import com.qifeng.theunderseaworld.utils.MFGT;
 import com.qifeng.theunderseaworld.view.FlowIndicator;
 import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
 
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +60,9 @@ public class HomePageFragment extends Fragment {
     FlowIndicator homeFlowIndicator;
 
 
+    private String sessionID;
+
+
     public HomePageFragment() {
         // Required empty public constructor
     }
@@ -76,27 +88,64 @@ public class HomePageFragment extends Fragment {
 
         homeSlideAuto.startPlayLoop(homeFlowIndicator, imageurl, imageurl.length);
         //homeSlideAuto.startPlayLoop(myView, getAlbumImgUrl(details), getAlbumImgCount(details));
+
+        downloadKePuAnimal();
+        downloadHomeTuijian();
     }
 
-    /*private int getAlbumImgCount(GoodsDetailsBean details) {
-        if (details.getProperties() != null && details.getProperties().length > 0) {
-            return details.getProperties()[0].getAlbums().length;
-        }
-        return 0;
+    private void downloadHomeTuijian() {
+        OkUtils<String> util = new OkUtils<>(mContext);
+        util.url(I.SERVER_URL + "HotGoods" + I.INDEX)
+                .addParam("num", "3")
+                .targetClass(String.class)
+                .post()
+                .execute(new OkUtils.OnCompleteListener<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        L.e("tag","result==============="+s.toString());
+                        if (s!=null){
+                            Result result = ResultUtils.getListResultFromJson(s, CartTuijianBean[].class);
+                            L.e("tag","result================"+result.toString());
+                            ArrayList<CartTuijianBean> hometuijianlist = (ArrayList<CartTuijianBean>) result.getRetData();
+                            homeTuijianAdapter.initData(hometuijianlist);
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        L.e("tag","error============"+error.toString());
+                    }
+                });
     }
 
-    private String[] getAlbumImgUrl(GoodsDetailsBean details) {
-        String[] url = new String[]{};
-        if (details.getProperties() != null && details.getProperties().length > 0) {
-            AlbumsBean[] albums = details.getProperties()[0].getAlbums();
-            url = new String[albums.length];
-            for (int i = 0; i < albums.length; i++) {
-                url[i] = albums[i].getImgUrl();
-            }
-        }
-        return url;
+    private void downloadKePuAnimal() {
 
-    }*/
+        OkUtils<String> util = new OkUtils<>(mContext);
+        util.url(I.SERVER_URL + "ScienceList" + I.INDEX)//"http://192.168.31.58/hdsj/index.php/Api/ScienceList/index"
+                .addParam("num", "4")
+                .targetClass(String.class)
+                .post()
+                .execute(new OkUtils.OnCompleteListener<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        L.e("tag","result==============="+s.toString());
+                        if (s!=null){
+                            Result result = ResultUtils.getListResultFromJson(s, HomeKePuAnimalBean[].class);
+                            L.e("tag","result================"+result.toString());
+                            ArrayList<HomeKePuAnimalBean> homeKepulist = (ArrayList<HomeKePuAnimalBean>) result.getRetData();
+                            mAdapter.initData(homeKepulist);
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        L.e("tag","error============"+error.toString());
+                    }
+                });
+
+    }
 
     private void initView() {
         //设置首页科普默认数据
@@ -110,15 +159,7 @@ public class HomePageFragment extends Fragment {
     }
 
     private void setHomeDefaultKepu() {
-        //默认数据
-        HomeKePuAnimalBean homeKePuAnimalBean = new HomeKePuAnimalBean();
-        homeKePuAnimalBean.setImage(R.drawable.today_activity_default);
-        homeKePuAnimalBean.setName("鲨鱼");
-        homeKePuAnimalBean.setEnglishName("Shark");
-        //默认数据
-        for (int i = 0; i < 4; i++) {
-            mKepulist.add(homeKePuAnimalBean);
-        }
+
 
         gridLayoutManager = new GridLayoutManager(mContext, 2, LinearLayoutManager.VERTICAL, false);
         mAdapter = new HomeKePuAnimalAdapter(mContext, mKepulist);
@@ -130,15 +171,6 @@ public class HomePageFragment extends Fragment {
     }
 
     private void setHomeDefaultCommondView() {
-
-        CartTuijianBean cartTuijianBean = new CartTuijianBean();
-        cartTuijianBean.setImage(R.drawable.today_activity_default);
-        cartTuijianBean.setTitle("南宁海底世界");
-        cartTuijianBean.setPrice(35);
-        cartTuijianBean.setTicketStyle("老年票");
-        for (int i = 0; i < 3; i++) {
-            tuijianList.add(cartTuijianBean);
-        }
 
         gridLayoutManager1 = new GridLayoutManager(mContext, 3, LinearLayoutManager.VERTICAL, false);
         homeTuijianAdapter = new HomeTuijianAdapter(mContext, tuijianList);

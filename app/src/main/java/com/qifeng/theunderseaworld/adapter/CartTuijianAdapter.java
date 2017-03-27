@@ -33,6 +33,15 @@ public class CartTuijianAdapter extends RecyclerView.Adapter {
 
     }
 
+    public void initData(ArrayList<CartTuijianBean> list) {
+        if (mlist != null) {
+            mlist.clear();
+        }
+        mlist.addAll(list);
+        //mlist = list;
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

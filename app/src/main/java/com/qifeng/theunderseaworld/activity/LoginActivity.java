@@ -5,24 +5,15 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
-import com.qifeng.theunderseaworld.UnderseaWorldApplication;
-import com.qifeng.theunderseaworld.bean.Result;
-import com.qifeng.theunderseaworld.bean.User;
-import com.qifeng.theunderseaworld.dao.SharePrefrenceUtils;
-import com.qifeng.theunderseaworld.dao.UserDao;
-import com.qifeng.theunderseaworld.net.NetDao;
 import com.qifeng.theunderseaworld.utils.CommonUtils;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
-import com.qifeng.theunderseaworld.utils.OkHttpUtils;
-import com.qifeng.theunderseaworld.utils.ResultUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

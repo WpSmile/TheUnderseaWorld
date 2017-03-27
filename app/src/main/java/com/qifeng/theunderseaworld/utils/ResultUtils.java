@@ -22,11 +22,7 @@ public class ResultUtils {
         try {
             if (jsonStr == null || jsonStr.isEmpty() || jsonStr.length() < 3) return null;
             JSONObject jsonObject = new JSONObject(jsonStr);
-            if (!jsonObject.isNull("retCode")) {
-                result.setRetCode(jsonObject.getInt("retCode"));
-            } else if (!jsonObject.isNull("msg")) {
-                result.setRetCode(jsonObject.getInt("msg"));
-            }
+
             if (!jsonObject.isNull("retMsg")) {
                 result.setRetMsg(jsonObject.getBoolean("retMsg"));
             } else if (!jsonObject.isNull("result")) {
@@ -140,11 +136,7 @@ public class ResultUtils {
         try {
             if (jsonStr == null || jsonStr.isEmpty() || jsonStr.length() < 3) return null;
             JSONObject jsonObject = new JSONObject(jsonStr);
-            if (!jsonObject.isNull("retCode")) {
-                result.setRetCode(jsonObject.getInt("retCode"));
-            } else if (!jsonObject.isNull("msg")) {
-                result.setRetCode(jsonObject.getInt("msg"));
-            }
+
             if (!jsonObject.isNull("retMsg")) {
                 result.setRetMsg(jsonObject.getBoolean("retMsg"));
             } else if (!jsonObject.isNull("result")) {

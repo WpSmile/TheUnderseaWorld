@@ -7,60 +7,50 @@ import java.io.Serializable;
  */
 
 public class HomeKePuAnimalBean implements Serializable {
-    private int id;
-    private String name;
-    private String EnglishName;
-    private int image;
-    private String iamgeurl;
+    private String scienceId;
+    private String scienceTitle;
+    private String scienceContent;
+    private String scienceEnglishTitle;
 
-    public int getId() {
-        return id;
+    public void setScienceId(String scienceId) {
+        this.scienceId = scienceId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getScienceId() {
+        return scienceId;
     }
 
-    public String getEnglishName() {
-        return EnglishName;
+    public void setScienceTitle(String scienceTitle) {
+        this.scienceTitle = scienceTitle;
     }
 
-    public void setEnglishName(String englishName) {
-        EnglishName = englishName;
+    public String getScienceTitle() {
+        return scienceTitle;
     }
 
-    public String getName() {
-        return name;
+    public void setScienceContent(String scienceContent) {
+        this.scienceContent = scienceContent;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getScienceContent() {
+        return scienceContent;
     }
 
-    public int getImage() {
-        return image;
+    public void setScienceEnglishTitle(String scienceEnglishTitle) {
+        this.scienceEnglishTitle = scienceEnglishTitle;
     }
 
-    public void setImage(int image) {
-        this.image = image;
-    }
-
-    public String getIamgeurl() {
-        return iamgeurl;
-    }
-
-    public void setIamgeurl(String iamgeurl) {
-        this.iamgeurl = iamgeurl;
+    public String getScienceEnglishTitle() {
+        return scienceEnglishTitle;
     }
 
     @Override
     public String toString() {
         return "HomeKePuAnimalBean{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", EnglishName='" + EnglishName + '\'' +
-                ", image=" + image +
-                ", iamgeurl='" + iamgeurl + '\'' +
+                "scienceId='" + scienceId + '\'' +
+                ", scienceTitle='" + scienceTitle + '\'' +
+                ", scienceContent='" + scienceContent + '\'' +
+                ", scienceEnglishTitle='" + scienceEnglishTitle + '\'' +
                 '}';
     }
 }

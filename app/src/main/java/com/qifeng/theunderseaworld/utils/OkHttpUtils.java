@@ -6,6 +6,9 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.UnderseaWorldApplication;
@@ -104,6 +107,7 @@ public class OkHttpUtils<T> {
         mBuilder.connectTimeout(connectTime, TimeUnit.SECONDS);
         return this;
     }
+
 
     /**
      * 设置写数据的时限
@@ -216,6 +220,7 @@ public class OkHttpUtils<T> {
 
     public OkHttpUtils<T> url(String url) {
         mUrl = new StringBuilder(url);
+        L.e("tag","url=============="+mUrl.toString());
         return this;
     }
 
@@ -424,13 +429,19 @@ public class OkHttpUtils<T> {
      * @param <T>
      * @return
      */
-    public <T> T parseJson(Result result, Class<?> clazz) {
+    /*public <T> T parseJson(Result result, Class<?> clazz) {
         if (result.getRetCode() == 0) {
             String json = result.getRetData().toString();
             T t = parseJson(json, clazz);
             return t;
         }
         return null;
+    }*/
+
+    public <T> T parseJson(Result result, Class<?> clazz) {
+            String json = result.getRetData().toString();
+            T t = parseJson(json, clazz);
+            return t;
     }
 
     /**

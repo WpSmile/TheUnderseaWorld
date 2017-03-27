@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.qifeng.theunderseaworld.R;
+import com.qifeng.theunderseaworld.UnderseaWorldApplication;
+import com.qifeng.theunderseaworld.bean.User;
+import com.qifeng.theunderseaworld.dao.SharePrefrenceUtils;
+import com.qifeng.theunderseaworld.dao.UserDao;
+import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
 
 public class SplashActivity extends AppCompatActivity {
@@ -37,6 +42,18 @@ public class SplashActivity extends AppCompatActivity {
                         Thread.sleep(splashTime - costTime);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                    }
+                }
+                User user = UnderseaWorldApplication.getUser();
+                L.e("fulicenter,user="+user);
+                String username = SharePrefrenceUtils.getInstance(mContext).getUser();
+                L.e("fulicenter,username="+username);
+                if (user==null&&username!=null){
+                    UserDao dao = new UserDao(mContext);
+                    user = dao.getUser(username);
+                    L.e("database,user="+user);
+                    if (user!=null){
+                        UnderseaWorldApplication.setUser(user);
                     }
                 }
                 MFGT.gotoMainAcvitity(mContext);

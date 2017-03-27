@@ -12,7 +12,10 @@ import android.widget.TextView;
 
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.bean.HomeKePuAnimalBean;
+import com.qifeng.theunderseaworld.utils.ImageLoader;
+import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.utils.OkImageLoader;
 import com.qifeng.theunderseaworld.view.RotateTextView;
 
 import java.util.ArrayList;
@@ -28,14 +31,14 @@ import butterknife.OnClick;
 public class HomeKePuAnimalAdapter extends RecyclerView.Adapter {
     Context mContext;
     //用于存放item的集合
-    ArrayList<HomeKePuAnimalBean> todayActivityList;
+    ArrayList<HomeKePuAnimalBean> mList;
 
     RecyclerView parent;
 
 
-    public HomeKePuAnimalAdapter(Context mContext, ArrayList<HomeKePuAnimalBean> todayActivityList) {
+    public HomeKePuAnimalAdapter(Context mContext, ArrayList<HomeKePuAnimalBean> mList) {
         this.mContext = mContext;
-        this.todayActivityList = todayActivityList;
+        this.mList = mList;
     }
 
     @Override
@@ -49,21 +52,32 @@ public class HomeKePuAnimalAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        /*if (holder instanceof HomeKepuAnimalViewHolder) {
-            HomeKePuAnimalBean bean = new HomeKePuAnimalBean();
-            ((HomeKepuAnimalViewHolder) holder).homeItemName.setText(bean.getName());
-            ImageLoader.downloadImg(mContext,((HomeKepuAnimalViewHolder) holder).itemAnimalImage,bean.getIamgeurl());
-            ((HomeKepuAnimalViewHolder) holder).itemRlAnimal.setTag(bean.getId());
-            L.e("id:" + bean.getId());
-        }*/
+        if (holder instanceof HomeKepuAnimalViewHolder) {
+            HomeKePuAnimalBean bean = mList.get(position);
+
+            ((HomeKepuAnimalViewHolder) holder).homeItemName.setText(bean.getScienceTitle());
+            //ImageLoader.downloadImg(mContext,((HomeKepuAnimalViewHolder)holder).itemAnimalImage,bean.getGoodsThumb());
+            ((HomeKepuAnimalViewHolder) holder).homeItemRtv.setText(bean.getScienceEnglishTitle());
+
+
+            ((HomeKepuAnimalViewHolder) holder).itemRlAnimal.setTag(bean.getScienceId());
+            L.e("id:" + bean.getScienceId());
+
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return mList == null ? 0 : mList.size();
     }
 
-
+    public void initData(ArrayList<HomeKePuAnimalBean> kePuAnimallist) {
+        if (mList != null) {
+            mList.clear();
+        }
+        mList.addAll(kePuAnimallist);
+        notifyDataSetChanged();
+    }
 
 
     class HomeKepuAnimalViewHolder extends RecyclerView.ViewHolder {
@@ -81,9 +95,12 @@ public class HomeKePuAnimalAdapter extends RecyclerView.Adapter {
             ButterKnife.bind(this, view);
             homeItemRtv.setDegrees(90);
         }
+
         @OnClick(R.id.item_rl_animal)
         public void onClick() {
-            MFGT.gotoAnimalKePuActivity((Activity) mContext);
+            int id = (int) itemRlAnimal.getTag();
+
+            MFGT.gotoAnimalKePuActivity((Activity) mContext,id);
         }
     }
 }

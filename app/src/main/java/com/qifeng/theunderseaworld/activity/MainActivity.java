@@ -19,6 +19,7 @@ import com.qifeng.theunderseaworld.fragment.PersonalBusinessFragment;
 import com.qifeng.theunderseaworld.fragment.PersonalFragment;
 import com.qifeng.theunderseaworld.fragment.PersonalUnloginFragment;
 import com.qifeng.theunderseaworld.fragment.StoreFragment;
+import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.StatusBarCompat;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ import butterknife.ButterKnife;
 
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener, ViewPager.OnPageChangeListener {
-
+    private final static String TAG = MainActivity.class.getCanonicalName();
 
     @BindView(R.id.layViewPager)
     ViewPager layViewPager;
@@ -98,14 +99,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         fragments.add(new CommunityFragment());
 
         //判断登录的信息设置相应的页面
-        String name = UnderseaWorldApplication.getUsersign();
-        if (name.equals("顾客 ")){
-            fragments.add(new PersonalFragment());
-        }else if (name.equals("商家")){
-            fragments.add(new PersonalBusinessFragment());
-        }else{
+
+        //if (UnderseaWorldApplication.getUsersign()==null||UnderseaWorldApplication.getUsersign().equals("")){
             fragments.add(new PersonalUnloginFragment());
-        }
+       //}else if(UnderseaWorldApplication.getUsersign().equals("顾客")){
+           // fragments.add(new PersonalFragment());
+        //}else if (UnderseaWorldApplication.getUsersign().equals("商家")){
+            //fragments.add(new PersonalBusinessFragment());
+        //}
 
 
         viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), fragments));

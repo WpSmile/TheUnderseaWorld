@@ -142,9 +142,17 @@ public class MFGT {
         context.startActivity(intent);
     }
 
-    public static void gotoDetailsActivity(Context context) {
+    public static void gotoDetailsActivity(Context context,int id) {
         Intent intent = new Intent();
+        intent.putExtra("id",id);
         intent.setClass(context,DetailsActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void gotoAnimalKePuActivity(Activity context,int id){
+        Intent intent = new Intent();
+        intent.putExtra("id",id);
+        intent.setClass(context,AnimalKePuActivity.class);
         context.startActivity(intent);
     }
 

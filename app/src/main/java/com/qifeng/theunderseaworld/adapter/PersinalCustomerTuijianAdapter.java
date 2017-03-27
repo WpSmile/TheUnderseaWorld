@@ -23,7 +23,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2016/10/27.
  */
 public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
-    Context mContext;
+    static Context mContext;
     ArrayList<PersonalCustomerTuijianBean> mlist;
     RecyclerView parent;
 
@@ -35,7 +35,14 @@ public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
 
     }
 
-
+    public void initData(ArrayList<PersonalCustomerTuijianBean> list) {
+        if (mlist != null) {
+            mlist.clear();
+        }
+        mlist.addAll(list);
+        //mlist = list;
+        notifyDataSetChanged();
+    }
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.parent = (RecyclerView) parent;
@@ -93,7 +100,7 @@ public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
         }
         @OnClick(R.id.item_personal_customer_tuijian)
         public void onClick() {//
-            MFGT.gotoDetailsActivity(mContext);
+            //MFGT.gotoDetailsActivity(mContext);
         }
 
     }
