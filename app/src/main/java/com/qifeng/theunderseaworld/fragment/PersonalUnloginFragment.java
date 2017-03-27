@@ -126,9 +126,11 @@ public class PersonalUnloginFragment extends Fragment {
                 break;
             case R.id.login_btn_own://个人登录btn
                 checkInput();//检测登录的用户信息
+                UnderseaWorldApplication.setUsersign("顾客");
                 break;
             case R.id.login_btn_merchant://商家登录按钮
                 checkInput();//检测登录的用户信息
+                UnderseaWorldApplication.setUsersign("商家");
                 break;
             case R.id.login_rl_weixin://第三方微信登录
                 Toast.makeText(mContext, "暂未开通", Toast.LENGTH_SHORT).show();
@@ -247,47 +249,45 @@ public class PersonalUnloginFragment extends Fragment {
         pd.setMessage(getResources().getString(R.string.logining));
         pd.show();
         //登录请求
-        NetDao.login(mContext, username, password, new OkHttpUtils.OnCompleteListener<String>() {
-            @Override
-            public void onSuccess(String s) {
-                Result result = ResultUtils.getResultFromJson(s, User.class);
-                L.e("result=" + result);
-                if (result == null) {
-                    Toast.makeText(mContext, R.string.login_fail, Toast.LENGTH_SHORT).show();
-                } else {
-                    if (result.isRetMsg()) {
-                        User user = (User) result.getRetData();
-                        L.e("user=" + user);
-                        //登录成功后存到本地数据库
-                        UserDao dao = new UserDao(mContext);
-                        boolean isSuccess = dao.saveUser(user);
-                        if (isSuccess) {
-                            SharePrefrenceUtils.getInstance(mContext).saveUser(user.getMuserName());
-                            UnderseaWorldApplication.setUser(user);
-                            MFGT.finish(mContext);
-                            /*MFGT.gotoMainActivity(mContext,1);*/
-                        } else {
-                            Toast.makeText(mContext, R.string.user_database_error, Toast.LENGTH_SHORT).show();
-                        }
-
-                    } else {
-                        if (result.getRetCode() == I.MSG_LOGIN_UNKNOW_USER) {
-                            Toast.makeText(mContext, R.string.login_fail_unknow_user, Toast.LENGTH_SHORT).show();
-                        } else if (result.getRetCode() == I.MSG_LOGIN_ERROR_PASSWORD) {
-                            Toast.makeText(mContext, R.string.login_fail_error_password, Toast.LENGTH_SHORT).show();
-                        } else {
+        OkHttpUtils<Result> utils = new OkHttpUtils<>(mContext);
+        utils.url(I.SERVER_URL+"Login"+I.INDEX)
+                .addParam("mobile",username)
+                .addParam("password",password)
+                .post()
+                .targetClass(Result.class)
+                .execute(new OkHttpUtils.OnCompleteListener<Result>() {
+                    @Override
+                    public void onSuccess(Result result) {
+                        if (result.getRetData()==null){
                             Toast.makeText(mContext, R.string.login_fail, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-                pd.dismiss();
-            }
+                        }else {
+                            if (result.isRetMsg()){
+                                //Result resultFromJson = ResultUtils.getResultFromJson(result.getRetData().toString(), User.class);
+                                User user = (User) result.getRetData();
+                                L.e("user="+user);
+                                UserDao dao = new UserDao(mContext);
+                                boolean isSuccess = dao.saveUser(user);
+                                if (isSuccess){
+                                    //保存登录的用户信息
+                                    SharePrefrenceUtils.getInstance(mContext).saveUser(user.getMuserName());
+                                    UnderseaWorldApplication.setUser(user);
 
-            @Override
-            public void onError(String error) {
-                Toast.makeText(mContext, error, Toast.LENGTH_SHORT).show();
-                L.e("error=" + error);
-            }
-        });
+
+                                    Toast.makeText(mContext, "hahahaha==========登录成功了！！！！！！", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(mContext, R.string.user_database_error, Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        }
+                        pd.dismiss();
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        Toast.makeText(mContext,error, Toast.LENGTH_SHORT).show();
+                        L.e("error="+error);
+                    }
+                });
     }
 }

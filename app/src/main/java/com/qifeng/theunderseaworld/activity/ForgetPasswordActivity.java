@@ -23,7 +23,7 @@ import butterknife.OnClick;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
-public class ForgetPasswordActivity extends AppCompatActivity implements MessageReceiver.ISMSListener {
+public class ForgetPasswordActivity extends AppCompatActivity  {
 
     ForgetPasswordActivity mContext;
 
@@ -68,10 +68,23 @@ public class ForgetPasswordActivity extends AppCompatActivity implements Message
 
         initView();
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         messageReceiver = new MessageReceiver();
         IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
         filter.setPriority(1000);
         registerReceiver(messageReceiver, filter);
+        messageReceiver.setOnReceivedMessageListener(new MessageReceiver.MessageListener() {
+            @Override
+            public void onReceived(String message) {
+                forgetEdtSms.setText(message);
+            }
+        });
+
     }
 
     private void initView() {
@@ -182,10 +195,6 @@ public class ForgetPasswordActivity extends AppCompatActivity implements Message
         SMSSDK.registerEventHandler(eh); //注册短信回调
     }
 
-    @Override
-    public void onSmsReceive(String code) {
-        forgetEdtSms.setText(code);
-    }
 
     @Override
     protected void onDestroy() {

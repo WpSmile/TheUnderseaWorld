@@ -2,7 +2,9 @@ package com.qifeng.theunderseaworld.utils;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.qifeng.theunderseaworld.I;
@@ -146,7 +148,7 @@ public class OkHttpUtils<T> {
 
 
     private void initHandler() {
-        mHandler = new Handler(UnderseaWorldApplication.application.getMainLooper()) {
+        mHandler = new Handler(/*UnderseaWorldApplication.application.*/Looper.getMainLooper()) {
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what) {
@@ -221,7 +223,7 @@ public class OkHttpUtils<T> {
         //http://120.26.242.249:8080/SuperWeChatServerV2.0/register?m_user_name=aaaaaa&m_user_nick=aaaaaa&m_user_password=aaaaaa
         mUrl = new StringBuilder(I.SERVER_URL);
         mUrl.append(request);
-//        Log.e("okhttp","1 murl="+ mUrl.toString());
+        Log.e("okhttp","1 murl="+ mUrl.toString());
         return this;
     }
 

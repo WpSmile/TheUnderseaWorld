@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.bean.Result;
+import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MD5;
 import com.qifeng.theunderseaworld.utils.OkHttpUtils;
 
@@ -60,6 +61,7 @@ public class NetDao {
     */public static void register(Context context, String phonenumber, String password
             , OkHttpUtils.OnCompleteListener<Result> listener) {
         OkHttpUtils<Result> utils = new OkHttpUtils<>(context);
+        L.e("register","===============拼接注册的url");
         utils.setRequestUrl(I.REQUEST_REGISTER+I.INDEX)//"http://192.168.31.58/zmgx2/index.php/Api/Registe/index"
                 .addParam("mobile",phonenumber)
                 .addParam("password", password)

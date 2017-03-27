@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.qifeng.theunderseaworld.bean.User;
 
-import cn.smssdk.SMSSDK;
 
 
 /**
@@ -16,6 +15,16 @@ public class UnderseaWorldApplication extends Application {
 
     public static String userName;
     private static User user;
+
+    public static String usersign;//用于判断用户身份的标识
+
+    public static String getUsersign() {
+        return usersign;
+    }
+
+    public static void setUsersign(String usersign) {
+        UnderseaWorldApplication.usersign = usersign;
+    }
 
     public static User getUser() {
         return user;

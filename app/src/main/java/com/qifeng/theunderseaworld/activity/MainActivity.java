@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.qifeng.theunderseaworld.R;
+import com.qifeng.theunderseaworld.UnderseaWorldApplication;
 import com.qifeng.theunderseaworld.adapter.SectionsPagerAdapter;
 import com.qifeng.theunderseaworld.fragment.CommunityFragment;
 import com.qifeng.theunderseaworld.fragment.HomePageFragment;
@@ -94,10 +95,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         fragments = new ArrayList<>();
         fragments.add(new HomePageFragment());
         fragments.add(new StoreFragment());
-        fragments.add(new PersonalFragment());
+        fragments.add(new CommunityFragment());
 
         //判断登录的信息设置相应的页面
-        fragments.add(new PersonalUnloginFragment());
+        String name = UnderseaWorldApplication.getUsersign();
+        if (name.equals("顾客 ")){
+            fragments.add(new PersonalFragment());
+        }else if (name.equals("商家")){
+            fragments.add(new PersonalBusinessFragment());
+        }else{
+            fragments.add(new PersonalUnloginFragment());
+        }
+
 
         viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), fragments));
         viewPager.addOnPageChangeListener(this);
