@@ -107,7 +107,7 @@ public class HomePageFragment extends Fragment {
         //homeSlideAuto.startPlayLoop(myView, getAlbumImgUrl(details), getAlbumImgCount(details));
 
         downloadKePuAnimal();
-        //downloadHomeTuijian();
+        downloadHomeTuijian();
     }
 
     private void downloadHomeTuijian() {
