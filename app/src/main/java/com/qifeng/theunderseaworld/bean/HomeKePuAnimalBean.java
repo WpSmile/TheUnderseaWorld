@@ -9,7 +9,6 @@ import java.io.Serializable;
 public class HomeKePuAnimalBean implements Serializable {
     private String scienceId;
     private String scienceTitle;
-    private String scienceContent;
     private String scienceEnglishTitle;
 
     public void setScienceId(String scienceId) {
@@ -28,13 +27,6 @@ public class HomeKePuAnimalBean implements Serializable {
         return scienceTitle;
     }
 
-    public void setScienceContent(String scienceContent) {
-        this.scienceContent = scienceContent;
-    }
-
-    public String getScienceContent() {
-        return scienceContent;
-    }
 
     public void setScienceEnglishTitle(String scienceEnglishTitle) {
         this.scienceEnglishTitle = scienceEnglishTitle;
@@ -49,7 +41,6 @@ public class HomeKePuAnimalBean implements Serializable {
         return "HomeKePuAnimalBean{" +
                 "scienceId='" + scienceId + '\'' +
                 ", scienceTitle='" + scienceTitle + '\'' +
-                ", scienceContent='" + scienceContent + '\'' +
                 ", scienceEnglishTitle='" + scienceEnglishTitle + '\'' +
                 '}';
     }

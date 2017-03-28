@@ -16,6 +16,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.UnderseaWorldApplication;
@@ -24,9 +25,13 @@ import com.qifeng.theunderseaworld.bean.Result;
 import com.qifeng.theunderseaworld.bean.User;
 import com.qifeng.theunderseaworld.dao.SharePrefrenceUtils;
 import com.qifeng.theunderseaworld.dao.UserDao;
+import com.qifeng.theunderseaworld.utils.HttpRequestWrap;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
 import com.qifeng.theunderseaworld.utils.OkHttpUtils;
+import com.qifeng.theunderseaworld.utils.OnResponseHandler;
+import com.qifeng.theunderseaworld.utils.RequestHandler;
+import com.qifeng.theunderseaworld.utils.RequestStatus;
 import com.qifeng.theunderseaworld.utils.ResultUtils;
 import com.qifeng.theunderseaworld.view.ImageViewPlus;
 import com.tencent.connect.UserInfo;
@@ -37,6 +42,9 @@ import com.tencent.tauth.UiError;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -249,26 +257,33 @@ public class PersonalUnloginFragment extends Fragment {
         final ProgressDialog pd = new ProgressDialog(mContext);
         pd.setMessage(getResources().getString(R.string.logining));
         pd.show();
-        //登录请求
-        OkHttpUtils<String> utils = new OkHttpUtils<>(mContext);
-        utils.url(I.SERVER_URL + "Login" + I.INDEX)
-                .addParam("mobile", username)
-                .addParam("password", password)
-                .post()
-                .targetClass(String.class)
-                .execute(new OkHttpUtils.OnCompleteListener<String>() {
-                    @Override
-                    public void onSuccess(String s) {
-                        if (s.isEmpty()) {
-                            Toast.makeText(mContext, R.string.login_fail, Toast.LENGTH_SHORT).show();
-                        } else {
-                            L.e("tag","s====================="+s);
-                            Result result = ResultUtils.getResultFromJson(s, User.class);
-                            L.e("tag","result==============="+result.toString());
-                            User user = (User) result.getRetData();
-                            L.e("user=" + user);
+
+        HttpRequestWrap httpRequestWrap = null;
+        httpRequestWrap = new HttpRequestWrap(mContext);
+        httpRequestWrap.setMethod(HttpRequestWrap.POST);
+        httpRequestWrap.setCallBack(new RequestHandler(mContext, new OnResponseHandler() {
+            @Override
+            public void onResponse(String s, RequestStatus status) {
+                if (status == RequestStatus.SUCCESS) {
+                    if (s.isEmpty()) {
+                        Toast.makeText(mContext, R.string.login_fail, Toast.LENGTH_SHORT).show();
+                    } else {
+                        L.e("tag", "s=====================" + s);
+                        com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(s);
+                        String result = jsonObject.getString("result");
+                        com.alibaba.fastjson.JSONObject jsonObject1 = JSON.parseObject(result);
+                        String retData = jsonObject1.getString("retData");
+                        if (!retData.isEmpty()){
+                            Toast.makeText(mContext, R.string.login_success, Toast.LENGTH_SHORT).show();
+                            com.alibaba.fastjson.JSONObject jsonObject2 = JSON.parseObject(retData);
+                            String mobile = jsonObject2.getString("mobile");
+                            Log.e("tag","mobile=============="+mobile);
+                            User user = new User();
+                            user.setMobile(mobile);
+
                             UserDao dao = new UserDao(mContext);
                             boolean isSuccess = dao.saveUser(user);
+
                             if (isSuccess) {
                                 //保存登录的用户信息
                                 SharePrefrenceUtils.getInstance(mContext).saveUser(user.getUsername());
@@ -279,17 +294,16 @@ public class PersonalUnloginFragment extends Fragment {
                             } else {
                                 Toast.makeText(mContext, R.string.user_database_error, Toast.LENGTH_SHORT).show();
                             }
-
-
                         }
-                        pd.dismiss();
-                    }
 
-                    @Override
-                    public void onError(String error) {
-                        Toast.makeText(mContext, error, Toast.LENGTH_SHORT).show();
-                        L.e("error=" + error);
                     }
-                });
+                    pd.dismiss();
+                }
+            }
+        }));
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("mobile", username);
+        map.put("password", password);
+        httpRequestWrap.send(I.SERVER_URL + "Login" + I.INDEX, map);
     }
 }

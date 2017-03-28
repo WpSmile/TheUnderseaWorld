@@ -5,11 +5,14 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.UnderseaWorldApplication;
@@ -17,10 +20,17 @@ import com.qifeng.theunderseaworld.bean.Result;
 import com.qifeng.theunderseaworld.bean.User;
 import com.qifeng.theunderseaworld.receiver.MessageReceiver;
 import com.qifeng.theunderseaworld.utils.CountDownTimerUtils;
+import com.qifeng.theunderseaworld.utils.HttpRequestWrap;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
 import com.qifeng.theunderseaworld.utils.OkHttpUtils;
+import com.qifeng.theunderseaworld.utils.OnResponseHandler;
+import com.qifeng.theunderseaworld.utils.RequestHandler;
+import com.qifeng.theunderseaworld.utils.RequestStatus;
 import com.qifeng.theunderseaworld.utils.ResultUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -145,7 +155,7 @@ public class RegisterByPhoneActivity extends AppCompatActivity {
         String phonenumber = registerEdtInputPhonenumber.getText().toString();
         String password = registerEdtPassword.getText().toString();
 
-        OkHttpUtils<String> utils = new OkHttpUtils<>(mContext);
+        /*OkHttpUtils<String> utils = new OkHttpUtils<>(mContext);
         utils.url(I.SERVER_URL + I.REQUEST_REGISTER + I.INDEX)
                 .addParam("mobile", phonenumber)
                 .addParam("password", password)
@@ -155,8 +165,8 @@ public class RegisterByPhoneActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(String s) {
                         pd.dismiss();
-                        if (!s.isEmpty()){
-                            L.e("tag","注册============"+s);
+                        if (!s.isEmpty()) {
+                            L.e("tag", "注册============" + s);
                             Result result = ResultUtils.getResultFromJson(s, Result.class);
                             if (result.isRetMsg()) {
                                 Toast.makeText(mContext, R.string.register_success, Toast.LENGTH_SHORT).show();
@@ -173,7 +183,40 @@ public class RegisterByPhoneActivity extends AppCompatActivity {
                         pd.dismiss();
                         Toast.makeText(mContext, error, Toast.LENGTH_SHORT).show();
                     }
-                });
+                });*/
+
+        HttpRequestWrap httpRequestWrap = null;
+        httpRequestWrap = new HttpRequestWrap(mContext);
+        httpRequestWrap.setMethod(HttpRequestWrap.POST);
+        httpRequestWrap.setCallBack(new RequestHandler(mContext, new OnResponseHandler() {
+            @Override
+            public void onResponse(String s, RequestStatus status) {
+                if (status == RequestStatus.SUCCESS) {
+                    if (!s.isEmpty()) {
+                        Log.e("tag", "registe============" + s);
+
+                        JSONObject jsonObject = JSON.parseObject(s);
+                        Log.e("tag", "jsonObject==============" + jsonObject.toString());
+                        String result = jsonObject.getString("result");
+                        JSONObject jsonObject1 = JSON.parseObject(result);
+                        Boolean retMsg = jsonObject1.getBoolean("retMsg");
+
+                        if (retMsg) {
+                            Toast.makeText(mContext, R.string.register_success, Toast.LENGTH_SHORT).show();
+                            MFGT.finish(mContext);
+                        } else {
+                            Toast.makeText(mContext, R.string.register_fail_exists, Toast.LENGTH_SHORT).show();
+                            registerEdtInputPhonenumber.requestFocus();
+                        }
+
+                    }
+                }
+            }
+        }));
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("mobile", phonenumber);
+        map.put("password", password);
+        httpRequestWrap.send(I.SERVER_URL + "Registe" + I.INDEX, map);
     }
 
 

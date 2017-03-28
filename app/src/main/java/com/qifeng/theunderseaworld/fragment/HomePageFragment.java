@@ -11,6 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
@@ -34,8 +38,11 @@ import com.qifeng.theunderseaworld.view.FlowIndicator;
 import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,7 +76,7 @@ public class HomePageFragment extends Fragment {
 
     private String sessionID;
 
-    private HttpRequestWrap httpRequestWrap =null;
+    private HttpRequestWrap httpRequestWrap = null;
 
     public HomePageFragment() {
         // Required empty public constructor
@@ -100,7 +107,7 @@ public class HomePageFragment extends Fragment {
         //homeSlideAuto.startPlayLoop(myView, getAlbumImgUrl(details), getAlbumImgCount(details));
 
         downloadKePuAnimal();
-        downloadHomeTuijian();
+        //downloadHomeTuijian();
     }
 
     private void downloadHomeTuijian() {
@@ -109,17 +116,34 @@ public class HomePageFragment extends Fragment {
         httpRequestWrap.setCallBack(new RequestHandler(getContext(), new OnResponseHandler() {
             @Override
             public void onResponse(String s, RequestStatus status) {
-                if(status == RequestStatus.SUCCESS){
-                    if(!s.isEmpty()){
-                        Log.e("tag","hometuijian============"+s);
+                if (status == RequestStatus.SUCCESS) {
+                    if (!s.isEmpty()) {
+                        JSONObject jsonObject = JSONObject.parseObject(s);
+                        Log.e("tag", "jsonObject=================" + jsonObject.toString());
+                        String result = jsonObject.getString("result");
+                        Log.e("tag", "result=============" + result);
+
+                        JSONObject jsonObject1 = JSONObject.parseObject(result);
+                        String retData = jsonObject1.getString("retData");
+
+                        Log.e("tag","retData================="+retData);
+
+                        Gson gson = new Gson();
+                        CartTuijianBean[] cartTuijianBeen = gson.fromJson(retData, CartTuijianBean[].class);
+
+                        for (int i = 0; i < cartTuijianBeen.length; i++) {
+                            tuijianList.add(cartTuijianBeen[i]);
+                        }
+
+                        homeTuijianAdapter.initData(tuijianList);
 
                     }
                 }
             }
         }));
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("num",3+"");
-        httpRequestWrap.send(I.SERVER_URL+"HootGoods" + I.INDEX,map);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("goods_id", 78 + "");
+        httpRequestWrap.send(I.SERVER_URL + "GoodsDetails" + I.INDEX, map);
     }
 
     private void downloadKePuAnimal() {
@@ -129,17 +153,36 @@ public class HomePageFragment extends Fragment {
         httpRequestWrap.setCallBack(new RequestHandler(getContext(), new OnResponseHandler() {
             @Override
             public void onResponse(String s, RequestStatus status) {
-                if(status == RequestStatus.SUCCESS){
-                    if(!s.isEmpty()){
-                        Log.e("tag","homekepuAnimal============"+s);
+                if (status == RequestStatus.SUCCESS) {
+                    if (!s.isEmpty()) {
+                        JSONObject jsonObject = JSONObject.parseObject(s);
+                        //Log.e("tag", "jsonObject=================" + jsonObject.toString());
+                        String result = jsonObject.getString("result");
 
+                        JSONObject jsonObject1 = JSON.parseObject(result);
+
+                        String retData = jsonObject1.getString("retData");
+                        Log.e("tag","retData================="+retData);
+
+
+                        Gson gson = new Gson();
+                        HomeKePuAnimalBean[] homeKePuAnimalBeen = gson.fromJson(retData, HomeKePuAnimalBean[].class);
+
+                        Log.e("tag","homeKePuAnimalBeen=============="+homeKePuAnimalBeen.toString());
+
+                        for (int i = 0; i < homeKePuAnimalBeen.length; i++) {
+                            mKepulist.add(homeKePuAnimalBeen[i]);
+                            Log.e("tag","homeKePuAnimalBeen[i]============"+homeKePuAnimalBeen[i].toString());
+                        }
+                        Log.e("tag","mKePulist============"+mKepulist.size());
+                        mAdapter.initData(mKepulist);
                     }
                 }
             }
         }));
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("num",4+"");
-        httpRequestWrap.send(I.SERVER_URL+"ScienceList" + I.INDEX,map);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("num", 4 + "");
+        httpRequestWrap.send(I.SERVER_URL + "ScienceList" + I.INDEX, map);
 
     }
 
