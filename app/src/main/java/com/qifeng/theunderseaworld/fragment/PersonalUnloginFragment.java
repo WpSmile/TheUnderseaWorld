@@ -27,6 +27,7 @@ import com.qifeng.theunderseaworld.dao.UserDao;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
 import com.qifeng.theunderseaworld.utils.OkHttpUtils;
+import com.qifeng.theunderseaworld.utils.ResultUtils;
 import com.qifeng.theunderseaworld.view.ImageViewPlus;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.common.Constants;
@@ -185,23 +186,25 @@ public class PersonalUnloginFragment extends Fragment {
         userInfoListener = new IUiListener() {
             @Override
             public void onComplete(Object o) {
-                if(o == null){
+                if (o == null) {
                     return;
                 }
                 try {
                     JSONObject jo = (JSONObject) o;
-                    Log.e("JO:",jo.toString());
+                    Log.e("JO:", jo.toString());
                     int ret = jo.getInt("ret");
                     String nickName = jo.getString("nickname");
                     String gender = jo.getString("gender");
-                    Toast.makeText(mContext, "你好，" + nickName,Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "你好，" + nickName, Toast.LENGTH_LONG).show();
 
                 } catch (Exception e) {
                 }
             }
+
             @Override
             public void onError(UiError uiError) {
             }
+
             @Override
             public void onCancel() {
             }
@@ -247,44 +250,45 @@ public class PersonalUnloginFragment extends Fragment {
         pd.setMessage(getResources().getString(R.string.logining));
         pd.show();
         //登录请求
-        OkHttpUtils<Result> utils = new OkHttpUtils<>(mContext);
-        utils.url(I.SERVER_URL+"Login"+I.INDEX)
-                .addParam("mobile",username)
-                .addParam("password",password)
+        OkHttpUtils<String> utils = new OkHttpUtils<>(mContext);
+        utils.url(I.SERVER_URL + "Login" + I.INDEX)
+                .addParam("mobile", username)
+                .addParam("password", password)
                 .post()
-                .targetClass(Result.class)
-                .execute(new OkHttpUtils.OnCompleteListener<Result>() {
+                .targetClass(String.class)
+                .execute(new OkHttpUtils.OnCompleteListener<String>() {
                     @Override
-                    public void onSuccess(Result result) {
-                        if (result.getRetData()==null){
+                    public void onSuccess(String s) {
+                        if (s.isEmpty()) {
                             Toast.makeText(mContext, R.string.login_fail, Toast.LENGTH_SHORT).show();
-                        }else {
-                            if (result.isRetMsg()){
-                                //Result resultFromJson = ResultUtils.getResultFromJson(result.getRetData().toString(), User.class);
-                                User user = (User) result.getRetData();
-                                L.e("user="+user);
-                                UserDao dao = new UserDao(mContext);
-                                boolean isSuccess = dao.saveUser(user);
-                                if (isSuccess){
-                                    //保存登录的用户信息
-                                    SharePrefrenceUtils.getInstance(mContext).saveUser(user.getMuserName());
-                                    UnderseaWorldApplication.setUser(user);
+                        } else {
+                            L.e("tag","s====================="+s);
+                            Result result = ResultUtils.getResultFromJson(s, User.class);
+                            L.e("tag","result==============="+result.toString());
+                            User user = (User) result.getRetData();
+                            L.e("user=" + user);
+                            UserDao dao = new UserDao(mContext);
+                            boolean isSuccess = dao.saveUser(user);
+                            if (isSuccess) {
+                                //保存登录的用户信息
+                                SharePrefrenceUtils.getInstance(mContext).saveUser(user.getUsername());
+                                UnderseaWorldApplication.setUser(user);
 
 
-                                    Toast.makeText(mContext, "hahahaha==========登录成功了！！！！！！", Toast.LENGTH_SHORT).show();
-                                }else {
-                                    Toast.makeText(mContext, R.string.user_database_error, Toast.LENGTH_SHORT).show();
-                                }
-
+                                Toast.makeText(mContext, "hahahaha==========登录成功了！！！！！！", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(mContext, R.string.user_database_error, Toast.LENGTH_SHORT).show();
                             }
+
+
                         }
                         pd.dismiss();
                     }
 
                     @Override
                     public void onError(String error) {
-                        Toast.makeText(mContext,error, Toast.LENGTH_SHORT).show();
-                        L.e("error="+error);
+                        Toast.makeText(mContext, error, Toast.LENGTH_SHORT).show();
+                        L.e("error=" + error);
                     }
                 });
     }

@@ -20,6 +20,7 @@ import com.qifeng.theunderseaworld.utils.CountDownTimerUtils;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
 import com.qifeng.theunderseaworld.utils.OkHttpUtils;
+import com.qifeng.theunderseaworld.utils.ResultUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -144,26 +145,27 @@ public class RegisterByPhoneActivity extends AppCompatActivity {
         String phonenumber = registerEdtInputPhonenumber.getText().toString();
         String password = registerEdtPassword.getText().toString();
 
-        OkHttpUtils<Result> utils = new OkHttpUtils<>(mContext);
+        OkHttpUtils<String> utils = new OkHttpUtils<>(mContext);
         utils.url(I.SERVER_URL + I.REQUEST_REGISTER + I.INDEX)
                 .addParam("mobile", phonenumber)
                 .addParam("password", password)
-                .targetClass(Result.class)
+                .targetClass(String.class)
                 .post()
-                .execute(new OkHttpUtils.OnCompleteListener<Result>() {
+                .execute(new OkHttpUtils.OnCompleteListener<String>() {
                     @Override
-                    public void onSuccess(Result result) {
+                    public void onSuccess(String s) {
                         pd.dismiss();
-                        Toast.makeText(mContext, result.toString(), Toast.LENGTH_SHORT).show();
-
-                        if (result.isRetMsg()) {
-                            Toast.makeText(mContext, R.string.register_success, Toast.LENGTH_SHORT).show();
-                            MFGT.finish(mContext);
-                        } else {
-                            Toast.makeText(mContext, R.string.register_fail_exists, Toast.LENGTH_SHORT).show();
-                            registerEdtInputPhonenumber.requestFocus();
+                        if (!s.isEmpty()){
+                            L.e("tag","注册============"+s);
+                            Result result = ResultUtils.getResultFromJson(s, Result.class);
+                            if (result.isRetMsg()) {
+                                Toast.makeText(mContext, R.string.register_success, Toast.LENGTH_SHORT).show();
+                                MFGT.finish(mContext);
+                            } else {
+                                Toast.makeText(mContext, R.string.register_fail_exists, Toast.LENGTH_SHORT).show();
+                                registerEdtInputPhonenumber.requestFocus();
+                            }
                         }
-
                     }
 
                     @Override

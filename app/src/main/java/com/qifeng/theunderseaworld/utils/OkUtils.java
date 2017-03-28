@@ -148,6 +148,7 @@ public class OkUtils<T> {
         //创建builder
         Request.Builder builder = new Request.Builder().url(mUrl.toString());
         if (mFormBuilder != null) {//设置post要求的提交
+            builder.addHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
             builder.post(mFormBuilder.build());
         }
 

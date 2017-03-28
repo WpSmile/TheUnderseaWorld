@@ -99,22 +99,28 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         fragments.add(new CommunityFragment());
 
         //判断登录的信息设置相应的页面
-
-        //if (UnderseaWorldApplication.getUsersign()==null||UnderseaWorldApplication.getUsersign().equals("")){
-            fragments.add(new PersonalUnloginFragment());
-       //}else if(UnderseaWorldApplication.getUsersign().equals("顾客")){
-           // fragments.add(new PersonalFragment());
-        //}else if (UnderseaWorldApplication.getUsersign().equals("商家")){
-            //fragments.add(new PersonalBusinessFragment());
-        //}
-
+        setMyFragment();
 
         viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), fragments));
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(0);
     }
 
+    private void setMyFragment() {
 
+        //if (UnderseaWorldApplication.getUsersign()==null||UnderseaWorldApplication.getUsersign().equals("")){
+        fragments.add(new PersonalUnloginFragment());
+        //}else if(UnderseaWorldApplication.getUsersign().equals("顾客")){
+        // fragments.add(new PersonalFragment());
+        //}else if (UnderseaWorldApplication.getUsersign().equals("商家")){
+        //fragments.add(new PersonalBusinessFragment());
+        //}
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     /**
      * 设置默认的fragment

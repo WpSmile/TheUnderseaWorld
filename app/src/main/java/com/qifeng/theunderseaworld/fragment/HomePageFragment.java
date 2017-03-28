@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,13 @@ import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.activity.MainActivity;
 import com.qifeng.theunderseaworld.bean.Result;
+import com.qifeng.theunderseaworld.utils.HttpRequestWrap;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.OkHttpUtils;
 import com.qifeng.theunderseaworld.utils.OkUtils;
+import com.qifeng.theunderseaworld.utils.OnResponseHandler;
+import com.qifeng.theunderseaworld.utils.RequestHandler;
+import com.qifeng.theunderseaworld.utils.RequestStatus;
 import com.qifeng.theunderseaworld.utils.ResultUtils;
 import com.qifeng.theunderseaworld.view.SpaceItemDecoretion;
 import com.qifeng.theunderseaworld.adapter.HomeKePuAnimalAdapter;
@@ -31,6 +36,8 @@ import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,6 +69,7 @@ public class HomePageFragment extends Fragment {
 
     private String sessionID;
 
+    private HttpRequestWrap httpRequestWrap =null;
 
     public HomePageFragment() {
         // Required empty public constructor
@@ -71,6 +79,8 @@ public class HomePageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
         ButterKnife.bind(this, view);
@@ -94,56 +104,42 @@ public class HomePageFragment extends Fragment {
     }
 
     private void downloadHomeTuijian() {
-        OkUtils<String> util = new OkUtils<>(mContext);
-        util.url(I.SERVER_URL + "HotGoods" + I.INDEX)
-                .addParam("num", "3")
-                .targetClass(String.class)
-                .post()
-                .execute(new OkUtils.OnCompleteListener<String>() {
-                    @Override
-                    public void onSuccess(String s) {
-                        L.e("tag","result==============="+s.toString());
-                        if (s!=null){
-                            Result result = ResultUtils.getListResultFromJson(s, CartTuijianBean[].class);
-                            L.e("tag","result================"+result.toString());
-                            ArrayList<CartTuijianBean> hometuijianlist = (ArrayList<CartTuijianBean>) result.getRetData();
-                            homeTuijianAdapter.initData(hometuijianlist);
-                        }
+        httpRequestWrap = new HttpRequestWrap(getContext());
+        httpRequestWrap.setMethod(HttpRequestWrap.POST);
+        httpRequestWrap.setCallBack(new RequestHandler(getContext(), new OnResponseHandler() {
+            @Override
+            public void onResponse(String s, RequestStatus status) {
+                if(status == RequestStatus.SUCCESS){
+                    if(!s.isEmpty()){
+                        Log.e("tag","hometuijian============"+s);
 
                     }
-
-                    @Override
-                    public void onError(String error) {
-                        L.e("tag","error============"+error.toString());
-                    }
-                });
+                }
+            }
+        }));
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("num",3+"");
+        httpRequestWrap.send(I.SERVER_URL+"HootGoods" + I.INDEX,map);
     }
 
     private void downloadKePuAnimal() {
 
-        OkUtils<String> util = new OkUtils<>(mContext);
-        util.url(I.SERVER_URL + "ScienceList" + I.INDEX)//"http://192.168.31.58/hdsj/index.php/Api/ScienceList/index"
-                .addParam("num", "4")
-                .targetClass(String.class)
-                .post()
-                .execute(new OkUtils.OnCompleteListener<String>() {
-                    @Override
-                    public void onSuccess(String s) {
-                        L.e("tag","result==============="+s.toString());
-                        if (s!=null){
-                            Result result = ResultUtils.getListResultFromJson(s, HomeKePuAnimalBean[].class);
-                            L.e("tag","result================"+result.toString());
-                            ArrayList<HomeKePuAnimalBean> homeKepulist = (ArrayList<HomeKePuAnimalBean>) result.getRetData();
-                            mAdapter.initData(homeKepulist);
-                        }
+        httpRequestWrap = new HttpRequestWrap(getContext());
+        httpRequestWrap.setMethod(HttpRequestWrap.POST);
+        httpRequestWrap.setCallBack(new RequestHandler(getContext(), new OnResponseHandler() {
+            @Override
+            public void onResponse(String s, RequestStatus status) {
+                if(status == RequestStatus.SUCCESS){
+                    if(!s.isEmpty()){
+                        Log.e("tag","homekepuAnimal============"+s);
 
                     }
-
-                    @Override
-                    public void onError(String error) {
-                        L.e("tag","error============"+error.toString());
-                    }
-                });
+                }
+            }
+        }));
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("num",4+"");
+        httpRequestWrap.send(I.SERVER_URL+"ScienceList" + I.INDEX,map);
 
     }
 

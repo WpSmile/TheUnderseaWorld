@@ -1,7 +1,6 @@
 package com.qifeng.theunderseaworld.bean;
 
 
-import com.qifeng.theunderseaworld.I;
 
 import java.io.Serializable;
 
@@ -11,132 +10,151 @@ import java.io.Serializable;
  * Created by Administrator on 2016/10/21.
  */
 public class User implements Serializable{
-    private int userid;
-    private String useremail;
-    private String mobile;
-    private String realname;
-    private String qq;
-    private String birthday;
-    private String muserName;
-    private String muserNick;
-    private int mavatarId;
-    private String mavatarPath;
-    private String mavatarSuffix;
-    private int mavatarType;
-    private String mavatarLastUpdateTime;
-    private boolean isadmin;//判断用户类型的标识
 
-    public boolean isadmin() {
-        return isadmin;
-    }
 
-    public void setIsadmin(boolean isadmin) {
-        this.isadmin = isadmin;
-    }
+        private String userId;
+        private String username;
+        private String email;
+        private String mobile;
+        private String realName;
+        private String nickname;
+        private String qq;
+        private String lastIp;
+        private String lastTime;
+        private String loginNum;
+        private String levelId;
+        private String images;
+        private String activation;
+        private String birthday;
+        private String atTime;
+        private String disable;
+        private String headPortrait;
+        private String isGag;
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+        public String getUserId() {
+            return userId;
+        }
 
-    public int getUserid() {
-        return userid;
-    }
+        public void setUsername(String username) {
+            this.username = username;
+        }
+        public String getUsername() {
+            return username;
+        }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
+        public void setEmail(String email) {
+            this.email = email;
+        }
+        public String getEmail() {
+            return email;
+        }
 
-    public String getUseremail() {
-        return useremail;
-    }
+        public void setMobile(String mobile) {
+            this.mobile = mobile;
+        }
+        public String getMobile() {
+            return mobile;
+        }
 
-    public void setUseremail(String useremail) {
-        this.useremail = useremail;
-    }
+        public void setRealName(String realName) {
+            this.realName = realName;
+        }
+        public String getRealName() {
+            return realName;
+        }
 
-    public String getMobile() {
-        return mobile;
-    }
+        public void setNickname(String nickname) {
+            this.nickname = nickname;
+        }
+        public String getNickname() {
+            return nickname;
+        }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
+        public void setQq(String qq) {
+            this.qq = qq;
+        }
+        public String getQq() {
+            return qq;
+        }
 
-    public String getRealname() {
-        return realname;
-    }
+        public void setLastIp(String lastIp) {
+            this.lastIp = lastIp;
+        }
+        public String getLastIp() {
+            return lastIp;
+        }
 
-    public void setRealname(String realname) {
-        this.realname = realname;
-    }
+        public void setLastTime(String lastTime) {
+            this.lastTime = lastTime;
+        }
+        public String getLastTime() {
+            return lastTime;
+        }
 
-    public String getQq() {
-        return qq;
-    }
+        public void setLoginNum(String loginNum) {
+            this.loginNum = loginNum;
+        }
+        public String getLoginNum() {
+            return loginNum;
+        }
 
-    public void setQq(String qq) {
-        this.qq = qq;
-    }
+        public void setLevelId(String levelId) {
+            this.levelId = levelId;
+        }
+        public String getLevelId() {
+            return levelId;
+        }
 
-    public String getBirthday() {
-        return birthday;
-    }
+        public void setImages(String images) {
+            this.images = images;
+        }
+        public String getImages() {
+            return images;
+        }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
+        public void setActivation(String activation) {
+            this.activation = activation;
+        }
+        public String getActivation() {
+            return activation;
+        }
 
-    public String getMuserName() {
-        return muserName;
-    }
+        public void setBirthday(String birthday) {
+            this.birthday = birthday;
+        }
+        public String getBirthday() {
+            return birthday;
+        }
 
-    public void setMuserName(String muserName) {
-        this.muserName = muserName;
-    }
+        public void setAtTime(String atTime) {
+            this.atTime = atTime;
+        }
+        public String getAtTime() {
+            return atTime;
+        }
 
-    public String getMuserNick() {
-        return muserNick;
-    }
+        public void setDisable(String disable) {
+            this.disable = disable;
+        }
+        public String getDisable() {
+            return disable;
+        }
 
-    public void setMuserNick(String muserNick) {
-        this.muserNick = muserNick;
-    }
+        public void setHeadPortrait(String headPortrait) {
+            this.headPortrait = headPortrait;
+        }
+        public String getHeadPortrait() {
+            return headPortrait;
+        }
 
-    public int getMavatarId() {
-        return mavatarId;
-    }
-
-    public void setMavatarId(int mavatarId) {
-        this.mavatarId = mavatarId;
-    }
-
-    public String getMavatarPath() {
-        return mavatarPath;
-    }
-
-    public void setMavatarPath(String mavatarPath) {
-        this.mavatarPath = mavatarPath;
-    }
-
-    public String getMavatarSuffix() {
-        return mavatarSuffix!=null?mavatarSuffix: I.AVATAR_SUFFIX_JPG;
-    }
-
-    public void setMavatarSuffix(String mavatarSuffix) {
-        this.mavatarSuffix = mavatarSuffix;
-    }
-
-    public int getMavatarType() {
-        return mavatarType;
-    }
-
-    public void setMavatarType(int mavatarType) {
-        this.mavatarType = mavatarType;
-    }
-
-    public String getMavatarLastUpdateTime() {
-        return mavatarLastUpdateTime;
-    }
-
-    public void setMavatarLastUpdateTime(String mavatarLastUpdateTime) {
-        this.mavatarLastUpdateTime = mavatarLastUpdateTime;
-    }
+        public void setIsGag(String isGag) {
+            this.isGag = isGag;
+        }
+        public String getIsGag() {
+            return isGag;
+        }
 
     @Override
     public boolean equals(Object o) {
@@ -145,34 +163,39 @@ public class User implements Serializable{
 
         User user = (User) o;
 
-        if (!muserName.equals(user.muserName)) return false;
-        return mavatarLastUpdateTime.equals(user.mavatarLastUpdateTime);
+        if (!username.equals(user.username)) return false;
+        return lastTime.equals(user.lastTime);
 
     }
 
     @Override
     public int hashCode() {
-        int result = muserName.hashCode();
-        result = 31 * result + mavatarLastUpdateTime.hashCode();
+        int result = username.hashCode();
+        result = 31 * result + lastTime.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userid=" + userid +
-                ", useremail='" + useremail + '\'' +
+                "userId='" + userId + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", mobile='" + mobile + '\'' +
-                ", realname='" + realname + '\'' +
+                ", realName='" + realName + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", qq='" + qq + '\'' +
+                ", lastIp='" + lastIp + '\'' +
+                ", lastTime='" + lastTime + '\'' +
+                ", loginNum='" + loginNum + '\'' +
+                ", levelId='" + levelId + '\'' +
+                ", images='" + images + '\'' +
+                ", activation='" + activation + '\'' +
                 ", birthday='" + birthday + '\'' +
-                ", muserName='" + muserName + '\'' +
-                ", muserNick='" + muserNick + '\'' +
-                ", mavatarId=" + mavatarId +
-                ", mavatarPath='" + mavatarPath + '\'' +
-                ", mavatarSuffix='" + mavatarSuffix + '\'' +
-                ", mavatarType=" + mavatarType +
-                ", mavatarLastUpdateTime='" + mavatarLastUpdateTime + '\'' +
+                ", atTime='" + atTime + '\'' +
+                ", disable='" + disable + '\'' +
+                ", headPortrait='" + headPortrait + '\'' +
+                ", isGag='" + isGag + '\'' +
                 '}';
     }
 }
