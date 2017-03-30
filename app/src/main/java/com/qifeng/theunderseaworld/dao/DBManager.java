@@ -19,42 +19,47 @@ public class DBManager {
     void onInit(Context context) {
         dbHelper = new DBOpenHelper(context);
     }
-    public static synchronized DBManager getInstance(){
+
+    public static synchronized DBManager getInstance() {
         return dbMgr;
     }
+
     public synchronized void closeDB() {
         if (dbHelper != null) {
             dbHelper.closeDB();
         }
     }
-    public synchronized boolean saveUser(User user){
+
+    public synchronized boolean saveUser(User user) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(UserDao.USER_COLUMN_NAME,user.getUsername());
-        values.put(UserDao.USER_COLUMN_NICK,user.getNickname());
-        values.put(UserDao.USER_COLUMN_AVATAR_ID,user.getHeadPortrait());
+        values.put(UserDao.USER_COLUMN_NAME, user.getUsername());
+        values.put(UserDao.USER_COLUMN_NICK, user.getNickname());
+        values.put(UserDao.USER_COLUMN_AVATAR_ID, user.getHeadPortrait());
         //values.put(UserDao.USER_COLUMN_AVATAR_TYPE,user.getMavatarType());
-        //values.put(UserDao.USER_COLUMN_AVATAR_PATH,user.getMavatarPath());
+        values.put(UserDao.USER_COLUMN_AVATAR_PATH, user.getImages());
         //values.put(UserDao.USER_COLUMN_AVATAR_SUFFIX,user.getMavatarSuffix());
-        values.put(UserDao.USER_COLUMN_AVATAR_LASTUPDATE_TIME,user.getLastTime());
-        if (db.isOpen()){
-            return db.replace(UserDao.USER_TABLE_NAME,null,values)!=-1;
+        values.put(UserDao.USER_COLUMN_MOBILE, user.getMobile());
+        values.put(UserDao.USER_COLUMN_USER_ID, user.getUserId());
+        values.put(UserDao.USER_COLUMN_AVATAR_LASTUPDATE_TIME, user.getLastTime());
+        if (db.isOpen()) {
+            return db.replace(UserDao.USER_COLUMN_USER_ID, null, values) != -1;
         }
         return false;
     }
 
 
-
     public synchronized User getUser(String username) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String sql = "select * from "+UserDao.USER_TABLE_NAME+" where "
-                +UserDao.USER_COLUMN_NAME +" =?";
+        String sql = "select * from " + UserDao.USER_TABLE_NAME + " where "
+                + UserDao.USER_COLUMN_NAME + " =?";
         User user = null;
-        Cursor cursor = db.rawQuery(sql,new String[]{username});
-        if (cursor.moveToNext()){
+        Cursor cursor = db.rawQuery(sql, new String[]{username});
+        if (cursor.moveToNext()) {
             user = new User();
             //user.getUsername(username);
             //user.getNickname(cursor.getString(cursor.getColumnIndex(UserDao.USER_COLUMN_NICK)));
+            //user.getUserId(cursor.getString(cursor.getColumnIndex(UserDao.USER_COLUMN_USER_ID)));
             //user.setMavatarId(cursor.getInt(cursor.getColumnIndex(UserDao.USER_COLUMN_AVATAR_ID)));
             //user.setMavatarType(cursor.getInt(cursor.getColumnIndex(UserDao.USER_COLUMN_AVATAR_TYPE)));
             //user.setMavatarPath(cursor.getString(cursor.getColumnIndex(UserDao.USER_COLUMN_AVATAR_PATH)));
@@ -66,14 +71,14 @@ public class DBManager {
     }
 
     public synchronized boolean updateUser(User user) {
-        int resule =-1;
+        int resule = -1;
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String sql = UserDao.USER_COLUMN_NAME+"=?";
+        String sql = UserDao.USER_COLUMN_NAME + "=?";
         ContentValues values = new ContentValues();
         //values.put(UserDao.USER_COLUMN_NICK,user.getMuserNick());
-        if (db.isOpen()){
+        if (db.isOpen()) {
             //resule = db.update(UserDao.USER_TABLE_NAME,values,sql,new String[]{user.getMuserName()});
         }
-        return resule>0;
+        return resule > 0;
     }
 }

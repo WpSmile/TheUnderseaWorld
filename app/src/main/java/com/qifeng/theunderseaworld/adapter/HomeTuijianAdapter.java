@@ -33,7 +33,14 @@ public class HomeTuijianAdapter extends RecyclerView.Adapter {
 
     public HomeTuijianAdapter(Context mContext, ArrayList<CartTuijianBean> list) {
         this.mContext = mContext;
-        this.mlist = list;
+
+        if (mlist!=null){
+            this.mlist.clear();
+            this.mlist.addAll(list);
+        }else {
+            mlist=new ArrayList<>();
+            mlist.addAll(list);
+        }
 
     }
 
@@ -52,13 +59,13 @@ public class HomeTuijianAdapter extends RecyclerView.Adapter {
         CartTuijianBean cartTuijianBean = mlist.get(position);
 
 
-        ((CartViewHolder) holder).tvItemTuijianTitle.setText(cartTuijianBean.getTitle());
+        ((CartViewHolder) holder).tvItemTuijianTitle.setText(cartTuijianBean.getGoodsTitle());
 
-        ((CartViewHolder) holder).tvTuijianTicket.setText(cartTuijianBean.getTicketStyle());
-        ((CartViewHolder) holder).tvTuijianPrice.setText(cartTuijianBean.getPrice());
+        //((CartViewHolder) holder).tvTuijianTicket.setText(cartTuijianBean.getGoodsId());
+        ((CartViewHolder) holder).tvTuijianPrice.setText("￥"+cartTuijianBean.getGoodsPrice());
         //ImageLoader.downloadImg(mContext, ((CartViewHolder) holder).ivGoodsPicture, goods.getGoodsThumb());
 
-        ((CartViewHolder)holder).llItemHomeTuijian.setTag(cartTuijianBean.getId());
+        ((CartViewHolder)holder).llItemHomeTuijian.setTag(cartTuijianBean.getGoodsId());
 
     }
 
@@ -96,12 +103,8 @@ public class HomeTuijianAdapter extends RecyclerView.Adapter {
 
         @OnClick(R.id.ll_item_home_tuijian)
         public void onClick() {
-
-            int id = (int) llItemHomeTuijian.getTag();
-
+            String id = (String) llItemHomeTuijian.getTag();
             MFGT.gotoDetailsActivity(mContext,id);
-
-
         }
 
     }

@@ -4,10 +4,10 @@
     android:id="@+id/activity_cart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true">
 
     <include layout="@layout/item_common_title" android:id="@+id/item_common_title"/>
+
 
     <LinearLayout
         android:id="@+id/cart_ll"

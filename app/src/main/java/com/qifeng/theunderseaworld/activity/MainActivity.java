@@ -1,17 +1,21 @@
 package com.qifeng.theunderseaworld.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.qifeng.theunderseaworld.R;
-import com.qifeng.theunderseaworld.UnderseaWorldApplication;
 import com.qifeng.theunderseaworld.adapter.SectionsPagerAdapter;
 import com.qifeng.theunderseaworld.fragment.CommunityFragment;
 import com.qifeng.theunderseaworld.fragment.HomePageFragment;
@@ -19,7 +23,6 @@ import com.qifeng.theunderseaworld.fragment.PersonalBusinessFragment;
 import com.qifeng.theunderseaworld.fragment.PersonalFragment;
 import com.qifeng.theunderseaworld.fragment.PersonalUnloginFragment;
 import com.qifeng.theunderseaworld.fragment.StoreFragment;
-import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.StatusBarCompat;
 
 import java.util.ArrayList;
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private ArrayList<Fragment> fragments;
     private ViewPager viewPager;
     private BottomNavigationBar bottomNavigationBar;
+
+    MyReceiver myReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +59,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             StatusBarCompat.compat(this,getResources().getColor(R.color.bottom_blue));
         }
         ButterKnife.bind(this);
+
+        myReceiver = new MyReceiver();
         initView();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
     }
 
@@ -96,10 +109,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         fragments = new ArrayList<>();
         fragments.add(new HomePageFragment());
         fragments.add(new StoreFragment());
-        fragments.add(new CommunityFragment());
-
-        //判断登录的信息设置相应的页面
+        fragments.add(new PersonalBusinessFragment());
         setMyFragment();
+
+        IntentFilter intentFilter = new IntentFilter("com.example.broadcasttest.MY_BROADCAST");
+        registerReceiver(myReceiver,intentFilter);
+
 
         viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), fragments));
         viewPager.addOnPageChangeListener(this);
@@ -107,19 +122,37 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     }
 
     private void setMyFragment() {
-
-        //if (UnderseaWorldApplication.getUsersign()==null||UnderseaWorldApplication.getUsersign().equals("")){
         fragments.add(new PersonalUnloginFragment());
-        //}else if(UnderseaWorldApplication.getUsersign().equals("顾客")){
-        // fragments.add(new PersonalFragment());
-        //}else if (UnderseaWorldApplication.getUsersign().equals("商家")){
-        //fragments.add(new PersonalBusinessFragment());
-        //}
+
+    }
+    //用于接收登录成功后获取的消息来改变相应fragment
+    public class MyReceiver extends BroadcastReceiver{
+
+        public MyReceiver() {
+
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String mobile = intent.getStringExtra("key");
+            Log.e("tag","mobile==========="+mobile);
+            if (mobile.isEmpty()){
+                setMyFragment();
+            }else{
+                fragments.add(new PersonalFragment());
+            }
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(myReceiver);
     }
 
     /**

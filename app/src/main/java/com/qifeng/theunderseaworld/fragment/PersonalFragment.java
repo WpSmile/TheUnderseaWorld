@@ -11,15 +11,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.activity.MainActivity;
 import com.qifeng.theunderseaworld.activity.PersonalActivity;
 import com.qifeng.theunderseaworld.adapter.PersinalCustomerTuijianAdapter;
+import com.qifeng.theunderseaworld.bean.CartTuijianBean;
 import com.qifeng.theunderseaworld.bean.PersonalCustomerTuijianBean;
+import com.qifeng.theunderseaworld.utils.HttpRequestWrap;
 import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.utils.OnResponseHandler;
+import com.qifeng.theunderseaworld.utils.RequestHandler;
+import com.qifeng.theunderseaworld.utils.RequestStatus;
 import com.qifeng.theunderseaworld.view.ImageViewPlus;
+import com.qifeng.theunderseaworld.view.SpaceItemDecoretion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,7 +52,7 @@ public class PersonalFragment extends Fragment {
     Unbinder unbinder;
 
     PersinalCustomerTuijianAdapter mAdapter;
-    ArrayList<PersonalCustomerTuijianBean> list;
+    ArrayList<CartTuijianBean> list;
     LinearLayoutManager manager;
 
 
@@ -59,27 +70,55 @@ public class PersonalFragment extends Fragment {
         mContext = (MainActivity) getActivity();
 
         initView();
+        initData();
         return view;
+    }
+
+    private void initData() {
+        downloadCainixihuan();
+
+    }
+
+    private void downloadCainixihuan() {
+        HttpRequestWrap httpRequestWrap;
+        httpRequestWrap = new HttpRequestWrap(getContext());
+        httpRequestWrap.setMethod(HttpRequestWrap.POST);
+        httpRequestWrap.setCallBack(new RequestHandler(getContext(), new OnResponseHandler() {
+            @Override
+            public void onResponse(String s, RequestStatus status) {
+                if (status == RequestStatus.SUCCESS) {
+                    if (!s.isEmpty()) {
+                        JSONObject jsonObject = JSONObject.parseObject(s);
+                        JSONObject j = jsonObject.getJSONObject("result");
+                        JSONArray array = j.getJSONArray("retData");
+                        for (int i = 0; i < array.size(); i++) {
+                            CartTuijianBean bean = new CartTuijianBean();
+                            JSONObject x = array.getJSONObject(i);
+                            bean.setGoodsId(x.getString("goods_id"));
+                            bean.setGoodsTitle(x.getString("goods_title"));
+                            bean.setGoodsPrice(x.getString("goods_price"));
+                            list.add(bean);
+                        }
+                        mAdapter.initData(list);
+                    }
+                }
+            }
+        }));
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("num", 3 + "");
+        httpRequestWrap.send(I.SERVER_URL + "HootGoods" + I.INDEX, map);
     }
 
     private void initView() {
         list = new ArrayList<>();
-
-        PersonalCustomerTuijianBean bean = new PersonalCustomerTuijianBean();
-        bean.setImage(R.drawable.today_activity_default);
-        bean.setTitle("神奇的海底隧道");
-        bean.setSign("多姿多彩的海洋生物，将神秘莫测、变化万千、绚丽多彩的海洋世界展示在广大市民眼前....");
-        bean.setPrice("￥35");
-        bean.setPercent("好评率97%");
-        for (int i = 0; i < 2; i++) {
-            list.add(bean);
-        }
 
         manager = new LinearLayoutManager(mContext);
         mAdapter = new PersinalCustomerTuijianAdapter(mContext, list);
 
         itemCustomerRecyclerView.setAdapter(mAdapter);
         itemCustomerRecyclerView.setLayoutManager(manager);
+        itemCustomerRecyclerView.setHasFixedSize(true);
+        itemCustomerRecyclerView.addItemDecoration(new SpaceItemDecoretion(8));
 
     }
 

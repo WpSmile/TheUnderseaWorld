@@ -23,6 +23,8 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             + UserDao.USER_COLUMN_AVATAR_TYPE + " INTEGER, "
             + UserDao.USER_COLUMN_AVATAR_PATH + " TEXT, "
             + UserDao.USER_COLUMN_AVATAR_SUFFIX + " TEXT, "
+            + UserDao.USER_COLUMN_MOBILE + " TEXT, "
+            + UserDao.USER_COLUMN_USER_ID + " TEXT, "
             + UserDao.USER_COLUMN_AVATAR_LASTUPDATE_TIME + " TEXT);";
     private static DBOpenHelper instance;
 

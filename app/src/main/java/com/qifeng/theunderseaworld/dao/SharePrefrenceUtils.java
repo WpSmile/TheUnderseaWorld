@@ -10,7 +10,9 @@ import android.content.SharedPreferences;
 public class SharePrefrenceUtils {
     private static final String SHARE_NAME = "saveUserInfo";
     private static SharePrefrenceUtils instance;
+    private static final String SHARE_KEY_USER_ID = "share_key_user_id";
     private static final String SHARE_KEY_USER_NAME = "share_key_user_name";
+    private static final String SHARE_KEY_USER_MOBILE = "share_key_user_mobile";
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
 

@@ -11,7 +11,7 @@
         android:background="@color/white">
 
         <CheckBox
-            android:id="@+id/id_checkbox1"
+            android:id="@+id/item_id_checkbox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -24,11 +24,11 @@
             android:layout_height="match_parent"
             android:src="@drawable/today_activity_default"
             android:scaleType="fitXY"
-            android:layout_toRightOf="@+id/id_checkbox1"
+            android:layout_toRightOf="@+id/item_id_checkbox1"
             android:layout_marginLeft="10dp"
             />
         <TextView
-            android:id="@+id/tv_goods_name"
+            android:id="@+id/item_tv_goods_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="海底世界儿童票"

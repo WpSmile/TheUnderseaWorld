@@ -268,34 +268,48 @@ public class PersonalUnloginFragment extends Fragment {
                     if (s.isEmpty()) {
                         Toast.makeText(mContext, R.string.login_fail, Toast.LENGTH_SHORT).show();
                     } else {
-                        L.e("tag", "s=====================" + s);
                         com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(s);
-                        String result = jsonObject.getString("result");
-                        com.alibaba.fastjson.JSONObject jsonObject1 = JSON.parseObject(result);
-                        String retData = jsonObject1.getString("retData");
-                        if (!retData.isEmpty()){
+                        com.alibaba.fastjson.JSONObject result = jsonObject.getJSONObject("result");
+                        String retData = result.getString("retData");
+                        Log.e("tag", "login_retData===============" + retData);
+                        com.alibaba.fastjson.JSONObject data = result.getJSONObject("retData");
+
+                        String username = data.getString("username");
+                        String userid = data.getString("user_id");
+                        String email = data.getString("email");
+                        String mobile = data.getString("mobile");
+                        String realname = data.getString("real_name");
+                        String nickname = data.getString("nickname");
+                        String qq = data.getString("qq");
+
+                        if (!retData.isEmpty()) {
                             Toast.makeText(mContext, R.string.login_success, Toast.LENGTH_SHORT).show();
-                            com.alibaba.fastjson.JSONObject jsonObject2 = JSON.parseObject(retData);
-                            String mobile = jsonObject2.getString("mobile");
-                            Log.e("tag","mobile=============="+mobile);
+
+                            //登录成功后发送广播改变我的页面布局
+                            Intent intent = new Intent("com.example.broadcasttest.MY_BROADCAST");
+                            intent.putExtra("key", username);
+                            mContext.sendBroadcast(intent);
+
                             User user = new User();
+                            user.setUserId(userid);
+                            user.setUsername(username);
+                            user.setEmail(email);
                             user.setMobile(mobile);
+                            user.setRealName(realname);
+                            user.setNickname(nickname);
+                            user.setQq(qq);
 
                             UserDao dao = new UserDao(mContext);
                             boolean isSuccess = dao.saveUser(user);
-
-                            if (isSuccess) {
-                                //保存登录的用户信息
+                            if (isSuccess){
                                 SharePrefrenceUtils.getInstance(mContext).saveUser(user.getUsername());
                                 UnderseaWorldApplication.setUser(user);
 
-
-                                Toast.makeText(mContext, "hahahaha==========登录成功了！！！！！！", Toast.LENGTH_SHORT).show();
-                            } else {
+                            }else {
                                 Toast.makeText(mContext, R.string.user_database_error, Toast.LENGTH_SHORT).show();
                             }
-                        }
 
+                        }
                     }
                     pd.dismiss();
                 }

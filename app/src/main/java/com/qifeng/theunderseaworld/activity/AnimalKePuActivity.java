@@ -1,24 +1,51 @@
 package com.qifeng.theunderseaworld.activity;
 
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.transition.TransitionManager;
+import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
+import com.qifeng.theunderseaworld.adapter.AnimalButtonAdapter;
+import com.qifeng.theunderseaworld.bean.AnimalButtonBean;
 import com.qifeng.theunderseaworld.bean.AnimalDetailsBean;
+import com.qifeng.theunderseaworld.bean.MessageEvent;
+import com.qifeng.theunderseaworld.utils.HttpRequestWrap;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
-import com.qifeng.theunderseaworld.utils.OkUtils;
+import com.qifeng.theunderseaworld.utils.OnResponseHandler;
+import com.qifeng.theunderseaworld.utils.RequestHandler;
+import com.qifeng.theunderseaworld.utils.RequestStatus;
 import com.qifeng.theunderseaworld.utils.StatusBarCompat;
 import com.qifeng.theunderseaworld.view.FlowIndicator;
 import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
+import com.qifeng.theunderseaworld.view.SpaceItemDecoretion;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 
 public class AnimalKePuActivity extends AppCompatActivity {
     private final static String TAG = AnimalKePuActivity.class.getCanonicalName();
@@ -26,11 +53,24 @@ public class AnimalKePuActivity extends AppCompatActivity {
 
     FlowIndicator flowIndicator;
 
-    int animalid;
+    String animalid;
     @BindView(R.id.kepu_slideAuto)
     SlideAutoLoopView slideAutoLoopView;
     @BindView(R.id.animal_text_intro)
     TextView animalTextIntro;
+
+    String[] strPathArray;
+
+    @BindView(R.id.animalkepudetails_recyclerView)
+    RecyclerView animalkepudetailsRecyclerView;
+
+
+    GridLayoutManager manager;
+    AnimalButtonAdapter mAdapter;
+    ArrayList<AnimalButtonBean> arraylist;
+    AnimalButtonAdapter.MyClickListener mListener;
+    int selected;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +81,7 @@ public class AnimalKePuActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         setContentView(R.layout.activity_animal_ke_pu);
+
         //API20以上
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             //沉侵
@@ -49,69 +90,153 @@ public class AnimalKePuActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mContext = this;
-        animalid = getIntent().getIntExtra("id", 0);
+        animalid = getIntent().getStringExtra("id");
         L.e(TAG, animalid + "");
 
         initView();
         initData();
     }
 
+
     private void initData() {
-        downloadAnimalDetails();
+        downloadAnimalKePu();//下载生成选项卡的方法
+        if (animalid != null) {
+            downloadAnimalDetails(animalid);//通过首页动物item点击传的id下载方法
+        }
     }
 
-    private void downloadAnimalDetails() {
-        OkUtils<AnimalDetailsBean> utils = new OkUtils<>(mContext);
-        utils.url(I.SERVER_URL + "ScienceDetails" + I.INDEX)
-                .addParam("science_id", animalid + "")
-                .targetClass(AnimalDetailsBean.class)
-                .post()
-                .execute(new OkUtils.OnCompleteListener<AnimalDetailsBean>() {
-                    @Override
-                    public void onSuccess(AnimalDetailsBean result) {
-                        if (result != null) {
-                            showAnimalDetails(result);
+    @Override
+    public void setContentTransitionManager(TransitionManager tm) {
+        super.setContentTransitionManager(tm);
+    }
+
+    private void downloadAnimalKePu() {
+        HttpRequestWrap httpRequestWrap;
+        httpRequestWrap = new HttpRequestWrap(mContext);
+        httpRequestWrap.setMethod(HttpRequestWrap.POST);
+        httpRequestWrap.setCallBack(new RequestHandler(mContext, new OnResponseHandler() {
+            @Override
+            public void onResponse(String s, RequestStatus status) {
+                if (status == RequestStatus.SUCCESS) {
+                    if (!s.isEmpty()) {
+                        JSONObject jsonObject = JSONObject.parseObject(s);
+                        JSONObject j = jsonObject.getJSONObject("result");
+                        JSONArray array = j.getJSONArray("retData");
+                        for (int i = 0; i < array.size(); i++) {
+                            AnimalButtonBean bean = new AnimalButtonBean();
+                            JSONObject x = array.getJSONObject(i);
+                            bean.setBtn_title(x.getString("science_title"));
+                            bean.setBtn_id(x.getString("science_id"));
+                            arraylist.add(bean);
+
                         }
+                        Log.e(TAG, "arraylist==============" + arraylist.toString());
+                        mAdapter.initData(arraylist);
                     }
+                }
+            }
+        }));
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("num", 10 + "");
+        httpRequestWrap.send(I.SERVER_URL + "ScienceList" + I.INDEX, map);
+    }
 
-                    @Override
-                    public void onError(String error) {
+    private void downloadAnimalDetails(String strId) {
 
+        HttpRequestWrap httpRequestWrap = null;
+        httpRequestWrap = new HttpRequestWrap(mContext);
+        httpRequestWrap.setMethod(HttpRequestWrap.POST);
+        httpRequestWrap.setCallBack(new RequestHandler(mContext, new OnResponseHandler() {
+            @Override
+            public void onResponse(String s, RequestStatus status) {
+                if (status == RequestStatus.SUCCESS) {
+                    if (!s.isEmpty()) {
+                        JSONObject jsonObject = JSONObject.parseObject(s);
+                        JSONObject j = jsonObject.getJSONObject("result");
+                        JSONArray array = j.getJSONArray("retData");
+
+                        Log.e("tag", "array.size============" + array.size());
+                        AnimalDetailsBean bean = new AnimalDetailsBean();
+                        strPathArray = new String[array.size()];
+
+                        for (int i = 0; i < array.size(); i++) {
+
+                            JSONObject x = array.getJSONObject(i);
+                            bean.setScienceTitle(x.getString("science_title"));
+                            bean.setScienceContent(x.getString("science_content"));
+                            bean.setPath(x.getString("path"));
+                            strPathArray[i] = x.getString("path");
+
+                            showAnimalDetails(bean);
+                        }
+                        Log.e("tag", "strPathArray========" + strPathArray.length);
                     }
-                });
+                }
+            }
+        }));
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("science_id", strId);
+        httpRequestWrap.send(I.SERVER_URL + "ScienceDetails" + I.INDEX, map);
     }
 
     private void showAnimalDetails(AnimalDetailsBean details) {
-        animalTextIntro.setText(details.getAnimalIntro());
-        slideAutoLoopView.startPlayLoop(flowIndicator, getAlbumImgUrl(details), getAlbumImgCount(details));
+        animalTextIntro.setText(details.getScienceContent());
+        slideAutoLoopView.startPlayLoop(flowIndicator, getAlbumImgUrl(), getAlbumImgCount());
     }
 
-    private int getAlbumImgCount(AnimalDetailsBean details) {
-        /*if (details.getProperties() != null && details.getProperties().length > 0) {
-            return details.getProperties()[0].getAlbums().length;
-        }*/
-        return 0;
+    private int getAlbumImgCount() {
+        return strPathArray.length;
     }
 
-    private String[] getAlbumImgUrl(AnimalDetailsBean details) {
+    private String[] getAlbumImgUrl() {
         String[] url = new String[]{};
-        /*if (details.getProperties() != null && details.getProperties().length > 0) {
-            AlbumsBean[] albums = details.getProperties()[0].getAlbums();
-            url = new String[albums.length];
-            for (int i = 0; i < albums.length; i++) {
-                url[i] = albums[i].getImgUrl();
-            }
-        }*/
+        url = strPathArray;
         return url;
-
     }
 
     private void initView() {
         flowIndicator = (FlowIndicator) findViewById(R.id.kepu_flowIndicator);
+
+        arraylist = new ArrayList<>();
+        manager = new GridLayoutManager(mContext, 5, LinearLayoutManager.VERTICAL, false);
+        mAdapter = new AnimalButtonAdapter(mContext, arraylist);
+
+
+        mListener = new AnimalButtonAdapter.MyClickListener() {
+            @Override
+            public void onClick(int postion, View view) {
+                TextView textView = (TextView) view;
+                for(int i = 0;i<10;i++){
+                    if (i == postion){
+                        textView.setBackground(getResources().getDrawable(R.drawable.button_no_radius_with_blue_solid));
+                        textView.setTextColor(Color.WHITE);
+                        AnimalButtonBean bean = arraylist.get(postion);
+                        downloadAnimalDetails(bean.getBtn_id());
+                    }else{
+                        textView.setBackground(getResources().getDrawable(R.drawable.buttom_no_radius_with_solid));
+                        textView.setTextColor(getResources().getColor(R.color.bottom_blue));
+                    }
+                }
+            }
+        };
+        mAdapter.setMyListener(mListener);
+        mAdapter.setId(animalid);
+        animalkepudetailsRecyclerView.setLayoutManager(manager);
+        animalkepudetailsRecyclerView.setAdapter(mAdapter);
+        animalkepudetailsRecyclerView.setHasFixedSize(true);
+        animalkepudetailsRecyclerView.addItemDecoration(new SpaceItemDecoretion(8));
+
+
     }
+
 
     @OnClick(R.id.kepu_img_back)
     public void onClick() {
         MFGT.finish(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

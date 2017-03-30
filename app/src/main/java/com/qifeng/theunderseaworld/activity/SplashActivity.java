@@ -45,13 +45,12 @@ public class SplashActivity extends AppCompatActivity {
                     }
                 }
                 User user = UnderseaWorldApplication.getUser();
-                L.e("fulicenter,user="+user);
-                String username = SharePrefrenceUtils.getInstance(mContext).getUser();
-                L.e("fulicenter,username="+username);
-                if (user==null&&username!=null){
+                L.e("underseaworld,user="+user);
+                String userid = SharePrefrenceUtils.getInstance(mContext).getUser();
+                L.e("underseaworld,userid="+userid);
+                if (user==null&&userid!=null){
                     UserDao dao = new UserDao(mContext);
-                    user = dao.getUser(username);
-                    L.e("database,user="+user);
+                    user = dao.getUser(userid);
                     if (user!=null){
                         UnderseaWorldApplication.setUser(user);
                     }

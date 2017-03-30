@@ -13,6 +13,7 @@ public class PersonalCustomerTuijianBean implements Serializable {
     private String sign;
     private String percent;
     private String price;
+    private String goods_id;
 
     public int getImage() {
         return image;
@@ -62,15 +63,10 @@ public class PersonalCustomerTuijianBean implements Serializable {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "PersonalCustomerTuijianBean{" +
-                "image=" + image +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", title='" + title + '\'' +
-                ", sign='" + sign + '\'' +
-                ", percent='" + percent + '\'' +
-                ", price='" + price + '\'' +
-                '}';
+    public void setGoodsId(String goods_id) {
+        this.goods_id = goods_id;
+    }
+    public String getGoodsId(){
+        return goods_id;
     }
 }

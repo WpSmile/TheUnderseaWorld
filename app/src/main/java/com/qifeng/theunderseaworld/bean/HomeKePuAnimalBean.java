@@ -38,7 +38,7 @@ public class HomeKePuAnimalBean implements Serializable {
 
     @Override
     public String toString() {
-        return "HomeKePuAnimalBean{" +
+        return "{" +
                 "scienceId='" + scienceId + '\'' +
                 ", scienceTitle='" + scienceTitle + '\'' +
                 ", scienceEnglishTitle='" + scienceEnglishTitle + '\'' +

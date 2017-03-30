@@ -155,36 +155,6 @@ public class RegisterByPhoneActivity extends AppCompatActivity {
         String phonenumber = registerEdtInputPhonenumber.getText().toString();
         String password = registerEdtPassword.getText().toString();
 
-        /*OkHttpUtils<String> utils = new OkHttpUtils<>(mContext);
-        utils.url(I.SERVER_URL + I.REQUEST_REGISTER + I.INDEX)
-                .addParam("mobile", phonenumber)
-                .addParam("password", password)
-                .targetClass(String.class)
-                .post()
-                .execute(new OkHttpUtils.OnCompleteListener<String>() {
-                    @Override
-                    public void onSuccess(String s) {
-                        pd.dismiss();
-                        if (!s.isEmpty()) {
-                            L.e("tag", "注册============" + s);
-                            Result result = ResultUtils.getResultFromJson(s, Result.class);
-                            if (result.isRetMsg()) {
-                                Toast.makeText(mContext, R.string.register_success, Toast.LENGTH_SHORT).show();
-                                MFGT.finish(mContext);
-                            } else {
-                                Toast.makeText(mContext, R.string.register_fail_exists, Toast.LENGTH_SHORT).show();
-                                registerEdtInputPhonenumber.requestFocus();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onError(String error) {
-                        pd.dismiss();
-                        Toast.makeText(mContext, error, Toast.LENGTH_SHORT).show();
-                    }
-                });*/
-
         HttpRequestWrap httpRequestWrap = null;
         httpRequestWrap = new HttpRequestWrap(mContext);
         httpRequestWrap.setMethod(HttpRequestWrap.POST);
@@ -207,6 +177,7 @@ public class RegisterByPhoneActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(mContext, R.string.register_fail_exists, Toast.LENGTH_SHORT).show();
                             registerEdtInputPhonenumber.requestFocus();
+                            pd.dismiss();
                         }
 
                     }

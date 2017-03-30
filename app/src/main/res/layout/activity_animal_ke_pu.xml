@@ -75,7 +75,17 @@
                     />
             </RelativeLayout>
 
-            <TableLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/animalkepudetails_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <!--<TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:shrinkColumns="0,1,2,3,4"
@@ -84,6 +94,7 @@
                 android:layout_marginRight="10dp">
                 <TableRow>
                     <Button
+                        android:id="@+id/animal_details_btn_shark"
                         android:text="鲨鱼"
                         android:layout_margin="5dp"
                         android:layout_height="35dp"
@@ -92,13 +103,15 @@
                         />
 
                     <Button
+                        android:id="@+id/animal_details_btn_shuimu"
                         android:text="水母"
                         android:layout_margin="5dp"
                         android:layout_height="35dp"
-                        android:textColor="@color/bottom_blue"
-                        android:background="@drawable/buttom_no_radius_with_solid"
+                        android:textColor="@color/white"
+                        android:background="@drawable/button_no_radius_with_blue_solid"
                         />
                     <Button
+                        android:id="@+id/animal_details_btn_haibao"
                         android:text="海豹"
                         android:layout_margin="5dp"
                         android:layout_height="35dp"
@@ -106,6 +119,7 @@
                         android:background="@drawable/buttom_no_radius_with_solid"
                         />
                     <Button
+                        android:id="@+id/animal_details_btn_haigui"
                         android:text="海龟"
                         android:layout_margin="5dp"
                         android:layout_height="35dp"
@@ -113,6 +127,7 @@
                         android:background="@drawable/buttom_no_radius_with_solid"
                         />
                     <Button
+                        android:id="@+id/animal_details_btn_haima"
                         android:text="海马"
                         android:layout_height="35dp"
                         android:layout_margin="5dp"
@@ -123,6 +138,7 @@
 
                 <TableRow>
                     <Button
+                        android:id="@+id/animal_details_btn_liulongjiao"
                         android:text="六角龙"
                         android:layout_margin="5dp"
                         android:layout_height="35dp"
@@ -130,6 +146,7 @@
                         android:background="@drawable/buttom_no_radius_with_solid"
                         />
                     <Button
+                        android:id="@+id/animal_details_btn_dianman"
                         android:text="电鳗"
                         android:layout_margin="5dp"
                         android:layout_height="35dp"
@@ -137,6 +154,7 @@
                         android:background="@drawable/buttom_no_radius_with_solid"
                         />
                     <Button
+                        android:id="@+id/animal_details_btn_fue"
                         android:text="福鳄"
                         android:layout_margin="5dp"
                         android:layout_height="35dp"
@@ -144,6 +162,7 @@
                         android:background="@drawable/buttom_no_radius_with_solid"
                         />
                     <Button
+                        android:id="@+id/animal_details_btn_xuediao"
                         android:text="雪鲷"
                         android:layout_margin="5dp"
                         android:layout_height="35dp"
@@ -151,6 +170,7 @@
                         android:background="@drawable/buttom_no_radius_with_solid"
                         />
                     <Button
+                        android:id="@+id/animal_details_btn_chiyao"
                         android:text="刺鳐"
                         android:layout_margin="5dp"
                         android:layout_height="35dp"
@@ -160,7 +180,8 @@
                 </TableRow>
 
 
-            </TableLayout>
+            </TableLayout>-->
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="145dp"
@@ -204,7 +225,6 @@
 
         </LinearLayout>
     </com.qifeng.theunderseaworld.view.MyScrollView>
-
 
 
 </LinearLayout>

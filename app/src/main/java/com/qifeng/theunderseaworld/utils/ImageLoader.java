@@ -375,6 +375,9 @@ public class ImageLoader {
         setImage(I.DOWNLOAD_IMG_URL + thumb, context, imageView, isDragging);
     }
     public static void downloadImgbyurl(Context context, ImageView imageView, String imageurl, boolean isDragging) {
+        setImage1(I.SERVER_IMAGE_URL+imageurl, context, imageView, isDragging);
+    }
+    public static void downloadImgDefa(Context context, ImageView imageView, String imageurl, boolean isDragging) {
         setImage1(I.SERVER_ROOT+imageurl, context, imageView, isDragging);
     }
 

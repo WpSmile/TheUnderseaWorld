@@ -17,12 +17,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * ��װHttp�������
- * 
- * @author �Ƽ������޺�
- * 
- */
+
 public class HttpRequestWrap {
 	public static final String GET = "get";
 	public static final String POST = "post";
@@ -31,30 +26,19 @@ public class HttpRequestWrap {
 	private Context context;
 	private RequestHandler requestHandler;
 
-	/**
-	 * ��������
-	 */
+
 	private HttpMethod method;
 
-	/**
-	 * û��Context��Ĭ����GET����
-	 */
 	public HttpRequestWrap() {
 		this(null, GET);
 	}
 
-	/**
-	 * Ĭ����Get����Ĺ��췽��
-	 * 
-	 * @param context
-	 */
+
 	public HttpRequestWrap(Context context) {
 		this(context, GET);
 	}
 
-	/**
-	 * ���췽��
-	 */
+
 	public HttpRequestWrap(Context context, String method) {
 		this.context = context;
 		resetMethod(method);
@@ -62,33 +46,22 @@ public class HttpRequestWrap {
 		setCookie();
 	}
 
-	/**
-	 * ������������
-	 * 
-	 * @param method
-	 */
+
 	public void setMethod(String method) {
 		resetMethod(method);
 	}
 	
-	/**
-	 * ������������
-	 */
+
 	public void setCallBack(RequestHandler requestHandler) {
 		this.requestHandler = requestHandler;
 	}
 	
-	/**
-	 * ��ȡHttpUtils����
-	 * @return
-	 */
+
 	public HttpUtils getHttpUtils() {
 		return httpUtils;
 	}
 	
-	/**
-	 * ��SessionID���͵�������
-	 */
+
 	private void setCookie(){
 		//���SessionID
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
@@ -103,56 +76,41 @@ public class HttpRequestWrap {
 			cc.setDomain("tr.zzapi.gson.cn");
 			cc.setPath("/");
 			
-			//����CookieStore
+
 			BasicCookieStore cs = new BasicCookieStore();
 			cs.addCookie(cc);
 			
-			//����httpUtils
+
 			httpUtils.configCookieStore(cs);
 		}
 	}
 
-	/**
-	 * ת����������
-	 * 
-	 * @param method
-	 */
+
 	private void resetMethod(String method) {
 		if (GET.equals(method)) {
 			this.method = HttpMethod.GET;
 		} else if (POST.equals(method)) {
 			this.method = HttpMethod.POST;
 		} else {
-			throw new IllegalArgumentException("ֻ֧��get��post����");
+			throw new IllegalArgumentException("请求不合理");
 		}
 	}
 	
-	/**
-	 * ��������
-	 * @param url ���������URL
-	 * @param params �����б�
-	 */
+
 	public void send(String url, Map<String, Object> params){
 		Log.d("URL", url);
 		httpUtils.send(method, url, 
 				tranlateParams(params), requestHandler);
 	}
 	
-	/**
-	 * ��������
-	 * @param url ���������URL
-	 */
+
 	public void send(String url){
 		httpUtils.send(method, url, null, requestHandler);
 	}
 	
 	
 	
-	/**
-	 * ��Map����ת����ΪRequestParams����
-	 * @param map
-	 * @return
-	 */
+
 	private RequestParams tranlateParams(Map<String, Object> map){
 		RequestParams params = new RequestParams();
 		if(map == null) return params;

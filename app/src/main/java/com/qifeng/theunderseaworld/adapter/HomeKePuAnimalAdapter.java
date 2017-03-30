@@ -3,6 +3,7 @@ package com.qifeng.theunderseaworld.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,9 +37,16 @@ public class HomeKePuAnimalAdapter extends RecyclerView.Adapter {
     RecyclerView parent;
 
 
-    public HomeKePuAnimalAdapter(Context mContext, ArrayList<HomeKePuAnimalBean> mList) {
+    public HomeKePuAnimalAdapter(Context mContext, ArrayList<HomeKePuAnimalBean> List) {
         this.mContext = mContext;
-        this.mList = mList;
+        if (mList!=null){
+            this.mList.clear();
+            this.mList.addAll(List);
+        }else {
+            mList=new ArrayList<>();
+            mList.addAll(List);
+        }
+
     }
 
     @Override
@@ -72,10 +80,13 @@ public class HomeKePuAnimalAdapter extends RecyclerView.Adapter {
     }
 
     public void initData(ArrayList<HomeKePuAnimalBean> kePuAnimallist) {
+
+        Log.e("tag","kepuanimallist================"+kePuAnimallist);
         if (mList != null) {
             mList.clear();
         }
-        mList.addAll(kePuAnimallist);
+        mList.addAll(kePuAnimallist);//这里 我觉得哈 你的形参里面给的list实际就是mlist的地址 然后 你在清空mlist的时候 kePulis也为空了 然后空.addAll(空)=空
+        Log.e("tag","mlist=============="+mList);
         notifyDataSetChanged();
     }
 
@@ -98,8 +109,8 @@ public class HomeKePuAnimalAdapter extends RecyclerView.Adapter {
 
         @OnClick(R.id.item_rl_animal)
         public void onClick() {
-            int id = (int) itemRlAnimal.getTag();
-
+            String  id = (String) itemRlAnimal.getTag();
+            Log.e("tag","kepuID++++++++++++++++"+id);
             MFGT.gotoAnimalKePuActivity((Activity) mContext,id);
         }
     }

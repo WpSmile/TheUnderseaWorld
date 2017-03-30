@@ -169,10 +169,12 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
-        <service
+        <receiver
             android:name=".receiver.MessageReceiver"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"></receiver>
+
+
     </application>
 
 </manifest>

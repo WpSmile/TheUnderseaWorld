@@ -10,11 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.UnderseaWorldApplication;
@@ -23,12 +26,18 @@ import com.qifeng.theunderseaworld.adapter.CartTuijianAdapter;
 import com.qifeng.theunderseaworld.bean.CartBean;
 import com.qifeng.theunderseaworld.bean.CartTuijianBean;
 import com.qifeng.theunderseaworld.bean.User;
+import com.qifeng.theunderseaworld.utils.HttpRequestWrap;
 import com.qifeng.theunderseaworld.utils.MFGT;
 import com.qifeng.theunderseaworld.utils.OkUtils;
+import com.qifeng.theunderseaworld.utils.OnResponseHandler;
+import com.qifeng.theunderseaworld.utils.RequestHandler;
+import com.qifeng.theunderseaworld.utils.RequestStatus;
 import com.qifeng.theunderseaworld.utils.StatusBarCompat;
 import com.qifeng.theunderseaworld.view.SpaceItemDecoretion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -102,14 +111,7 @@ public class CartActivity extends AppCompatActivity {
         //设置是否自动修复
         cartRecyclerView.setHasFixedSize(true);
         cartRecyclerView.addItemDecoration(new SpaceItemDecoretion(12));
-        CartBean bean = new CartBean();
-        bean.setImage(R.drawable.today_activity_default);
-        bean.setName("海底世界儿童票");
-        bean.setCount(1);
-        bean.setPrice(35);
-        for (int i = 0; i < 10; i++) {
-            cartlist.add(bean);
-        }
+
 
         myReceiver = new updateCartReceiver();
 
@@ -121,14 +123,6 @@ public class CartActivity extends AppCompatActivity {
         //设置是否自动修复
         cartRvTuijian.setHasFixedSize(true);
         cartRvTuijian.addItemDecoration(new SpaceItemDecoretion(12));
-        CartTuijianBean cartTuijianBean = new CartTuijianBean();
-        cartTuijianBean.setImage(R.drawable.today_activity_default);
-        cartTuijianBean.setTitle("南宁海底世界");
-        cartTuijianBean.setPrice(35);
-        cartTuijianBean.setTicketStyle("老年票");
-        for (int i = 0; i < 3; i++) {
-            tuijianList.add(cartTuijianBean);
-        }
 
 
     }
@@ -140,36 +134,92 @@ public class CartActivity extends AppCompatActivity {
         downloadGuessLike();
     }
 
-    private void downloadGuessLike() {//获取才你喜欢数据的方法
+    private void downloadGuessLike() {//获取为你推荐数据的方法
+        HttpRequestWrap httpRequestWrap;
+        httpRequestWrap = new HttpRequestWrap(mContext);
+        httpRequestWrap.setMethod(HttpRequestWrap.POST);
+        httpRequestWrap.setCallBack(new RequestHandler(mContext, new OnResponseHandler() {
+            @Override
+            public void onResponse(String s, RequestStatus status) {
+                if (status == RequestStatus.SUCCESS) {
+                    if (!s.isEmpty()) {
+                        JSONObject jsonObject = JSONObject.parseObject(s);
 
+
+                        JSONObject j = jsonObject.getJSONObject("result");
+
+                        JSONArray array = j.getJSONArray("retData");
+
+
+                        for (int i = 0; i < array.size(); i++) {
+                            CartTuijianBean bean = new CartTuijianBean();
+                            JSONObject x = array.getJSONObject(i);
+                            bean.setGoodsId(x.getString("goods_id"));
+                            bean.setGoodsTitle(x.getString("goods_title"));
+                            bean.setGoodsPrice(x.getString("goods_price"));
+                            bean.setImage(x.getString("image"));
+                            tuijianList.add(bean);
+
+                        }
+
+                        cartTuijianAdapter.initData(tuijianList);
+
+                    }
+                }
+            }
+        }));
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("num", 3 + "");
+        httpRequestWrap.send(I.SERVER_URL + "HootGoods" + I.INDEX, map);
     }
 
     private void downloadCart() {//获取购物车数据的方法
         user = UnderseaWorldApplication.getUser();
         if (user != null){//当用户不为空时才显示购物车中的数据
-            OkUtils<String> utils = new OkUtils<>(mContext);
-            utils.url(I.SERVER_URL+""+I.INDEX)
-                    .addParam("","")
-                    .post()
-                    .targetClass(String.class)
-                    .execute(new OkUtils.OnCompleteListener<String>() {
-                        @Override
-                        public void onSuccess(String s) {
+            HttpRequestWrap httpRequestWrap;
+            httpRequestWrap = new HttpRequestWrap(mContext);
+            httpRequestWrap.setMethod(HttpRequestWrap.POST);
+            httpRequestWrap.setCallBack(new RequestHandler(mContext, new OnResponseHandler() {
+                @Override
+                public void onResponse(String s, RequestStatus status) {
+                    if (status == RequestStatus.SUCCESS) {
+                        if (!s.isEmpty()) {
+                            JSONObject jsonObject = JSONObject.parseObject(s);
+                            Log.e("tag","jsonObject!!!!!!!!!!!!!!!!!!!"+jsonObject.toString());
+                            JSONArray jsonArray = jsonObject.getJSONArray(s);
+                            for (int i = 0 ;i<jsonArray.size();i++){
+                                CartBean bean = new CartBean();
+                                String goods_id = jsonObject.getString("goods_id");
+                                String image = jsonObject.getString("image");
+                                String goods_price = jsonObject.getString("goods_price");
+                                String goods_title = jsonObject.getString("goods_title");
+                                String goods_details = jsonObject.getString("goods_details");
+                                String goods_num = jsonObject.getString("goods_num");
 
+                                bean.setImage(image);
+                                bean.setGoodsDetails(goods_details);
+                                bean.setGoodsPrice(goods_price);
+                                bean.setGoodsTitle(goods_title);
+                                bean.setGoodsId(goods_id);
+                                bean.setGoodsNum(goods_num);
+
+                                cartlist.add(bean);
+                            }
+                            mAdapter.initData(cartlist);
                         }
-
-                        @Override
-                        public void onError(String error) {
-
-                        }
-                    });
+                    }
+                }
+            }));
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("num", user.getUserId() + "");
+            httpRequestWrap.send(I.SERVER_URL + "GetShopcart" + I.INDEX, map);
 
         }
     }
 
 
 
-    private void sumPrice(){
+    /*private void sumPrice(){
         cartIds = "";
 
         int sumPrice = 0;
@@ -191,7 +241,7 @@ public class CartActivity extends AppCompatActivity {
             tvCountNum.setText("￥0");
             //tvSaveNum.setText("￥0");
         }
-    }
+    }*/
 
     private int getPrice(String price) {
         price = price.substring(price.indexOf("￥")+1);
@@ -202,7 +252,7 @@ public class CartActivity extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            sumPrice();
+            //sumPrice();
             //setCartLayout(cartlist!=null&&cartlist.size()>0);
         }
     }

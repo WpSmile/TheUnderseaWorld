@@ -4,6 +4,7 @@ package com.qifeng.theunderseaworld;
 public interface I {
     String SERVER_ROOT = "http://ofrf20oms.bkt.clouddn.com/";
     String SERVER_URL = "http://192.168.31.58/hdsj/index.php/Api/";
+    String SERVER_IMAGE_URL = "http://192.168.31.58/hdsj/";
     String INDEX = "/index";
     /** 下拉刷新*/
     int ACTION_DOWNLOAD=0;

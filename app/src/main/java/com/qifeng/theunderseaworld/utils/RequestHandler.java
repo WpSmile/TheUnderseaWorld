@@ -17,7 +17,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
  */
 public class RequestHandler extends RequestCallBack<String> {
 	private Context context;
-	private ProgressDialog progressDialog;
+	//private ProgressDialog progressDialog;
 	private OnResponseHandler responseHandler;
 	private JSONValidator jsonValidator;
 
@@ -32,28 +32,28 @@ public class RequestHandler extends RequestCallBack<String> {
 	@Override
 	public void onStart() {
 		super.onStart();
-		openDialog();
+		//openDialog();
 	}
 
 	/**
 	 * �򿪽������Ի���
 	 */
 	private void openDialog() {
-		progressDialog = new ProgressDialog(context);
+		/*progressDialog = new ProgressDialog(context);
 		progressDialog.setTitle("����������");
 		progressDialog.setMessage("�������ڽ��У����Ժ�");
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);//����
-		progressDialog.show();
+		progressDialog.show();*/
 	}
-	
+
 	/**
 	 * �رս������Ի���
 	 */
-	private void closeDialog(){
+	/*private void closeDialog(){
 		if(progressDialog != null){
 			progressDialog.dismiss();
 		}
-	}
+	}*/
 
 	@Override
 	public void onLoading(long total, long current, boolean isUploading) {
@@ -65,7 +65,7 @@ public class RequestHandler extends RequestCallBack<String> {
 		if(responseHandler != null){
 			responseHandler.onResponse(null, RequestStatus.FAILURE);
 		}
-		closeDialog();
+		//closeDialog();
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class RequestHandler extends RequestCallBack<String> {
 			}
 		}
 		
-		closeDialog();
+		//closeDialog();
 	}
 
 }

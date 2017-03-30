@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qifeng.theunderseaworld.R;
-import com.qifeng.theunderseaworld.bean.PersonalCustomerTuijianBean;
-import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.bean.CartTuijianBean;
 
 import java.util.ArrayList;
 
@@ -24,18 +23,17 @@ import butterknife.OnClick;
  */
 public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
     static Context mContext;
-    ArrayList<PersonalCustomerTuijianBean> mlist;
+    ArrayList<CartTuijianBean> mlist;
     RecyclerView parent;
 
 
-
-    public PersinalCustomerTuijianAdapter(Context mContext, ArrayList<PersonalCustomerTuijianBean> list) {
+    public PersinalCustomerTuijianAdapter(Context mContext, ArrayList<CartTuijianBean> list) {
         this.mContext = mContext;
         this.mlist = list;
 
     }
 
-    public void initData(ArrayList<PersonalCustomerTuijianBean> list) {
+    public void initData(ArrayList<CartTuijianBean> list) {
         if (mlist != null) {
             mlist.clear();
         }
@@ -43,6 +41,7 @@ public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
         //mlist = list;
         notifyDataSetChanged();
     }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.parent = (RecyclerView) parent;
@@ -55,21 +54,10 @@ public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        /*((PersonalCustomerTuijianViewHolder) holder).tvGoodsNum.setText("(" + cartBean.getCount() + ")");
-
-        ((PersonalCustomerTuijianViewHolder) holder).tvGoodsName.setText(goods.getGoodsName());
-        ((PersonalCustomerTuijianViewHolder) holder).tvprice.setText(goods.getCurrencyPrice());
-        ((PersonalCustomerTuijianViewHolder) holder).idCheckbox1.setChecked(cartBean.isChecked());
-        ImageLoader.downloadImg(mContext, ((PersonalCustomerTuijianViewHolder) holder).ivGoodsPicture, goods.getGoodsThumb());
-        ((PersonalCustomerTuijianViewHolder) holder).idCheckbox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-                cartBean.setChecked(b);
-                mContext.sendBroadcast(new Intent(I.BROADCASE_UPDATE_CART));
-            }
-        });
-
-        ((PersonalCustomerTuijianViewHolder) holder).ivAddCart.setTag(position);*/
+        CartTuijianBean bean = mlist.get(position);
+        ((PersonalCustomerTuijianViewHolder) holder).itemPersonalCustomerTitle.setText(bean.getGoodsTitle());
+        ((PersonalCustomerTuijianViewHolder) holder).itemPersonalCustomerTextPrice.setText(bean.getGoodsPrice());
+        //ImageLoader.downloadImg(mContext, ((PersonalCustomerTuijianViewHolder) holder).ivGoodsPicture, goods.getGoodsThumb());
 
 
     }
@@ -78,8 +66,6 @@ public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return mlist == null ? 1 : mlist.size() + 1;
     }
-
-
 
 
     class PersonalCustomerTuijianViewHolder extends RecyclerView.ViewHolder {
@@ -98,6 +84,7 @@ public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
             super(view);
             ButterKnife.bind(this, view);
         }
+
         @OnClick(R.id.item_personal_customer_tuijian)
         public void onClick() {//
             //MFGT.gotoDetailsActivity(mContext);

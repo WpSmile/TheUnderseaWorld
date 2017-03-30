@@ -1,13 +1,16 @@
 package com.qifeng.theunderseaworld.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.bean.CartTuijianBean;
 
@@ -29,7 +32,13 @@ public class CartTuijianAdapter extends RecyclerView.Adapter {
 
     public CartTuijianAdapter(Context mContext, ArrayList<CartTuijianBean> list) {
         this.mContext = mContext;
-        this.mlist = list;
+        if (mlist!=null){
+            this.mlist.clear();
+            this.mlist.addAll(list);
+        }else {
+            mlist=new ArrayList<>();
+            mlist.addAll(list);
+        }
 
     }
 
@@ -54,22 +63,12 @@ public class CartTuijianAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        CartTuijianBean bean = mlist.get(position);
+        ((CartViewHolder) holder).tvItemSencondCartTitle.setText(bean.getGoodsTitle());
 
-        /*((CartViewHolder) holder).tvGoodsNum.setText("(" + cartBean.getCount() + ")");
+        ((CartViewHolder) holder).tvSencondPrice.setText("("+bean.getGoodsPrice()+")");
+        //ImageLoader.downloadImg(mContext, ((CartViewHolder) holder).ivGoodsPicture, goods.getGoodsThumb());
 
-        ((CartViewHolder) holder).tvGoodsName.setText(goods.getGoodsName());
-        ((CartViewHolder) holder).tvprice.setText(goods.getCurrencyPrice());
-        ((CartViewHolder) holder).idCheckbox1.setChecked(cartBean.isChecked());
-        ImageLoader.downloadImg(mContext, ((CartViewHolder) holder).ivGoodsPicture, goods.getGoodsThumb());
-        ((CartViewHolder) holder).idCheckbox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-                cartBean.setChecked(b);
-                mContext.sendBroadcast(new Intent(I.BROADCASE_UPDATE_CART));
-            }
-        });
-
-        ((CartViewHolder) holder).ivAddCart.setTag(position);*/
 
 
     }

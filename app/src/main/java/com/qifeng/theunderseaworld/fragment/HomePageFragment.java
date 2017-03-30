@@ -55,6 +55,7 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class HomePageFragment extends Fragment {
+    final String DEFAULT_ID = 71+"";
     MainActivity mContext;
     ArrayList<HomeKePuAnimalBean> mKepulist;//动物科普的集合
     @BindView(R.id.home_rv_kepu)
@@ -119,20 +120,22 @@ public class HomePageFragment extends Fragment {
                 if (status == RequestStatus.SUCCESS) {
                     if (!s.isEmpty()) {
                         JSONObject jsonObject = JSONObject.parseObject(s);
-                        Log.e("tag", "jsonObject=================" + jsonObject.toString());
-                        String result = jsonObject.getString("result");
-                        Log.e("tag", "result=============" + result);
 
-                        JSONObject jsonObject1 = JSONObject.parseObject(result);
-                        String retData = jsonObject1.getString("retData");
 
-                        Log.e("tag","retData================="+retData);
+                        JSONObject j = jsonObject.getJSONObject("result");
 
-                        Gson gson = new Gson();
-                        CartTuijianBean[] cartTuijianBeen = gson.fromJson(retData, CartTuijianBean[].class);
+                        JSONArray array = j.getJSONArray("retData");
 
-                        for (int i = 0; i < cartTuijianBeen.length; i++) {
-                            tuijianList.add(cartTuijianBeen[i]);
+
+                        for (int i = 0; i < array.size(); i++) {
+                            CartTuijianBean bean1 = new CartTuijianBean();
+                            JSONObject x = array.getJSONObject(i);
+                            bean1.setGoodsId(x.getString("goods_id"));
+                            bean1.setGoodsTitle(x.getString("goods_title"));
+                            bean1.setGoodsPrice(x.getString("goods_price"));
+
+                            tuijianList.add(bean1);
+
                         }
 
                         homeTuijianAdapter.initData(tuijianList);
@@ -142,8 +145,8 @@ public class HomePageFragment extends Fragment {
             }
         }));
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("goods_id", 78 + "");
-        httpRequestWrap.send(I.SERVER_URL + "GoodsDetails" + I.INDEX, map);
+        map.put("num", 3 + "");
+        httpRequestWrap.send(I.SERVER_URL + "HootGoods" + I.INDEX, map);
     }
 
     private void downloadKePuAnimal() {
@@ -156,25 +159,26 @@ public class HomePageFragment extends Fragment {
                 if (status == RequestStatus.SUCCESS) {
                     if (!s.isEmpty()) {
                         JSONObject jsonObject = JSONObject.parseObject(s);
-                        //Log.e("tag", "jsonObject=================" + jsonObject.toString());
-                        String result = jsonObject.getString("result");
-
-                        JSONObject jsonObject1 = JSON.parseObject(result);
-
-                        String retData = jsonObject1.getString("retData");
-                        Log.e("tag","retData================="+retData);
 
 
-                        Gson gson = new Gson();
-                        HomeKePuAnimalBean[] homeKePuAnimalBeen = gson.fromJson(retData, HomeKePuAnimalBean[].class);
+                        JSONObject j = jsonObject.getJSONObject("result");
 
-                        Log.e("tag","homeKePuAnimalBeen=============="+homeKePuAnimalBeen.toString());
+                        JSONArray array = j.getJSONArray("retData");
 
-                        for (int i = 0; i < homeKePuAnimalBeen.length; i++) {
-                            mKepulist.add(homeKePuAnimalBeen[i]);
-                            Log.e("tag","homeKePuAnimalBeen[i]============"+homeKePuAnimalBeen[i].toString());
+
+                        for (int i = 0; i < array.size(); i++) {
+                            HomeKePuAnimalBean bean = new HomeKePuAnimalBean();
+                            JSONObject x = array.getJSONObject(i);
+                            //String mmm = x.getString("goods_title");
+
+
+                            bean.setScienceEnglishTitle(x.getString("science_english_title"));
+                            bean.setScienceId(x.getString("science_id"));
+                            bean.setScienceTitle(x.getString("science_title"));
+
+                            mKepulist.add(bean);
+
                         }
-                        Log.e("tag","mKePulist============"+mKepulist.size());
                         mAdapter.initData(mKepulist);
                     }
                 }
@@ -235,7 +239,7 @@ public class HomePageFragment extends Fragment {
                 MFGT.gotoTodayActivity(mContext);
                 break;
             case R.id.home_text_more1://海洋动物科普
-                MFGT.gotoAnimalKePuActivity(mContext);
+                MFGT.gotoAnimalKePuActivity(mContext,DEFAULT_ID);
                 break;
             case R.id.home_text_more2://跳转至商品列表
                 MFGT.gotoGoodsListActivity(mContext);
