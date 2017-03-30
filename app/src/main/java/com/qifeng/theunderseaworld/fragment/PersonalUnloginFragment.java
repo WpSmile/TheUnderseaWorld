@@ -275,6 +275,7 @@ public class PersonalUnloginFragment extends Fragment {
                         com.alibaba.fastjson.JSONObject data = result.getJSONObject("retData");
 
                         String username = data.getString("username");
+                        Log.e("tag","username============="+username);
                         String userid = data.getString("user_id");
                         String email = data.getString("email");
                         String mobile = data.getString("mobile");
@@ -316,7 +317,7 @@ public class PersonalUnloginFragment extends Fragment {
             }
         }));
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("mobile", username);
+        map.put("username", username);
         map.put("password", password);
         httpRequestWrap.send(I.SERVER_URL + "Login" + I.INDEX, map);
     }

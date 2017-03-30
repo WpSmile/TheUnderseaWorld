@@ -144,13 +144,8 @@ public class CartActivity extends AppCompatActivity {
                 if (status == RequestStatus.SUCCESS) {
                     if (!s.isEmpty()) {
                         JSONObject jsonObject = JSONObject.parseObject(s);
-
-
                         JSONObject j = jsonObject.getJSONObject("result");
-
                         JSONArray array = j.getJSONArray("retData");
-
-
                         for (int i = 0; i < array.size(); i++) {
                             CartTuijianBean bean = new CartTuijianBean();
                             JSONObject x = array.getJSONObject(i);

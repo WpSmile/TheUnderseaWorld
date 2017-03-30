@@ -65,23 +65,20 @@ public class AnimalButtonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         AnimalButtonBean bean = arrayList.get(position);
-
         ((AnimalButtonViewHolder) holder).animalDetailsBtn.setText(bean.getBtn_title());
         for(AnimalButtonBean b:arrayList){
-            if(b.getBtn_id() == id){
-
+            if(b.getBtn_id().equals(id)){
                 mListener.onClick(position,((AnimalButtonViewHolder) holder).animalDetailsBtn);
                 ((AnimalButtonViewHolder) holder).animalDetailsBtn.setBackground(mContext.getResources().getDrawable(R.drawable.button_no_radius_with_blue_solid));
-                ((AnimalButtonViewHolder) holder).animalDetailsBtn.setTextColor(Color.WHITE);
-
+                ((AnimalButtonViewHolder) holder).animalDetailsBtn.setTextColor(mContext.getResources().getColor(R.color.white));
+            }else{
+                ((AnimalButtonViewHolder) holder).animalDetailsBtn.setBackground(mContext.getResources().getDrawable(R.drawable.buttom_no_radius_with_solid));
+                ((AnimalButtonViewHolder) holder).animalDetailsBtn.setTextColor(mContext.getResources().getColor(R.color.bottom_blue));
             }
         }
 
         ((AnimalButtonViewHolder) holder).animalDetailsBtn.setTag(bean.getBtn_id());
-
-
     }
-
     @Override
     public int getItemCount() {
         return arrayList == null ? 0 : arrayList.size();

@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:text="神奇的海底隧道"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@+id/item_personal_customer_iamge"/>
     <TextView
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="￥35 "
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textColor="#FFDD4F24"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
@@ -56,8 +56,8 @@
 
     <ImageView
         android:id="@+id/item_personal_customer_iamge"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/today_activity_default"
         android:background="@drawable/image_back"
         android:scaleType="fitXY"
@@ -81,7 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="好评率 "
-            android:textSize="10sp"/>
+            android:textSize="10sp"
+            android:id="@+id/textView3" />
 
         <TextView
             android:id="@+id/item_personal_customer_percent"

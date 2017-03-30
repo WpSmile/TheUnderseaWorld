@@ -22,14 +22,20 @@ import butterknife.OnClick;
  * Created by Administrator on 2016/10/27.
  */
 public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
-    static Context mContext;
+     Context mContext;
     ArrayList<CartTuijianBean> mlist;
     RecyclerView parent;
 
 
     public PersinalCustomerTuijianAdapter(Context mContext, ArrayList<CartTuijianBean> list) {
         this.mContext = mContext;
-        this.mlist = list;
+        if (mlist != null) {
+            this.mlist.clear();
+            this.mlist.addAll(list);
+        } else {
+            mlist = new ArrayList<>();
+            mlist.addAll(list);
+        }
 
     }
 
@@ -56,7 +62,7 @@ public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
 
         CartTuijianBean bean = mlist.get(position);
         ((PersonalCustomerTuijianViewHolder) holder).itemPersonalCustomerTitle.setText(bean.getGoodsTitle());
-        ((PersonalCustomerTuijianViewHolder) holder).itemPersonalCustomerTextPrice.setText(bean.getGoodsPrice());
+        ((PersonalCustomerTuijianViewHolder) holder).itemPersonalCustomerTextPrice.setText("￥"+bean.getGoodsPrice());
         //ImageLoader.downloadImg(mContext, ((PersonalCustomerTuijianViewHolder) holder).ivGoodsPicture, goods.getGoodsThumb());
 
 
@@ -64,7 +70,7 @@ public class PersinalCustomerTuijianAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mlist == null ? 1 : mlist.size() + 1;
+        return mlist == null ? 0 : mlist.size() ;
     }
 
 

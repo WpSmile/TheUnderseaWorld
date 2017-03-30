@@ -391,7 +391,7 @@ public class ImageLoader {
 
     public static void setImage1(String url, Context context, ImageView imageView, boolean isDragging) {
         ImageLoader.build(url)
-                .defaultPicture(R.drawable.back_001)
+                .defaultPicture(R.drawable.undersea_world)
                 .imageView(imageView)
                 .setDragging(isDragging)
                 .showImage(context);

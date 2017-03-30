@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         ButterKnife.bind(this);
 
         myReceiver = new MyReceiver();
+        IntentFilter intentFilter = new IntentFilter("com.example.broadcasttest.MY_BROADCAST");
+        registerReceiver(myReceiver, intentFilter);
+
         initView();
 
     }
@@ -109,22 +112,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         fragments = new ArrayList<>();
         fragments.add(new HomePageFragment());
         fragments.add(new StoreFragment());
-        fragments.add(new PersonalBusinessFragment());
-        setMyFragment();
-
-        IntentFilter intentFilter = new IntentFilter("com.example.broadcasttest.MY_BROADCAST");
-        registerReceiver(myReceiver,intentFilter);
-
+        fragments.add(new PersonalFragment());
+        fragments.add(new PersonalUnloginFragment());
 
         viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), fragments));
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(0);
     }
 
-    private void setMyFragment() {
-        fragments.add(new PersonalUnloginFragment());
 
-    }
     //用于接收登录成功后获取的消息来改变相应fragment
     public class MyReceiver extends BroadcastReceiver{
 
@@ -134,12 +130,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            String mobile = intent.getStringExtra("key");
-            Log.e("tag","mobile==========="+mobile);
-            if (mobile.isEmpty()){
-                setMyFragment();
-            }else{
-                fragments.add(new PersonalFragment());
+            String username = intent.getStringExtra("key");
+            Log.e("tag","mobile==========="+username);
+            if (!username.isEmpty()) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.activity_login, new PersonalBusinessFragment());
             }
         }
     }

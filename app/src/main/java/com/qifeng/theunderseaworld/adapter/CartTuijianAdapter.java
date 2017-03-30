@@ -29,14 +29,13 @@ public class CartTuijianAdapter extends RecyclerView.Adapter {
     RecyclerView parent;
 
 
-
     public CartTuijianAdapter(Context mContext, ArrayList<CartTuijianBean> list) {
         this.mContext = mContext;
-        if (mlist!=null){
+        if (mlist != null) {
             this.mlist.clear();
             this.mlist.addAll(list);
-        }else {
-            mlist=new ArrayList<>();
+        } else {
+            mlist = new ArrayList<>();
             mlist.addAll(list);
         }
 
@@ -66,19 +65,16 @@ public class CartTuijianAdapter extends RecyclerView.Adapter {
         CartTuijianBean bean = mlist.get(position);
         ((CartViewHolder) holder).tvItemSencondCartTitle.setText(bean.getGoodsTitle());
 
-        ((CartViewHolder) holder).tvSencondPrice.setText("("+bean.getGoodsPrice()+")");
+        ((CartViewHolder) holder).tvSencondPrice.setText("(" + bean.getGoodsPrice() + ")");
         //ImageLoader.downloadImg(mContext, ((CartViewHolder) holder).ivGoodsPicture, goods.getGoodsThumb());
-
 
 
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return mlist == null ? 0 : mlist.size();
     }
-
-
 
 
     class CartViewHolder extends RecyclerView.ViewHolder {

@@ -66,7 +66,7 @@
                     app:space="2dp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="10dp"
-                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
                     />
 
 
@@ -77,32 +77,32 @@
                 android:layout_height="100dp"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:paddingRight="10dp"
+                android:background="@color/white">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/white">
+                    android:layout_margin="5dp">
 
                     <ImageView
                         android:id="@+id/home_introduce_iamge"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
-                        android:src="@drawable/undersea_2_03"/>
+                        android:src="@drawable/undersea_2_03"
+                        />
                 </LinearLayout>
-
-                <TextView
-                    android:layout_width="3dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:background="@drawable/home_img_no_right_radius"
+                    android:layout_margin="5dp"
+                    >
                     <ImageView
                         android:id="@+id/home_map_iamge"
                         android:layout_width="wrap_content"

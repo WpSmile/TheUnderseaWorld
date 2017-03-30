@@ -1,8 +1,5 @@
 package com.qifeng.theunderseaworld.activity;
 
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +19,6 @@ import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.adapter.AnimalButtonAdapter;
 import com.qifeng.theunderseaworld.bean.AnimalButtonBean;
 import com.qifeng.theunderseaworld.bean.AnimalDetailsBean;
-import com.qifeng.theunderseaworld.bean.MessageEvent;
 import com.qifeng.theunderseaworld.utils.HttpRequestWrap;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
@@ -33,10 +29,6 @@ import com.qifeng.theunderseaworld.utils.StatusBarCompat;
 import com.qifeng.theunderseaworld.view.FlowIndicator;
 import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
 import com.qifeng.theunderseaworld.view.SpaceItemDecoretion;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -136,7 +128,7 @@ public class AnimalKePuActivity extends AppCompatActivity {
                 }
             }
         }));
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("num", 10 + "");
         httpRequestWrap.send(I.SERVER_URL + "ScienceList" + I.INDEX, map);
     }
@@ -154,8 +146,7 @@ public class AnimalKePuActivity extends AppCompatActivity {
                         JSONObject jsonObject = JSONObject.parseObject(s);
                         JSONObject j = jsonObject.getJSONObject("result");
                         JSONArray array = j.getJSONArray("retData");
-
-                        Log.e("tag", "array.size============" + array.size());
+                        Log.e("error","array===================="+array.size());
                         AnimalDetailsBean bean = new AnimalDetailsBean();
                         strPathArray = new String[array.size()];
 
@@ -166,15 +157,13 @@ public class AnimalKePuActivity extends AppCompatActivity {
                             bean.setScienceContent(x.getString("science_content"));
                             bean.setPath(x.getString("path"));
                             strPathArray[i] = x.getString("path");
-
                             showAnimalDetails(bean);
                         }
-                        Log.e("tag", "strPathArray========" + strPathArray.length);
                     }
                 }
             }
         }));
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("science_id", strId);
         httpRequestWrap.send(I.SERVER_URL + "ScienceDetails" + I.INDEX, map);
     }
@@ -189,7 +178,7 @@ public class AnimalKePuActivity extends AppCompatActivity {
     }
 
     private String[] getAlbumImgUrl() {
-        String[] url = new String[]{};
+        String[] url;
         url = strPathArray;
         return url;
     }
@@ -205,11 +194,12 @@ public class AnimalKePuActivity extends AppCompatActivity {
         mListener = new AnimalButtonAdapter.MyClickListener() {
             @Override
             public void onClick(int postion, View view) {
+                //被点击的item的view，position被点击item的位置
                 TextView textView = (TextView) view;
                 for(int i = 0;i<10;i++){
                     if (i == postion){
                         textView.setBackground(getResources().getDrawable(R.drawable.button_no_radius_with_blue_solid));
-                        textView.setTextColor(Color.WHITE);
+                        textView.setTextColor(getResources().getColor(R.color.white));
                         AnimalButtonBean bean = arraylist.get(postion);
                         downloadAnimalDetails(bean.getBtn_id());
                     }else{
