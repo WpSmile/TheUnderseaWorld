@@ -50,9 +50,10 @@ public class AnimalButtonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this.id = animalid;
     }
 
-    public void setMyListener(MyClickListener listener){
+    public void setMyListener(MyClickListener listener) {
         this.mListener = listener;
     }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.parent = (RecyclerView) parent;
@@ -66,19 +67,18 @@ public class AnimalButtonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         AnimalButtonBean bean = arrayList.get(position);
         ((AnimalButtonViewHolder) holder).animalDetailsBtn.setText(bean.getBtn_title());
-        for(AnimalButtonBean b:arrayList){
-            if(b.getBtn_id().equals(id)){
-                mListener.onClick(position,((AnimalButtonViewHolder) holder).animalDetailsBtn);
-                ((AnimalButtonViewHolder) holder).animalDetailsBtn.setBackground(mContext.getResources().getDrawable(R.drawable.button_no_radius_with_blue_solid));
-                ((AnimalButtonViewHolder) holder).animalDetailsBtn.setTextColor(mContext.getResources().getColor(R.color.white));
-            }else{
-                ((AnimalButtonViewHolder) holder).animalDetailsBtn.setBackground(mContext.getResources().getDrawable(R.drawable.buttom_no_radius_with_solid));
-                ((AnimalButtonViewHolder) holder).animalDetailsBtn.setTextColor(mContext.getResources().getColor(R.color.bottom_blue));
-            }
-        }
+
+        mListener.onClick(position, ((AnimalButtonViewHolder) holder).animalDetailsBtn);
+        //((AnimalButtonViewHolder) holder).animalDetailsBtn.setBackground(mContext.getResources().getDrawable(R.drawable.button_no_radius_with_blue_solid));
+        //((AnimalButtonViewHolder) holder).animalDetailsBtn.setTextColor(mContext.getResources().getColor(R.color.white));
+
+        ((AnimalButtonViewHolder) holder).animalDetailsBtn.setBackground(mContext.getResources().getDrawable(R.drawable.buttom_no_radius_with_solid));
+        ((AnimalButtonViewHolder) holder).animalDetailsBtn.setTextColor(mContext.getResources().getColor(R.color.bottom_blue));
+
 
         ((AnimalButtonViewHolder) holder).animalDetailsBtn.setTag(bean.getBtn_id());
     }
+
     @Override
     public int getItemCount() {
         return arrayList == null ? 0 : arrayList.size();
@@ -94,8 +94,6 @@ public class AnimalButtonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
 
-
-
     class AnimalButtonViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.animal_details_btn)
         TextView animalDetailsBtn;
@@ -107,11 +105,11 @@ public class AnimalButtonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         @OnClick(R.id.animal_details_btn)
         public void onViewClicked() {
-            mListener.onClick(getAdapterPosition(),animalDetailsBtn);
+            mListener.onClick(getAdapterPosition(), animalDetailsBtn);
         }
     }
 
-    public interface MyClickListener{
+    public interface MyClickListener {
         void onClick(int postion, View view);
     }
 }

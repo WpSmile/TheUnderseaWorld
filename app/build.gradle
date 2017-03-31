@@ -60,5 +60,9 @@ dependencies {
     compile name: 'SMSSDKGUI-2.1.3', ext: 'aar'
     compile 'com.google.okhttp:okhttp:20120626'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile files('libs/alipaySdk-20170309.jar')
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    compile files('libs/android-async-http-1.4.9.jar')
+
 }
 

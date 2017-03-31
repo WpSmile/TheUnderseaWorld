@@ -12,6 +12,9 @@ import com.qifeng.theunderseaworld.dao.SharePrefrenceUtils;
 import com.qifeng.theunderseaworld.dao.UserDao;
 import com.qifeng.theunderseaworld.utils.L;
 import com.qifeng.theunderseaworld.utils.MFGT;
+import com.qifeng.theunderseaworld.utils.userInfoUtils;
+
+import java.util.Map;
 
 public class SplashActivity extends AppCompatActivity {
     private final long splashTime = 3000;
@@ -44,7 +47,7 @@ public class SplashActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                User user = UnderseaWorldApplication.getUser();
+                /*User user = UnderseaWorldApplication.getUser();
                 L.e("underseaworld,user="+user);
                 String userid = SharePrefrenceUtils.getInstance(mContext).getUser();
                 L.e("underseaworld,userid="+userid);
@@ -54,6 +57,19 @@ public class SplashActivity extends AppCompatActivity {
                     if (user!=null){
                         UnderseaWorldApplication.setUser(user);
                     }
+                }*/
+
+                Map<String, String> userInfoMap = userInfoUtils.readUserInfo();
+                if (userInfoMap!=null){
+                    String username = userInfoMap.get("username");
+                    String userid = userInfoMap.get("userid");
+                    User user = new User();
+                    user.setUsername(username);
+                    user.setUserId(userid);
+                    if (user!=null){
+                        UnderseaWorldApplication.setUser(user);
+                    }
+
                 }
                 MFGT.gotoMainAcvitity(mContext);
                 MFGT.finish(mContext);

@@ -61,7 +61,7 @@ public class AnimalKePuActivity extends AppCompatActivity {
     AnimalButtonAdapter mAdapter;
     ArrayList<AnimalButtonBean> arraylist;
     AnimalButtonAdapter.MyClickListener mListener;
-    int selected;
+    HttpRequestWrap httpRequestWrap = null;
 
 
     @Override
@@ -103,7 +103,6 @@ public class AnimalKePuActivity extends AppCompatActivity {
     }
 
     private void downloadAnimalKePu() {
-        HttpRequestWrap httpRequestWrap;
         httpRequestWrap = new HttpRequestWrap(mContext);
         httpRequestWrap.setMethod(HttpRequestWrap.POST);
         httpRequestWrap.setCallBack(new RequestHandler(mContext, new OnResponseHandler() {
@@ -134,8 +133,6 @@ public class AnimalKePuActivity extends AppCompatActivity {
     }
 
     private void downloadAnimalDetails(String strId) {
-
-        HttpRequestWrap httpRequestWrap = null;
         httpRequestWrap = new HttpRequestWrap(mContext);
         httpRequestWrap.setMethod(HttpRequestWrap.POST);
         httpRequestWrap.setCallBack(new RequestHandler(mContext, new OnResponseHandler() {
@@ -146,7 +143,7 @@ public class AnimalKePuActivity extends AppCompatActivity {
                         JSONObject jsonObject = JSONObject.parseObject(s);
                         JSONObject j = jsonObject.getJSONObject("result");
                         JSONArray array = j.getJSONArray("retData");
-                        Log.e("error","array===================="+array.size());
+                        Log.e("error", "array====================" + array.size());
                         AnimalDetailsBean bean = new AnimalDetailsBean();
                         strPathArray = new String[array.size()];
 
@@ -155,10 +152,12 @@ public class AnimalKePuActivity extends AppCompatActivity {
                             JSONObject x = array.getJSONObject(i);
                             bean.setScienceTitle(x.getString("science_title"));
                             bean.setScienceContent(x.getString("science_content"));
-                            bean.setPath(x.getString("path"));
-                            strPathArray[i] = x.getString("path");
-                            showAnimalDetails(bean);
+
+                            String path = x.getString("path");
+                            bean.setPath(path);
+                            strPathArray[i] = path;
                         }
+                        showAnimalDetails(bean);
                     }
                 }
             }
@@ -170,18 +169,9 @@ public class AnimalKePuActivity extends AppCompatActivity {
 
     private void showAnimalDetails(AnimalDetailsBean details) {
         animalTextIntro.setText(details.getScienceContent());
-        slideAutoLoopView.startPlayLoop(flowIndicator, getAlbumImgUrl(), getAlbumImgCount());
+        slideAutoLoopView.startPlayLoop(flowIndicator, strPathArray, strPathArray.length);
     }
 
-    private int getAlbumImgCount() {
-        return strPathArray.length;
-    }
-
-    private String[] getAlbumImgUrl() {
-        String[] url;
-        url = strPathArray;
-        return url;
-    }
 
     private void initView() {
         flowIndicator = (FlowIndicator) findViewById(R.id.kepu_flowIndicator);
@@ -196,17 +186,16 @@ public class AnimalKePuActivity extends AppCompatActivity {
             public void onClick(int postion, View view) {
                 //被点击的item的view，position被点击item的位置
                 TextView textView = (TextView) view;
-                for(int i = 0;i<10;i++){
-                    if (i == postion){
-                        textView.setBackground(getResources().getDrawable(R.drawable.button_no_radius_with_blue_solid));
-                        textView.setTextColor(getResources().getColor(R.color.white));
-                        AnimalButtonBean bean = arraylist.get(postion);
-                        downloadAnimalDetails(bean.getBtn_id());
-                    }else{
-                        textView.setBackground(getResources().getDrawable(R.drawable.buttom_no_radius_with_solid));
-                        textView.setTextColor(getResources().getColor(R.color.bottom_blue));
-                    }
-                }
+
+                textView.setBackground(getResources().getDrawable(R.drawable.button_no_radius_with_blue_solid));
+                textView.setTextColor(getResources().getColor(R.color.white));
+                AnimalButtonBean bean = arraylist.get(postion);
+                downloadAnimalDetails(bean.getBtn_id());
+
+                textView.setBackground(getResources().getDrawable(R.drawable.buttom_no_radius_with_solid));
+                textView.setTextColor(getResources().getColor(R.color.bottom_blue));
+
+
             }
         };
         mAdapter.setMyListener(mListener);

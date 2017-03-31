@@ -42,6 +42,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     MyReceiver myReceiver;
 
+    HomePageFragment homePageFragment;
+    StoreFragment storeFragment;
+    CommunityFragment communityFragment;
+    PersonalUnloginFragment personalUnloginFragment;
+    PersonalFragment personalFragment;
+    PersonalBusinessFragment personalBusinessFragment;
+
+    SectionsPagerAdapter mAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +64,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         setContentView(R.layout.activity_main);
 
         //API20以上
-        if (Build.VERSION.SDK_INT>Build.VERSION_CODES.KITKAT){
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             //沉侵
-            StatusBarCompat.compat(this,getResources().getColor(R.color.bottom_blue));
+            StatusBarCompat.compat(this, getResources().getColor(R.color.bottom_blue));
         }
         ButterKnife.bind(this);
 
@@ -101,6 +111,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     }
 
     private void initView() {
+        homePageFragment = new HomePageFragment();
+        storeFragment = new StoreFragment();
+        communityFragment = new CommunityFragment();
+        personalFragment = new PersonalFragment();//顾客的fragment
+        personalUnloginFragment = new PersonalUnloginFragment();//默认未登录的fragment
+        personalBusinessFragment = new PersonalBusinessFragment();//商家的fragment
+
+
         //用于添加底部菜单的方法
         addItem();
         initViewPager();
@@ -110,19 +128,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         viewPager = (ViewPager) findViewById(R.id.layViewPager);
         fragments = new ArrayList<>();
-        fragments.add(new HomePageFragment());
-        fragments.add(new StoreFragment());
-        fragments.add(new PersonalFragment());
-        fragments.add(new PersonalUnloginFragment());
-
-        viewPager.setAdapter(new SectionsPagerAdapter(getSupportFragmentManager(), fragments));
+        fragments.add(homePageFragment);
+        fragments.add(storeFragment);
+        fragments.add(communityFragment);
+        fragments.add(personalUnloginFragment);
+        mAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), fragments);
+        viewPager.setAdapter(mAdapter);
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(0);
     }
 
 
     //用于接收登录成功后获取的消息来改变相应fragment
-    public class MyReceiver extends BroadcastReceiver{
+    public class MyReceiver extends BroadcastReceiver {
 
         public MyReceiver() {
 
@@ -131,10 +149,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         @Override
         public void onReceive(Context context, Intent intent) {
             String username = intent.getStringExtra("key");
-            Log.e("tag","mobile==========="+username);
+            Log.e("tag", "mobile===========" + username);
             if (!username.isEmpty()) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.activity_login, new PersonalBusinessFragment());
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.activity_login, personalFragment)
+                        //.hide(personalUnloginFragment)
+                        .commit();
             }
         }
     }

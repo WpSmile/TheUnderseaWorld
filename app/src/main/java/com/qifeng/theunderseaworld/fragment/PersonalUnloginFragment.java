@@ -33,9 +33,13 @@ import com.qifeng.theunderseaworld.utils.OnResponseHandler;
 import com.qifeng.theunderseaworld.utils.RequestHandler;
 import com.qifeng.theunderseaworld.utils.RequestStatus;
 import com.qifeng.theunderseaworld.utils.ResultUtils;
+import com.qifeng.theunderseaworld.utils.userInfoUtils;
 import com.qifeng.theunderseaworld.view.ImageViewPlus;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.common.Constants;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
@@ -77,6 +81,10 @@ public class PersonalUnloginFragment extends Fragment {
     private IUiListener loginListener;
     private String SCOPE = "all";
     private IUiListener userInfoListener;
+
+    /*微信登录*/
+    private static IWXAPI WXapi;
+    private String WX_APP_ID = "创建应用后得到的APP_ID";
 
 
     public PersonalUnloginFragment() {
@@ -233,8 +241,16 @@ public class PersonalUnloginFragment extends Fragment {
         }
     }
 
+    /**
+     * 登录微信
+     */
     private void loginByWeixin() {
-
+        WXapi = WXAPIFactory.createWXAPI(mContext, WX_APP_ID, true);
+        WXapi.registerApp(WX_APP_ID);
+        SendAuth.Req req = new SendAuth.Req();
+        req.scope = "snsapi_userinfo";
+        req.state = "wechat_sdk_demo";
+        WXapi.sendReq(req);
     }
 
     private void checkInput() {
@@ -275,7 +291,7 @@ public class PersonalUnloginFragment extends Fragment {
                         com.alibaba.fastjson.JSONObject data = result.getJSONObject("retData");
 
                         String username = data.getString("username");
-                        Log.e("tag","username============="+username);
+                        Log.e("tag", "username=============" + username);
                         String userid = data.getString("user_id");
                         String email = data.getString("email");
                         String mobile = data.getString("mobile");
@@ -300,23 +316,24 @@ public class PersonalUnloginFragment extends Fragment {
                             user.setNickname(nickname);
                             user.setQq(qq);
 
-                            UserDao dao = new UserDao(mContext);
-                            boolean isSuccess = dao.saveUser(user);
-                            if (isSuccess){
-                                SharePrefrenceUtils.getInstance(mContext).saveUser(user.getUsername());
-                                UnderseaWorldApplication.setUser(user);
+                            Log.e("tag", "user==============" + user);
+                            SharePrefrenceUtils.getInstance(mContext).saveUser(user.getUsername());
+                            UnderseaWorldApplication.setUser(user);
 
-                            }else {
-                                Toast.makeText(mContext, R.string.user_database_error, Toast.LENGTH_SHORT).show();
+
+                            boolean savaInfo = userInfoUtils.saveUserInfo(user.getUsername(), user.getUserId());
+                            if (savaInfo) {
+                                Log.e("tag", "username=" + user.getUsername() + ",userid=" + user.getUserId());
+                            } else {
+                                Toast.makeText(mContext, "用户信息保存失败", Toast.LENGTH_SHORT).show();
                             }
-
                         }
                     }
                     pd.dismiss();
                 }
             }
         }));
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("username", username);
         map.put("password", password);
         httpRequestWrap.send(I.SERVER_URL + "Login" + I.INDEX, map);

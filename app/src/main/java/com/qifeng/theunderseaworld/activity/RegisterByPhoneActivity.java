@@ -119,7 +119,7 @@ public class RegisterByPhoneActivity extends AppCompatActivity {
                         .start();
 
                 phoneNumber = registerEdtInputPhonenumber.getText().toString().trim();
-                if (TextUtils.isEmpty(phoneNumber) || phoneNumber.length() < 11)//判断字符串是null或者是“”或者是否少于11位
+                if (TextUtils.isEmpty(phoneNumber) || phoneNumber.length() != 11)//判断字符串是null或者是“”或者是否11位
                 {
                     Toast.makeText(getApplicationContext(), "请输入合法的手机号", Toast.LENGTH_LONG).show();
                 } else {
@@ -152,7 +152,7 @@ public class RegisterByPhoneActivity extends AppCompatActivity {
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setMessage(getResources().getString(R.string.registering));
         pd.show();
-        String phonenumber = registerEdtInputPhonenumber.getText().toString();
+        String username = registerEdtInputPhonenumber.getText().toString();
         String password = registerEdtPassword.getText().toString();
 
         HttpRequestWrap httpRequestWrap = null;
@@ -167,9 +167,11 @@ public class RegisterByPhoneActivity extends AppCompatActivity {
 
                         JSONObject jsonObject = JSON.parseObject(s);
                         Log.e("tag", "jsonObject==============" + jsonObject.toString());
-                        String result = jsonObject.getString("result");
-                        JSONObject jsonObject1 = JSON.parseObject(result);
-                        Boolean retMsg = jsonObject1.getBoolean("retMsg");
+                        JSONObject result = jsonObject.getJSONObject("result");
+
+                        String retData = result.getString("retData");
+
+                        Boolean retMsg = result.getBoolean("retMsg");
 
                         if (retMsg) {
                             Toast.makeText(mContext, R.string.register_success, Toast.LENGTH_SHORT).show();
@@ -184,8 +186,8 @@ public class RegisterByPhoneActivity extends AppCompatActivity {
                 }
             }
         }));
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("mobile", phonenumber);
+        Map<String, Object> map = new HashMap<>();
+        map.put("username", username);
         map.put("password", password);
         httpRequestWrap.send(I.SERVER_URL + "Registe" + I.INDEX, map);
     }

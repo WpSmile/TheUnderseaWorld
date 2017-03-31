@@ -160,8 +160,10 @@ public class OrderManagementActivity extends AppCompatActivity {
     private void setButtonStatus() {
         btnArray[currentFragmentIndex].setSelected(false);
         btnArray[currentFragmentIndex].setTextColor(getResources().getColor(R.color.gray));
+        btnArray[currentFragmentIndex].setBackground(getResources().getDrawable(R.drawable.button_white_with_solid));
+
         btnArray[clickButtonIndex].setSelected(true);
         btnArray[clickButtonIndex].setTextColor(getResources().getColor(R.color.bottom_blue));
-        //btnArray[clickButtonIndex].setBackground(R.drawable.item_cart_layout_noradius);
+        btnArray[clickButtonIndex].setBackground(getResources().getDrawable(R.drawable.item_cart_layout_noradius));
     }
 }

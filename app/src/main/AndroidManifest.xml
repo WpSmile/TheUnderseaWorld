@@ -58,7 +58,7 @@
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!-- 单体登录页面 -->
         <activity android:name=".activity.LoginActivity" />
@@ -118,13 +118,13 @@
         <activity android:name=".activity.DindingPayActivity" />
 
         <!-- 个人信息界面 -->
-        <activity android:name=".activity.PersonalActivity"></activity>
+        <activity android:name=".activity.PersonalActivity" />
 
         <!-- 解绑手机界面 -->
         <activity android:name=".activity.UnbundlingphoneActivity" />
 
         <!-- 解绑微信界面 -->
-        <activity android:name=".activity.UnbundlingWechatActivity"></activity>
+        <activity android:name=".activity.UnbundlingWechatActivity" />
 
         <!-- 解绑支付宝界面 -->
         <activity android:name=".activity.UnbundlingPayActivity" />
@@ -133,34 +133,34 @@
         <activity android:name=".activity.NickNameActivity" />
 
         <!-- 收获地址界面 -->
-        <activity android:name=".activity.DeliveryAddressActivity"></activity>
-        <activity android:name=".activity.NewlyaddedActivity"></activity>
+        <activity android:name=".activity.DeliveryAddressActivity" />
+        <activity android:name=".activity.NewlyaddedActivity" />
 
         <!-- 国家/地区界面 -->
-        <activity android:name=".activity.CountryActivity"></activity>
+        <activity android:name=".activity.CountryActivity" />
 
         <!-- 宝贝上架界面 -->
-        <activity android:name=".activity.ShelvesActivity"></activity>
+        <activity android:name=".activity.ShelvesActivity" />
 
         <!-- 商品管理界面 -->
-        <activity android:name=".activity.ManagementActivity"></activity>
+        <activity android:name=".activity.ManagementActivity" />
 
         <!-- 手机注册界面 -->
-        <activity android:name=".activity.RegisterActivity"></activity>
+        <activity android:name=".activity.RegisterActivity" />
 
         <!-- 忘记密码界面 -->
-        <activity android:name=".activity.PassWordActivity"></activity>
+        <activity android:name=".activity.PassWordActivity" />
 
         <!-- 手机绑定界面 -->
-        <activity android:name=".activity.PhoneActivity"></activity>
+        <activity android:name=".activity.PhoneActivity" />
 
         <!-- 商品列表 -->
-        <activity android:name=".activity.GoodsListActivity"></activity>
+        <activity android:name=".activity.GoodsListActivity" />
 
         <!-- 后台管理 -->
         <service
             android:name=".seabed_service.SeabedService"
-            android:permission="true"></service>
+            android:permission="true" />
 
         <!-- 短信验证码的activity节点 -->
         <activity
@@ -172,9 +172,9 @@
         <receiver
             android:name=".receiver.MessageReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
-
+        <activity android:name=".wxapi.WXEntryActivity"></activity>
     </application>
 
 </manifest>

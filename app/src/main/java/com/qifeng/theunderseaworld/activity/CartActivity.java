@@ -26,6 +26,7 @@ import com.qifeng.theunderseaworld.adapter.CartTuijianAdapter;
 import com.qifeng.theunderseaworld.bean.CartBean;
 import com.qifeng.theunderseaworld.bean.CartTuijianBean;
 import com.qifeng.theunderseaworld.bean.User;
+import com.qifeng.theunderseaworld.dao.SharePrefrenceUtils;
 import com.qifeng.theunderseaworld.utils.HttpRequestWrap;
 import com.qifeng.theunderseaworld.utils.MFGT;
 import com.qifeng.theunderseaworld.utils.OkUtils;
@@ -33,6 +34,7 @@ import com.qifeng.theunderseaworld.utils.OnResponseHandler;
 import com.qifeng.theunderseaworld.utils.RequestHandler;
 import com.qifeng.theunderseaworld.utils.RequestStatus;
 import com.qifeng.theunderseaworld.utils.StatusBarCompat;
+import com.qifeng.theunderseaworld.utils.userInfoUtils;
 import com.qifeng.theunderseaworld.view.SpaceItemDecoretion;
 
 import java.util.ArrayList;
@@ -130,7 +132,6 @@ public class CartActivity extends AppCompatActivity {
 
     private void initData() {
         downloadCart();
-
         downloadGuessLike();
     }
 
@@ -163,14 +164,17 @@ public class CartActivity extends AppCompatActivity {
                 }
             }
         }));
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("num", 3 + "");
         httpRequestWrap.send(I.SERVER_URL + "HootGoods" + I.INDEX, map);
     }
 
     private void downloadCart() {//获取购物车数据的方法
-        user = UnderseaWorldApplication.getUser();
-        if (user != null){//当用户不为空时才显示购物车中的数据
+
+
+        Map<String, String> userInfoMap = userInfoUtils.readUserInfo();
+
+        if (userInfoMap!=null){//当用户不为空时才显示购物车中的数据
             HttpRequestWrap httpRequestWrap;
             httpRequestWrap = new HttpRequestWrap(mContext);
             httpRequestWrap.setMethod(HttpRequestWrap.POST);
@@ -205,8 +209,8 @@ public class CartActivity extends AppCompatActivity {
                     }
                 }
             }));
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("num", user.getUserId() + "");
+            Map<String, Object> map = new HashMap<>();
+            map.put("num", this.user.getUserId() + "");
             httpRequestWrap.send(I.SERVER_URL + "GetShopcart" + I.INDEX, map);
 
         }

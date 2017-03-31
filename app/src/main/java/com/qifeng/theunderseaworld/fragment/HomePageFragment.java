@@ -6,28 +6,20 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.Gson;
 import com.qifeng.theunderseaworld.I;
 import com.qifeng.theunderseaworld.R;
 import com.qifeng.theunderseaworld.activity.MainActivity;
-import com.qifeng.theunderseaworld.bean.Result;
 import com.qifeng.theunderseaworld.utils.HttpRequestWrap;
-import com.qifeng.theunderseaworld.utils.L;
-import com.qifeng.theunderseaworld.utils.OkHttpUtils;
-import com.qifeng.theunderseaworld.utils.OkUtils;
 import com.qifeng.theunderseaworld.utils.OnResponseHandler;
 import com.qifeng.theunderseaworld.utils.RequestHandler;
 import com.qifeng.theunderseaworld.utils.RequestStatus;
-import com.qifeng.theunderseaworld.utils.ResultUtils;
 import com.qifeng.theunderseaworld.view.SpaceItemDecoretion;
 import com.qifeng.theunderseaworld.adapter.HomeKePuAnimalAdapter;
 import com.qifeng.theunderseaworld.adapter.HomeTuijianAdapter;
@@ -38,11 +30,7 @@ import com.qifeng.theunderseaworld.view.FlowIndicator;
 import com.qifeng.theunderseaworld.view.SlideAutoLoopView;
 
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,7 +43,7 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class HomePageFragment extends Fragment {
-    final String DEFAULT_ID = 71+"";
+    final String DEFAULT_ID = 71 + "";
     MainActivity mContext;
     ArrayList<HomeKePuAnimalBean> mKepulist;//动物科普的集合
     @BindView(R.id.home_rv_kepu)
@@ -75,7 +63,8 @@ public class HomePageFragment extends Fragment {
     FlowIndicator homeFlowIndicator;
 
 
-    private String sessionID;
+    String[] imageurl;
+    ArrayList<String> imageurlList;
 
     private HttpRequestWrap httpRequestWrap = null;
 
@@ -96,19 +85,53 @@ public class HomePageFragment extends Fragment {
         mKepulist = new ArrayList<>();
         tuijianList = new ArrayList<>();
 
+        imageurlList = new ArrayList<>();
+
         initView();
         initData();
         return view;
     }
 
     private void initData() {
-        String[] imageurl = {"miku.jpg", "wusaki.jpg", "%CE%BC%27s.jpg", "project.jpg"};
+        downloadHomeSlideAuto();//下载首页轮播图的方法
+        downloadKePuAnimal();//下载首页动物科普item的方法
+        downloadHomeTuijian();//下载首页热销推荐item的方法
+    }
 
+    private void downloadHomeSlideAuto() {
+        httpRequestWrap = new HttpRequestWrap(getContext());
+        httpRequestWrap.setMethod(HttpRequestWrap.GET);
+        httpRequestWrap.setCallBack(new RequestHandler(getContext(), new OnResponseHandler() {
+            @Override
+            public void onResponse(String s, RequestStatus status) {
+                if (status == RequestStatus.SUCCESS) {
+                    if (!s.isEmpty()) {
+
+                        Log.e("tag", "s-----------------------" + s);
+                        JSONObject jsonObject = JSONObject.parseObject(s);
+                        JSONObject j = jsonObject.getJSONObject("result");
+                        JSONArray array = j.getJSONArray("retData");
+                        imageurl = new String[array.size()];
+                        for (int i = 0; i < array.size(); i++) {
+                            JSONObject image = array.getJSONObject(i);
+                            String path = image.getString("path");
+
+                            Log.e("tag", "path------------------------" + path);
+                            imageurl[i] = path;
+
+                        }
+                        Log.e("tag", "imageurl-----------------------" + imageurl.toString());
+                        showSlideAutoDetails();//显示图片轮播的方法
+                    }
+                }
+            }
+        }));
+        Map<String, Object> map = new HashMap<>();
+        httpRequestWrap.send(I.SERVER_URL + "Carousel" + I.INDEX, map);
+    }
+
+    private void showSlideAutoDetails() {
         homeSlideAuto.startPlayLoop(homeFlowIndicator, imageurl, imageurl.length);
-        //homeSlideAuto.startPlayLoop(myView, getAlbumImgUrl(details), getAlbumImgCount(details));
-
-        downloadKePuAnimal();
-        downloadHomeTuijian();
     }
 
     private void downloadHomeTuijian() {
@@ -191,6 +214,8 @@ public class HomePageFragment extends Fragment {
     }
 
     private void initView() {
+
+
         //设置首页科普默认数据
         setHomeDefaultKepu();
 
@@ -239,7 +264,7 @@ public class HomePageFragment extends Fragment {
                 MFGT.gotoTodayActivity(mContext);
                 break;
             case R.id.home_text_more1://海洋动物科普
-                MFGT.gotoAnimalKePuActivity(mContext,DEFAULT_ID);
+                MFGT.gotoAnimalKePuActivity(mContext, DEFAULT_ID);
                 break;
             case R.id.home_text_more2://跳转至商品列表
                 MFGT.gotoGoodsListActivity(mContext);
